@@ -18,14 +18,14 @@ describe Paymill::Client do
 
   describe ".find" do
     it "makes a new GET request using the correct API endpoint" do
-      Paymill.should_receive(:request).with(:get, Paymill::Client::API_ENDPOINT, {}, "/123").and_return("data" => {})
+      Paymill.should_receive(:request).with(:get, "clients", {}, "/123").and_return("data" => {})
       Paymill::Client.find("123")
     end
   end
 
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
-      Paymill.should_receive(:request).with(:post, Paymill::Client::API_ENDPOINT, valid_attributes).and_return("data" => {})
+      Paymill.should_receive(:request).with(:post, "clients", valid_attributes).and_return("data" => {})
       Paymill::Client.create(valid_attributes)
     end
   end

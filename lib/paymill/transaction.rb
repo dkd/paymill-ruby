@@ -1,7 +1,5 @@
 module Paymill
   class Transaction
-    API_ENDPOINT = "transactions"
-
     include Paymill::Operations::Create
     include Paymill::Operations::Find
 

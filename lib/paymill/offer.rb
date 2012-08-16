@@ -1,7 +1,5 @@
 module Paymill
   class Offer
-    API_ENDPOINT = "offers"
-
     include Paymill::Operations::Create
     include Paymill::Operations::Find
 

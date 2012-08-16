@@ -33,14 +33,14 @@ describe Paymill::Transaction do
 
   describe ".find" do
     it "makes a new GET request using the correct API endpoint" do
-      Paymill.should_receive(:request).with(:get, Paymill::Transaction::API_ENDPOINT, {}, "/123").and_return("data" => {})
+      Paymill.should_receive(:request).with(:get, "transactions", {}, "/123").and_return("data" => {})
       Paymill::Transaction.find("123")
     end
   end
 
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
-      Paymill.should_receive(:request).with(:post, Paymill::Transaction::API_ENDPOINT, valid_attributes).and_return("data" => {})
+      Paymill.should_receive(:request).with(:post, "transactions", valid_attributes).and_return("data" => {})
       Paymill::Transaction.create(valid_attributes)
     end
   end

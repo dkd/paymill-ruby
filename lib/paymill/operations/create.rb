@@ -3,7 +3,7 @@ module Paymill
     module Create
       module ClassMethods
         def create(attributes)
-          response = Paymill.request(:post, self::API_ENDPOINT, attributes)
+          response = Paymill.request(:post, "#{self.name.split("::").last.downcase}s", attributes)
           self.new(response["data"])
         end
       end

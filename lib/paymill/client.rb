@@ -1,7 +1,5 @@
 module Paymill
   class Client
-    API_ENDPOINT = "clients"
-
     include Paymill::Operations::Create
     include Paymill::Operations::Find
 

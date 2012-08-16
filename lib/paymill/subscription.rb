@@ -1,7 +1,5 @@
 module Paymill
   class Subscription
-    API_ENDPOINT = "subscriptions"
-
     include Paymill::Operations::Create
     include Paymill::Operations::Find
 
