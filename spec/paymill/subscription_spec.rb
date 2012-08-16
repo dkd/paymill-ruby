@@ -33,7 +33,7 @@ describe Paymill::Subscription do
 
   describe ".find" do
     it "makes a new GET request using the correct API endpoint" do
-      Paymill.should_receive(:request).with(:get, "subscriptions", {}, "/123").and_return("data" => {})
+      Paymill.should_receive(:request).with(:get, "subscriptions/123", {}).and_return("data" => {})
       Paymill::Subscription.find("123")
     end
   end
