@@ -18,15 +18,9 @@ Then you have to set your public API key:
 
     Paymill.api_key = "your-public-api-key"
 
-You can create clients as following:
+Now you can e.g. create a new client:
 
     Paymill::Client.create(email: "stefan.sprenger@dkd.de", description: "He is a Ruby guy.")
-
-You can create a credit card as following:
-
-    Paymill::CreditCard.create(token: "token_8349fjh89qp3849h")
-
-This returns a new `Paymill::Client` object.
 
 Bugs
 ======
