@@ -43,15 +43,15 @@ module Paymill
       https.ca_file      = File.join(File.dirname(__FILE__), "data/paymill.crt")
       https.start do |connection|
         url = "/v1/#{api_url}#{path}"
-        _request = case http_method
+        https_request = case http_method
               when :post
                 Net::HTTP::Post.new(url)
               else
                 Net::HTTP::Get.new(url)
               end
-        _request.basic_auth(api_key,"")
-        _request.set_form_data(data) if http_method == :post
-        @response = https.request(_request)
+        https_request.basic_auth(api_key,"")
+        https_request.set_form_data(data) if http_method == :post
+        @response = https.request(https_request)
       end
       raise AuthenticationError if @response.code.to_i == 401
       raise APIError if @response.code.to_i >= 500
