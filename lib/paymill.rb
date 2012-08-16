@@ -34,7 +34,7 @@ module Paymill
       @@api_key = api_key
     end
 
-    def request(http_method, api_url, data, path="")
+    def request(http_method, api_url, data)
       raise AuthenticationError if api_key.nil?
 
       https              = Net::HTTP.new(API_BASE, Net::HTTP.https_default_port)
@@ -42,7 +42,7 @@ module Paymill
       https.verify_mode  = OpenSSL::SSL::VERIFY_PEER
       https.ca_file      = File.join(File.dirname(__FILE__), "data/paymill.crt")
       https.start do |connection|
-        url = "/v1/#{api_url}#{path}"
+        url = "/v1/#{api_url}"
         https_request = case http_method
               when :post
                 Net::HTTP::Post.new(url)
