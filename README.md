@@ -14,13 +14,20 @@ and require it
 
     require "paymill"
 
-Then you have to set your public API key:
+Then you have to set your API key:
 
-    Paymill.api_key = "your-public-api-key"
+    Paymill.api_key = "your-api-key"
 
 Now you can e.g. create a new client:
 
     Paymill::Client.create(email: "stefan.sprenger@dkd.de", description: "He is a Ruby guy.")
+
+We currently only support `create` and `find` operations.
+
+Requirements
+=====
+
+This gem was developed using Ruby 1.9 and version 1 of Paymill's API. Nonetheless, it should also work with Ruby 1.8.
 
 Bugs
 ======
