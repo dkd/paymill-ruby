@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Paymill::VERSION
   s.authors     = ["Stefan Sprenger"]
   s.email       = ["stefan.sprenger@dkd.de"]
-  s.homepage    = "https://github.com/dkd/paymill"
+  s.homepage    = "https://github.com/dkd/paymill-ruby"
   s.summary     = %q{API wrapper for Paymill.}
   s.description = %q{API wrapper for Paymill.}
 
