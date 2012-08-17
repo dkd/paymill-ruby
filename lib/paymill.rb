@@ -16,6 +16,7 @@ module Paymill
 
   module Operations
     autoload :Create, "paymill/operations/create"
+    autoload :Delete, "paymill/operations/delete"
     autoload :Find,   "paymill/operations/find"
   end
 
@@ -46,6 +47,8 @@ module Paymill
         https_request = case http_method
               when :post
                 Net::HTTP::Post.new(url)
+              when :delete
+                Net::HTTP::Delete.new(url)
               else
                 Net::HTTP::Get.new(url)
               end

@@ -30,6 +30,13 @@ describe Paymill::Offer do
     end
   end
 
+  describe ".delete" do
+    it "makes a new DELETE request using the correct API endpoint" do
+      Paymill.should_receive(:request).with(:delete, "offers/123", {}).and_return(true)
+      Paymill::Offer.delete("123")
+    end
+  end
+
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
       Paymill.should_receive(:request).with(:post, "offers", valid_attributes).and_return("data" => {})

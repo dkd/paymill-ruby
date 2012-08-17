@@ -38,6 +38,13 @@ describe Paymill::Subscription do
     end
   end
 
+  describe ".delete" do
+    it "makes a new DELETE request using the correct API endpoint" do
+      Paymill.should_receive(:request).with(:delete, "subscriptions/123", {}).and_return(true)
+      Paymill::Subscription.delete("123")
+    end
+  end
+
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
       Paymill.should_receive(:request).with(:post, "subscriptions", valid_attributes).and_return("data" => {})

@@ -23,6 +23,13 @@ describe Paymill::Client do
     end
   end
 
+  describe ".delete" do
+    it "makes a new DELETE request using the correct API endpoint" do
+      Paymill.should_receive(:request).with(:delete, "clients/123", {}).and_return(true)
+      Paymill::Client.delete("123")
+    end
+  end
+
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
       Paymill.should_receive(:request).with(:post, "clients", valid_attributes).and_return("data" => {})

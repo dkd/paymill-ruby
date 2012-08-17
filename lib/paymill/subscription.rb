@@ -1,6 +1,7 @@
 module Paymill
   class Subscription
     include Paymill::Operations::Create
+    include Paymill::Operations::Delete
     include Paymill::Operations::Find
 
     attr_accessor :id, :plan, :livemode, :cancel_at_period_end, :created_at, :updated_at,

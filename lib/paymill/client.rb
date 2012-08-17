@@ -1,6 +1,7 @@
 module Paymill
   class Client
     include Paymill::Operations::Create
+    include Paymill::Operations::Delete
     include Paymill::Operations::Find
 
     attr_accessor :id, :email, :description, :attributes, :created_at,
