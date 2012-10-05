@@ -6,7 +6,7 @@ module Paymill
           if id.nil?
             response = Paymill.request(:get, "#{self.name.split("::").last.downcase}s/", {})
             results = []
-            response.each do |obj|
+            response["data"].each do |obj|
               puts "######"
               puts obj.inspect
               yay = self.new(obj)
