@@ -7,7 +7,15 @@ module Paymill
             response = Paymill.request(:get, "#{self.name.split("::").last.downcase}s/", {})
             results = []
             response.each do |obj|
-              results << self.new(obj)
+              puts "######"
+              puts obj.inspect
+              yay = self.new(obj)
+              puts "######"
+              puts yay.class
+              puts "######"
+              puts yay.inspect
+              puts "######"
+              results << yay
             end
             results
           else
