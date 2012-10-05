@@ -26,4 +26,18 @@ describe Paymill::CreditCard do
       credit_card.last4.should eql("1111")
     end
   end
+
+  describe ".find" do
+    it "makes a new GET request using the correct API endpoint" do
+      Paymill.should_receive(:request).with(:get, "creditcards/123", {}).and_return("data" => {})
+      Paymill::CreditCard.find("123")
+    end
+  end
+
+  describe ".create" do
+    it "makes a new POST request using the correct API endpoint" do
+      Paymill.should_receive(:request).with(:post, "creditcards", valid_attributes).and_return("data" => {})
+      Paymill::CreditCard.create(valid_attributes)
+    end
+  end
 end
