@@ -7,8 +7,10 @@ module Paymill
                   :card_holder, :last4, :created_at, :updated_at
 
     def initialize(attributes = {})
-      attributes.each_pair do |key, value|
-        instance_variable_set("@#{key}", value)
+      if not attributes.kind_of?(Array)
+        attributes.each_pair do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
       @attributes  = attributes
     end
