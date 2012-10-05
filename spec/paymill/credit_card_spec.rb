@@ -28,9 +28,14 @@ describe Paymill::CreditCard do
   end
 
   describe ".find" do
-    it "makes a new GET request using the correct API endpoint" do
+    it "makes a new GET request using the correct API endpoint to receive a specific creditcard" do
       Paymill.should_receive(:request).with(:get, "creditcards/123", {}).and_return("data" => {})
       Paymill::CreditCard.find("123")
+    end
+
+    it "makes a new GET request using the correct API endpoint to receive all creditcards" do
+      Paymill.should_receive(:request).with(:get, "creditcards/", {}).and_return("data" => {})
+      Paymill::CreditCard.find()
     end
   end
 

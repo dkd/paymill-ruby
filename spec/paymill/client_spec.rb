@@ -17,9 +17,14 @@ describe Paymill::Client do
   end
 
   describe ".find" do
-    it "makes a new GET request using the correct API endpoint" do
+    it "makes a new GET request using the correct API endpoint to receive a specific client" do
       Paymill.should_receive(:request).with(:get, "clients/123", {}).and_return("data" => {})
       Paymill::Client.find("123")
+    end
+
+    it "makes a new GET request using the correct API endpoint to receive all clients" do
+      Paymill.should_receive(:request).with(:get, "clients/", {}).and_return("data" => {})
+      Paymill::Client.find()
     end
   end
 
