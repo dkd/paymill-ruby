@@ -26,11 +26,11 @@ Or find a existing client
 
     Paymill::Client.find("client_88a388d9dd48f86c3136")
 
-For retrieving a collection of all clients just call find without a id
+For retrieving a collection of all clients
 
-    Paymill::Client.find()
+    Paymill::Client.all()
 
-We currently only support `create` and `find` operations.
+We currently only support `create`, `find` and `all` operations.
 
 Requirements
 =====
