@@ -21,10 +21,12 @@ describe Paymill::Client do
       Paymill.should_receive(:request).with(:get, "clients/123", {}).and_return("data" => {})
       Paymill::Client.find("123")
     end
+  end
 
+  describe ".all" do
     it "makes a new GET request using the correct API endpoint to receive all clients" do
       Paymill.should_receive(:request).with(:get, "clients/", {}).and_return("data" => {})
-      Paymill::Client.find()
+      Paymill::Client.all()
     end
   end
 

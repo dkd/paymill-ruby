@@ -3,6 +3,7 @@ module Paymill
     include Paymill::Operations::Create
     include Paymill::Operations::Delete
     include Paymill::Operations::Find
+    include Paymill::Operations::All
 
     attr_accessor :id, :name, :amount, :interval, :trial_period_days, :currency
 
