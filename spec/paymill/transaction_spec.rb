@@ -32,9 +32,16 @@ describe Paymill::Transaction do
   end
 
   describe ".find" do
-    it "makes a new GET request using the correct API endpoint" do
+    it "makes a new GET request using the correct API endpoint to receive a specific transaction" do
       Paymill.should_receive(:request).with(:get, "transactions/123", {}).and_return("data" => {})
       Paymill::Transaction.find("123")
+    end
+  end
+
+  describe ".all" do
+    it "makes a new GET request using the correct API endpoint to receive all transactions" do
+      Paymill.should_receive(:request).with(:get, "transactions/", {}).and_return("data" => {})
+      Paymill::Transaction.all()
     end
   end
 

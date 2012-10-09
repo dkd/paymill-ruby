@@ -22,7 +22,15 @@ Now you can e.g. create a new client:
 
     Paymill::Client.create(email: "stefan.sprenger@dkd.de", description: "He is a Ruby guy.")
 
-We currently only support `create` and `find` operations.
+Or find a existing client
+
+    Paymill::Client.find("client_88a388d9dd48f86c3136")
+
+For retrieving a collection of all clients
+
+    Paymill::Client.all()
+
+We currently only support `create`, `find` and `all` operations.
 
 Requirements
 =====

@@ -24,9 +24,16 @@ describe Paymill::Offer do
   end
 
   describe ".find" do
-    it "makes a new GET request using the correct API endpoint" do
+    it "makes a new GET request using the correct API endpoint to receive a specific offer" do
       Paymill.should_receive(:request).with(:get, "offers/123", {}).and_return("data" => {})
       Paymill::Offer.find("123")
+    end
+  end
+
+  describe ".all" do
+    it "makes a new GET request using the correct API endpoint to receive all offers" do
+      Paymill.should_receive(:request).with(:get, "offers/", {}).and_return("data" => {})
+      Paymill::Offer.all()
     end
   end
 
