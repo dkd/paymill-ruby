@@ -33,7 +33,7 @@ describe Paymill::Offer do
   describe ".all" do
     it "makes a new GET request using the correct API endpoint to receive all offers" do
       Paymill.should_receive(:request).with(:get, "offers/", {}).and_return("data" => {})
-      Paymill::Offer.all()
+      Paymill::Offer.all
     end
   end
 

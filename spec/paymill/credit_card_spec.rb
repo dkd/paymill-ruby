@@ -37,7 +37,7 @@ describe Paymill::CreditCard do
   describe ".all" do
     it "makes a new GET request using the correct API endpoint to receive all creditcards" do
       Paymill.should_receive(:request).with(:get, "creditcards/", {}).and_return("data" => {})
-      Paymill::CreditCard.all()
+      Paymill::CreditCard.all
     end
   end
 

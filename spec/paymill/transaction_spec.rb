@@ -41,7 +41,7 @@ describe Paymill::Transaction do
   describe ".all" do
     it "makes a new GET request using the correct API endpoint to receive all transactions" do
       Paymill.should_receive(:request).with(:get, "transactions/", {}).and_return("data" => {})
-      Paymill::Transaction.all()
+      Paymill::Transaction.all
     end
   end
 
