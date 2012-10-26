@@ -9,5 +9,13 @@ module Paymill
         instance_variable_set("@#{key}", value)
       end
     end
+    
+    def self.api_path(id = nil)
+      [pluralized_name, id].compact.join('/')
+    end
+    
+    def self.pluralized_name
+      name.split("::").last.downcase + 's'
+    end
   end
 end

@@ -2,7 +2,7 @@ module Paymill
   module Operations
     module Delete
       def delete(id)
-        response = Paymill.request(:delete, "#{self.name.split("::").last.downcase}s/#{id}", {})
+        response = Paymill.request(:delete, self.api_path(id), {})
         true
       end
     end
