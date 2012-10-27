@@ -1,4 +1,4 @@
-Paymill ![Build status](http://secure.travis-ci.org/dkd/paymill-ruby.png)
+Paymill [![Build Status](https://secure.travis-ci.org/dkd/paymill-ruby.png)](http://travis-ci.org/dkd/paymill-ruby)
 ======
 
 This is a Ruby wrapper for Paymill's API.
