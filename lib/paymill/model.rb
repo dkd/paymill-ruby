@@ -16,9 +16,9 @@ module Paymill
     extend Paymill::Operations::Find
 
     def initialize(attributes = {})
-      attributes.each_pair do |key, value|
-        instance_variable_set("@#{key}", value)
-      end
+      attributes.each do |attr, value|
+        self.public_send("#{attr}=", value)
+      end if attributes
     end
   end
 end
