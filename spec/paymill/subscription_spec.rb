@@ -40,7 +40,7 @@ describe Paymill::Subscription do
 
   describe ".all" do
     it "makes a new GET request using the correct API endpoint to receive all subscriptions" do
-      Paymill.should_receive(:request).with(:get, "subscriptions/", {}).and_return("data" => {})
+      Paymill.should_receive(:request).with(:get, "subscriptions", {}).and_return("data" => {})
       Paymill::Subscription.all
     end
   end

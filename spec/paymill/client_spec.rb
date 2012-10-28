@@ -25,7 +25,7 @@ describe Paymill::Client do
 
   describe ".all" do
     it "makes a new GET request using the correct API endpoint to receive all clients" do
-      Paymill.should_receive(:request).with(:get, "clients/", {}).and_return("data" => {})
+      Paymill.should_receive(:request).with(:get, "clients", {}).and_return("data" => {})
       Paymill::Client.all
     end
   end
