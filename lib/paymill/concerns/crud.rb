@@ -2,26 +2,27 @@ module Paymill
   module Concerns
     module Crud
       def create(attributes)
-        init_response Paymill.request(:post, api_path, attributes)
+        _request(:post, nil, attributes)
       end
       
       def find(id)
-        init_response Paymill.request(:get, api_path(id))
+        _request(:get, id)
       end
       
       def update(id, attributes)
-        init_response Paymill.request(:put, api_path(id), attributes)
+        _request(:put, id, attributes)
       end
     
       def delete(id)
-        Paymill.request(:delete, api_path(id))
-        true
+        _request(:delete, id)
       end
       
       private
       
-      def init_response(response)
-        new(response['data'])
+      def _request(method, id=nil, payload=nil)
+        response = Paymill.request(method, api_path(id), payload)
+        return true if method == :delete
+        new(response['data'])        
       end
     end
   end
