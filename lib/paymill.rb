@@ -4,7 +4,8 @@ require "json"
 require "paymill/version"
 
 module Paymill
-  API_BASE = "api.paymill.de"
+  API_BASE    = "api.paymill.de"
+  API_VERSION = "v2"
 
   @@api_key = nil
 
@@ -44,7 +45,7 @@ module Paymill
       https.verify_mode  = OpenSSL::SSL::VERIFY_PEER
       https.ca_file      = File.join(File.dirname(__FILE__), "data/paymill.crt")
       https.start do |connection|
-        url = "/v1/#{api_url}"
+        url = "/#{API_VERSION}/#{api_url}"
         https_request = case http_method
               when :post
                 Net::HTTP::Post.new(url)
