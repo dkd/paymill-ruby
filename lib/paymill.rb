@@ -27,14 +27,7 @@ module Paymill
   
   class << self
     attr_accessor :api_key, :logger, :timeout
-    attr_reader :host, :api_version
 
-    # Paymill.configure do |config|
-    #   config.api_key = '1234'
-    #   config.logger  = Rails.logger
-    #   config.timeout = 3
-    # end
-        
     def configure
       yield self
       self
