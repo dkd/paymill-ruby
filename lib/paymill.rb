@@ -19,6 +19,7 @@ module Paymill
     autoload :Naming,         'paymill/concerns/naming'
     autoload :Crud,           'paymill/concerns/crud'
     autoload :Attributes,     'paymill/concerns/attributes'
+    autoload :Persistence,    'paymill/concerns/persistence'
   end
   
   HOST = 'api.paymill.de'

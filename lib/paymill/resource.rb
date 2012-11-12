@@ -11,6 +11,7 @@ module Paymill
     end
     
     include Concerns::Attributes
+    include Concerns::Persistence
     
     attr_reader :id, :created_at, :updated_at
   end
