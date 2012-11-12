@@ -19,37 +19,43 @@ Or install it yourself as:
 ## Usage
 
 First configure Paymill by setting your API key:
+
+```ruby    
+Paymill.api_key = '123' # your private API key
+```
+
+or more fancy:
     
-    Paymill.api_key = '123' # your private API key
-    
-    # or
-    
-    Paymill.configure do |config|
-      config.api_key = '1234'
-      config.logger  = Rails.logger
-      config.timeout = 3
-    end
+```ruby
+Paymill.configure do |config|
+  config.api_key = '1234'
+  config.logger  = Rails.logger
+  config.timeout = 3
+end
+```
 
 Some query examples:  
 
-    Paymill::Client.find(id)
-    Paymill::Client.all
-    Paymill::Client.count
-    Paymill::Client.where(email: 'hi@te.am').limit(2).offset(10).first
-    Paymill::Client.order(:description, :desc).last(3)
+```ruby
+Paymill::Client.find(id)
+Paymill::Client.all
+Paymill::Client.count
+Paymill::Client.where(email: 'hi@te.am').limit(2).offset(10).first
+Paymill::Client.order(:description, :desc).last(3)
 
-    Paymill::Client.create({email: 'hi@te.am'})
-    Paymill::Client.update(id, {email: 'hallo@te.am'})
-    Paymill::Client.delete(id)
-    Paymill::Client.delete_all
+Paymill::Client.create({email: 'hi@te.am'})
+Paymill::Client.update(id, {email: 'hallo@te.am'})
+Paymill::Client.delete(id)
+Paymill::Client.delete_all
     
-    client = Paymill::Client.new(email: 'christane@mai.se')
-    client.new? # true
-    client.save # create
-    client.new? # false
-    client.description = 'A new client'
-    client.save # update
-    client.destroy # delete
+client = Paymill::Client.new(email: 'christane@mai.se')
+client.new? # true
+client.save # create
+client.new? # false
+client.description = 'A new client'
+client.save # update
+client.destroy # delete
+```
 
 ## Contributing
 
