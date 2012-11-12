@@ -34,26 +34,41 @@ Paymill.configure do |config|
 end
 ```
 
-Some query examples:  
+#### Basic CRUD
 
 ```ruby
+Paymill::Client.create({email: 'hi@te.am'})
 Paymill::Client.find(id)
+Paymill::Client.update(id, {email: 'hallo@te.am'})
+Paymill::Client.delete(id)
+Paymill::Client.delete_all
+```
+
+#### Advanced Queries 
+
+```ruby
 Paymill::Client.all
 Paymill::Client.count
 Paymill::Client.where(email: 'hi@te.am').limit(2).offset(10).first
 Paymill::Client.order(:description, :desc).last(3)
+Paymill::Client.where(description: 'old').order(:date_created, :desc).delete_all
+```
 
-Paymill::Client.create({email: 'hi@te.am'})
-Paymill::Client.update(id, {email: 'hallo@te.am'})
-Paymill::Client.delete(id)
-Paymill::Client.delete_all
-    
+Use <tt>scoped</tt>, <tt>where</tt>, <tt>order</tt>, <tt>limit</tt>, <tt>offset</tt>, <tt>paginate</tt> 
+to build up chainable query scopes. These methods will return a Paymill::Scope object.
+
+Use <tt>all</tt>, <tt>each</tt>, <tt>first</tt>, <tt>last</tt>, <tt>count</tt>, <tt>empty?</tt> 
+and all methods from <tt>Enumerable</tt> module on the scope to trigger a query to the Paymill API.
+
+#### Instance Methods
+
+```ruby
 client = Paymill::Client.new(email: 'christane@mai.se')
 client.new? # true
-client.save # create
+client.save # create  TODO: not working
 client.new? # false
 client.description = 'A new client'
-client.save # update
+client.save # update  TODO: not working
 client.destroy # delete
 ```
 
