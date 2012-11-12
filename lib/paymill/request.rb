@@ -23,7 +23,7 @@ module Paymill
       http = Net::HTTP.new(uri.host, uri.port)
       # ssl options
       http.use_ssl      = uri.scheme == 'https'
-      http.ca_file      = File.join(File.dirname(__FILE__), 'data/paymill.crt')
+      http.ca_file      = File.expand_path('lib/paymill.crt')
       http.verify_mode  = OpenSSL::SSL::VERIFY_PEER
       # timeout
       http.open_timeout = http.read_timeout = http.ssl_timeout = Paymill.timeout if Paymill.timeout
