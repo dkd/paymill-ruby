@@ -1,6 +1,6 @@
 module Paymill
-  class Transaction < Model
-    attr_accessor :id, :amount, :status, :description, :livemode,
-                  :creditcard, :client, :created_at, :updated_at
+  class Transaction < Resource
+    attr_accessor :amount, :origin_amount, :status, :description, :livemode, :payment, :client, :preauthrizations
+#    QUERY_PARAMS = [:count, :offset, :created_at]
   end
 end

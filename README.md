@@ -1,60 +1,60 @@
-Paymill [![Build Status](https://secure.travis-ci.org/dkd/paymill-ruby.png)](http://travis-ci.org/dkd/paymill-ruby)
-======
+# Paymill
 
-This is a Ruby wrapper for Paymill's API.
+A ruby wrapper for the paymill api.
 
-Usage
-======
+## Installation
 
-First, you've to install the gem
+Add this line to your application's Gemfile:
 
-    gem install paymill
+    gem 'paymill'
 
-and require it
+And then execute:
 
-    require "paymill"
+    $ bundle
 
-Then you have to set your API key:
+Or install it yourself as:
 
-    Paymill.api_key = "your-api-key"
+    $ gem install paymill
 
-Now you can e.g. create a new client:
+## Usage
 
-    Paymill::Client.create(email: "stefan.sprenger@dkd.de", description: "He is a Ruby guy.")
+First configure Paymill by setting your API key:
+    
+    Paymill.api_key = '123' # your private API key
+    
+    # or
+    
+    Paymill.configure do |config|
+      config.api_key = '1234'
+      config.logger  = Rails.logger
+      config.timeout = 3
+    end
 
-Or find a existing client:
+Some query examples:  
 
-    Paymill::Client.find("client_88a388d9dd48f86c3136")
-
-For retrieving a collection of all clients you might use the `all`
-operation:
-
+    Paymill::Client.find(id)
     Paymill::Client.all
+    Paymill::Client.count
+    Paymill::Client.where(email: 'hi@te.am').limit(2).offset(10).first
+    Paymill::Client.order(:description, :desc).last(3)
 
-We currently only support the operations `create`, `find` and `all`.
+    Paymill::Client.create({email: 'hi@te.am'})
+    Paymill::Client.update(id, {email: 'hallo@te.am'})
+    Paymill::Client.delete(id)
+    Paymill::Client.delete_all
+    
+    client = Paymill::Client.new(email: 'christane@mai.se')
+    client.new? # true
+    client.save # create
+    client.new? # false
+    client.description = 'A new client'
+    client.save # update
+    client.destroy # delete
 
-Requirements
-=====
+## Contributing
 
-This gem was developed using Ruby 1.9 and version 1 of Paymill's API. Nonetheless, it should also work with Ruby 1.8.
-
-Bugs
-======
-
-Please report bugs at http://github.com/dkd/paymill-ruby/issues.
-
-Note on Patches/Pull Requests
-======
-
-* Fork the project from http://github.com/dkd/paymill-ruby.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
-
-Copyright
-======
-
-Copyright (c) 2012 dkd Internet Service GmbH, Stefan Sprenger. See LICENSE for details.
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request

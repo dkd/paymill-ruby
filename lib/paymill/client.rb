@@ -1,8 +1,7 @@
 module Paymill
-  class Client < Model
-    extend Paymill::Operations::Delete
-    attr_accessor :id, :email, :description,
-                  :created_at, :updated_at,
-                  :creditcard, :subscription
+  class Client < Resource
+    attr_reader :payment, :subscription
+    attr_accessor :email, :description     
+#    QUERY_PARAMS = [:count, :offset, :created_at, :creditcard, :email]
   end
 end
