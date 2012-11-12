@@ -10,11 +10,12 @@ module Paymill
       end
     
       def delete
-        self.class.delete(id)
+        self.class.delete(id) unless new?
       end
+      alias :destroy :delete
     
       def reload
-#        load self.class.find(id).attributes
+#        load self.class.find(id).attributes unless new?
       end
     
       private
