@@ -12,6 +12,7 @@ module Paymill
     # last4,        string, The last four digits of the credit card
     # created_at,   integer, Unix-Timestamp for the creation date
     # updated_at,   integer, Unix-Timestamp for the Last Update
+
     attr_reader :type, :client, :country, :card_type, :expire_month, :expire_year, :card_holder, :last4    
 #    QUERY_PARAMS = [:count, :offset, :created_at]
   end
