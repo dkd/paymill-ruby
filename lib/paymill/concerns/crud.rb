@@ -19,7 +19,7 @@ module Paymill
       
       private
       
-      def _request(method, id=nil, payload=nil)
+      def _request(method, id=nil, payload={})
         response = Paymill.request(method, api_path(id), payload)
         return true if method == :delete
         new(response['data'])        

@@ -1,15 +1,15 @@
 require "paymill/version"
 
 module Paymill
-  autoload :Client,           'paymill/client'
-  autoload :CreditCard,       'paymill/credit_card'
-  autoload :DebitCard,        'paymill/debit_card'
-  autoload :Offer,            'paymill/offer'
-  autoload :Payment,          'paymill/payment'
-  autoload :Preauthorization, 'paymill/preauthorization'
-  autoload :Refund,           'paymill/refund'
-  autoload :Subscription,     'paymill/subscription'
-  autoload :Transaction,      'paymill/transaction'
+  autoload :Client,           'paymill/resources/client'
+  autoload :CreditCard,       'paymill/resources/credit_card'
+  autoload :DebitCard,        'paymill/resources/debit_card'
+  autoload :Offer,            'paymill/resources/offer'
+  autoload :Payment,          'paymill/resources/payment'
+  autoload :Preauthorization, 'paymill/resources/preauthorization'
+  autoload :Refund,           'paymill/resources/refund'
+  autoload :Subscription,     'paymill/resources/subscription'
+  autoload :Transaction,      'paymill/resources/transaction'
   
   autoload :Scope,            'paymill/scope'
   autoload :Request,          'paymill/request'
