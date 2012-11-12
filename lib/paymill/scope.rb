@@ -66,7 +66,7 @@ module Paymill
     end
     
     def empty?
-      any?
+      !any?
     end
     
     private
