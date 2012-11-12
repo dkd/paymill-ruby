@@ -55,7 +55,7 @@ Paymill::Client.where(description: 'old').order(:date_created, :desc).delete_all
 ```
 
 Use <tt>scoped</tt>, <tt>where</tt>, <tt>order</tt>, <tt>limit</tt>, <tt>offset</tt>, <tt>paginate</tt> 
-to build up chainable query scopes. These methods will return a Paymill::Scope object.
+to build up chainable query scopes. These methods will return a <tt>Paymill::Scope</tt> object.
 
 Use <tt>all</tt>, <tt>each</tt>, <tt>first</tt>, <tt>last</tt>, <tt>count</tt>, <tt>empty?</tt> 
 and all methods from <tt>Enumerable</tt> module on the scope to trigger a query to the Paymill API.
@@ -69,7 +69,7 @@ client.save # create  TODO: not working
 client.new? # false
 client.description = 'A new client'
 client.save # update  TODO: not working
-client.destroy # delete
+client.delete # delete
 ```
 
 ## Contributing
