@@ -22,7 +22,7 @@ module Paymill
     
     def reverse_order
       o = @scope[:order].rpartition('_')
-      order(o.first, o.last=='asc' ? 'desc' : 'asc')
+      order(o.first, o.last=='asc' ? :desc : :asc)
     end
         
     def limit(value)
