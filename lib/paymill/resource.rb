@@ -4,7 +4,7 @@ module Paymill
     extend Concerns::Crud
     extend SingleForwardable
     # #def_delegators :scoped, :where, :order, :limit, :offset, :each, :all, :first, :last, :count
-    delegate [:where, :order, :limit, :offset, :paginate, :each, :all, :first, :last, :count, :delete_all] => :scoped
+    delegate [:where, :order, :limit, :offset, :paginate, :each, :all, :first, :last, :count, :delete_all, :empty?, :total] => :scoped
     
     def self.scoped
       Paymill::Scope.new(self)
