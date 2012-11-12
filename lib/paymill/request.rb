@@ -5,11 +5,11 @@ module Paymill
   class Request
     attr_reader :uri, :method, :payload, :header
     
-    def initialize(method, path, payload={})
+    def initialize(method, uri, payload={})
       @method  = method
+      @uri     = uri
       @payload = payload
       @header  = { "user-agent" => Paymill.user_agent }
-      @uri     = URI::HTTPS.build(host: Paymill::HOST, path: "/#{Paymill::API_VERSION}/#{path}", query: uri_query_string)
     end
 
     def fetch
@@ -45,11 +45,8 @@ module Paymill
     end
 
     def request_path
-      post? ? uri.path : uri.request_uri
-    end
-
-    def uri_query_string
-      URI.encode_www_form(payload) if method==:get && !payload.empty?
+      uri.query = URI.encode_www_form(payload) if method==:get && !payload.empty?
+      uri.request_uri
     end
 
     def handle_response(response)

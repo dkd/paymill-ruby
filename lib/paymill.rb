@@ -22,9 +22,6 @@ module Paymill
     autoload :Persistence,    'paymill/concerns/persistence'
   end
   
-  HOST = 'api.paymill.de'
-  API_VERSION = 'v2'
-  
   class << self
     attr_accessor :api_key, :logger, :timeout
 
@@ -46,7 +43,11 @@ module Paymill
     end
 
     def request(method, path, payload={})
-      Request.new(method, path, payload).fetch
-    end    
+      Request.new(method, uri(path), payload).fetch
+    end
+    
+    def uri(path=nil)
+      URI::HTTPS.build(host: 'api.paymill.de', path: "/v2/#{path}")
+    end   
   end
 end
