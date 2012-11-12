@@ -1,5 +1,5 @@
 module Paymill
-  class CreditCard
+  class Payment
     include Paymill::Operations::All
     include Paymill::Operations::Create
     include Paymill::Operations::Find

@@ -7,7 +7,7 @@ describe Paymill::Transaction do
       status: "pending",
       description: "Test transaction.",
       livemode: false,
-      creditcard: {
+      payment: {
         card_type: "visa",
         country: "germany"
       },
@@ -25,8 +25,8 @@ describe Paymill::Transaction do
       transaction.status.should eql("pending")
       transaction.description.should eql("Test transaction.")
       transaction.livemode.should eql(false)
-      transaction.creditcard[:card_type].should eql("visa")
-      transaction.creditcard[:country].should eql("germany")
+      transaction.payment[:card_type].should eql("visa")
+      transaction.payment[:country].should eql("germany")
       transaction.client.should eql("client_a013c")
     end
   end

@@ -6,7 +6,7 @@ module Paymill
     include Paymill::Operations::Find
 
     attr_accessor :id, :email, :description, :attributes, :created_at,
-                  :updated_at, :creditcard, :subscription
+                  :updated_at, :payment, :subscription
 
     def initialize(attributes = {})
       attributes.each_pair do |key, value|
