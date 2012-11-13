@@ -1,4 +1,6 @@
 require "paymill/version"
+require "money"
+Money.default_currency = Money::Currency.new(:eur)
 
 module Paymill
   autoload :Client,           'paymill/resources/client'

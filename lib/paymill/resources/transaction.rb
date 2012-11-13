@@ -19,7 +19,35 @@ module Paymill
     # - Client & Payment
     # - Preauthorization
     
-    attr_accessor :amount, :origin_amount, :status, :description, :livemode, :payment, :client, :preauthrizations
+    attr_accessor :status, :description
 #    QUERY_PARAMS = [:count, :offset, :created_at]
+
+    def amount
+      read_money_attribute(:amount)
+    end
+    
+    def origin_amount
+      read_money_attribute(:origin_amount)
+    end
+    
+    def client
+      Client.new(read_attribute(:client))
+    end
+    
+    def payment
+      Payment.new_from_type(read_attribute(:payment))
+    end
+    
+    def preauthorization
+      Preauthorization.new(read_attribute(:preauthorization))
+    end
+    
+    def live?
+      read_attribute(:livemode)
+    end
+    
+    def test?
+      !live?
+    end
   end
 end

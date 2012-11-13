@@ -19,12 +19,12 @@ module Paymill
       alias :[]= :write_attribute
 
 
-      def created_at=(value)
-        write_attribute :created_at, Time.at(value)
+      def created_at
+        read_time_attribute(:created_at)
       end
     
-      def updated_at=(value)
-        write_attribute :updated_at, Time.at(value)
+      def updated_at
+        read_time_attribute(:updated_at)
       end
 
       private
@@ -37,6 +37,19 @@ module Paymill
             write_attribute(attr, value)
           end
         end
+      end
+      
+      def read_money_attribute(name)
+        Money.new(read_attribute(:name))
+      end
+      
+      def read_time_attribute(name)
+        value = read_attribute(name)
+        Time.at(value) unless value.nil?
+      end
+      
+      def read_array_attribute(name, klass)
+        (read_attribute(name) || []).map { |d| klass.new(d) }
       end
       
     end

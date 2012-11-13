@@ -13,7 +13,35 @@ module Paymill
     # created_at,   integer, Unix-Timestamp for the creation date
     # updated_at,   integer, Unix-Timestamp for the Last Update
 
-    attr_reader :type, :client, :country, :card_type, :expire_month, :expire_year, :card_holder, :last4    
+    # attribute :type,         String
+    # attribute :client,       String
+    # attribute :card_type,    String
+    # attribute :country,      String
+    # attribute :expire_month, Integer
+    # attribute :expire_year,  Integer
+    # attribute :card_holder,  String
+    # attribute :last4,        String
+    attr_reader :type, :client, :country, :card_type, :expire_month, :expire_year, :last4    
 #    QUERY_PARAMS = [:count, :offset, :created_at]
+
+    def holder
+      read_attribute(:card_holder)
+    end
+    
+    def expire_date
+      Date.new(expire_year, expire_month)
+    end    
+    
+    def visa?
+      card_type == 'visa'
+    end
+    
+    def mastercard?
+      card_type == 'mastercard'
+    end
+    
+    def number(placeholder="\u2022")
+      last4.to_s.rjust(16, placeholder)
+    end
   end
 end
