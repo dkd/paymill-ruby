@@ -1,3 +1,3 @@
 module Paymill
-  VERSION = "0.0.4.dev"
+  VERSION = "0.1.0"
 end
