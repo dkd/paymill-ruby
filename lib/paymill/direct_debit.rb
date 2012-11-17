@@ -1,5 +1,5 @@
 module Paymill
-  class DebitCard < Payment
+  class DirectDebit < Payment
     # https://www.paymill.com/de-de/dokumentation/referenz/api-referenz/index.html#document-directdebit
     # id, string, Unique identifier for this credit card
     # type, enum(debit)
@@ -10,7 +10,10 @@ module Paymill
     # created_at, integer, Unix-Timestamp for the creation date
     # updated_at, integer, Unix-Timestamp for the Last Update
     
-    attr_reader :type, :client, :code, :account, :holder
-#    QUERY_PARAMS = [:count, :offset, :created_at]   
+    attr_accessor :code, :account, :holder
+
+    def last4
+      account.to_s[-4,4]
+    end
   end
 end
