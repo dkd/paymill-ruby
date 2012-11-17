@@ -26,6 +26,8 @@ module Paymill
     autoload :LiveMode,       'paymill/concerns/live_mode'
   end
   
+  class APIError < StandardError; end
+  
   class << self
     attr_accessor :api_key, :logger, :timeout
 

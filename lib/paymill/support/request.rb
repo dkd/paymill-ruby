@@ -50,6 +50,9 @@ module Paymill
       # raise exception if response code is not 2xx
       response.value unless response.is_a?(Net::HTTPSuccess)
       JSON.parse(response.body)
+    rescue Net::HTTPServerException
+      data = JSON.parse(response.body)
+      raise APIError.new(data['error'])
     end
 
     def post?
