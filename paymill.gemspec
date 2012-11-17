@@ -6,9 +6,9 @@ require 'paymill/version'
 Gem::Specification.new do |gem|
   gem.name        = "paymill"
   gem.version     = Paymill::VERSION
-  gem.authors     = ["Stefan Sprenger"]
-  gem.email       = ["stefan.sprenger@dkd.de"]
-  gem.homepage    = "https://github.com/dkd/paymill-ruby"
+  gem.authors     = ["Stefan Sprenger", "Kevin Melchert"]
+  gem.email       = ["kevin.melchert@gmail.com"]
+  gem.homepage    = "https://github.com/max-power/paymill-ruby"
   gem.summary     = %q{API wrapper for Paymill.}
   gem.description = %q{API wrapper for Paymill.}
 
@@ -20,4 +20,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'money'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'turn'
+  gem.add_development_dependency 'guard-minitest'
 end
