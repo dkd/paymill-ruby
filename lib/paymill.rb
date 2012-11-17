@@ -1,27 +1,29 @@
 require "paymill/version"
+require "net/http"
+require "json"
 require "money"
-Money.default_currency = Money::Currency.new(:eur)
 
 module Paymill
-  autoload :Client,           'paymill/resources/client'
-  autoload :CreditCard,       'paymill/resources/credit_card'
-  autoload :DebitCard,        'paymill/resources/debit_card'
-  autoload :Offer,            'paymill/resources/offer'
-  autoload :Payment,          'paymill/resources/payment'
-  autoload :Preauthorization, 'paymill/resources/preauthorization'
-  autoload :Refund,           'paymill/resources/refund'
-  autoload :Subscription,     'paymill/resources/subscription'
-  autoload :Transaction,      'paymill/resources/transaction'
+  autoload :Client,           'paymill/client'
+  autoload :CreditCard,       'paymill/credit_card'
+  autoload :DirectDebit,      'paymill/direct_debit'
+  autoload :Offer,            'paymill/offer'
+  autoload :Payment,          'paymill/payment'
+  autoload :Preauthorization, 'paymill/preauthorization'
+  autoload :Refund,           'paymill/refund'
+  autoload :Subscription,     'paymill/subscription'
+  autoload :Transaction,      'paymill/transaction'
   
-  autoload :Scope,            'paymill/scope'
-  autoload :Request,          'paymill/request'
-  autoload :Resource,         'paymill/resource'
+  autoload :Scope,            'paymill/support/scope'
+  autoload :Request,          'paymill/support/request'
+  autoload :Resource,         'paymill/support/resource'
   
   module Concerns
     autoload :Naming,         'paymill/concerns/naming'
     autoload :Crud,           'paymill/concerns/crud'
     autoload :Attributes,     'paymill/concerns/attributes'
     autoload :Persistence,    'paymill/concerns/persistence'
+    autoload :LiveMode,       'paymill/concerns/live_mode'
   end
   
   class << self
@@ -30,6 +32,14 @@ module Paymill
     def configure
       yield self
       self
+    end
+    
+    def currency
+      @currency ||= Money.default_currency
+    end
+    
+    def currency=(value)
+      @currency = Money::Currency.new(value)
     end
     
     def user_agent
@@ -41,7 +51,7 @@ module Paymill
     end
     
     def log?
-      logger && environment == 'development'
+      environment == 'development' && !!logger
     end
 
     def request(method, path, payload={})
