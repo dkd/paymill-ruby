@@ -11,6 +11,6 @@ module Paymill
     # canceled_at: Integer or null, Unix-Timestamp for the cancel date
     # clients:     Hash, clients-object
     
-    attr_accessor :offer, :cancel_at_period_end, :canceled_at, :clients
+    attr_accessor :offer, :cancel_at_period_end, :canceled_at, :client, :payment, :trial_start, :trial_end
   end
 end
