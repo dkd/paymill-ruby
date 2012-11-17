@@ -1,5 +1,8 @@
 module Paymill
   class Transaction < Resource
+    include Concerns::LiveMode
+    # important to know is that only transactions under a amount of 10,000.00 € will be processed.
+    
     # https://www.paymill.com/de-de/dokumentation/referenz/api-referenz/index.html#document-transactions
     # id, string, Unique identifier of this transaction
     # amount, string, Formatted amount of this transaction
@@ -19,35 +22,16 @@ module Paymill
     # - Client & Payment
     # - Preauthorization
     
-    attr_accessor :status, :description
-#    QUERY_PARAMS = [:count, :offset, :created_at]
+    attr_accessor :amount, :origin_amount, :status, :description, :payment, :client, :preauthorization
 
-    def amount
-      read_money_attribute(:amount)
+    def refundable?
+      %w(closed partial_refunded).include?(status)
     end
-    
-    def origin_amount
-      read_money_attribute(:origin_amount)
-    end
-    
-    def client
-      Client.new(read_attribute(:client))
-    end
-    
-    def payment
-      Payment.new_from_type(read_attribute(:payment))
-    end
-    
-    def preauthorization
-      Preauthorization.new(read_attribute(:preauthorization))
-    end
-    
-    def live?
-      read_attribute(:livemode)
-    end
-    
-    def test?
-      !live?
+
+    def refund!(cents=nil, description=nil)
+      # raise something unless refundable?
+      amount = cents || self.amount.cents
+      Refund.create(id, amount: amount, description: description)
     end
   end
 end
