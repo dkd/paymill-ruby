@@ -22,7 +22,7 @@ module Paymill
     # - Client & Payment
     # - Preauthorization
     
-    attr_accessor :amount, :origin_amount, :status, :description, :payment, :client, :preauthorization
+    attr_accessor :amount, :origin_amount, :currency, :status, :description, :payment, :refunds, :client, :preauthorization
 
     def refundable?
       %w(closed partial_refunded).include?(status)
