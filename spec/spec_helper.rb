@@ -1,8 +1,5 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+# -*- encoding: utf-8 -*-
+require 'minitest/spec'
+require 'minitest/autorun'
+require 'turn/autorun'
 require 'paymill'
-require 'rspec'
-require 'rspec/autorun'
-
-RSpec.configure do |config|
-end

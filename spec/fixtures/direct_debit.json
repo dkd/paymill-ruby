@@ -1,0 +1,78 @@
+{
+    "id" : "pay_917018675b21ca03c4fb",
+    "type" : "debit",
+    "client" : null,
+    "code" : "860555000",
+    "holder" : "Max Mustermann",
+    "account" : "******2345",
+    "created_at" : 1349944973,
+    "updated_at" : 1349944973
+}
+
+
+Response from create
+
+{
+    "data" : {
+        "id" : "pay_917018675b21ca03c4fb",
+        "type" : "debit",
+        "client" : null,
+        "code" : "860555000",
+        "holder" : "Max Mustermann",
+        "account" : "******2345",
+        "created_at" : 1349944973,
+        "updated_at" : 1349944973
+    }
+}
+
+
+response details
+{
+    "data" : {
+        "id" : "pay_917018675b21ca03c4fb",
+        "type" : "debit",
+        "client" : null,
+        "code" : "860555000",
+        "holder" : "Max Mustermann",
+        "account" : "******2345",
+        "created_at" : 1349944973,
+        "updated_at" : 1349944973
+    }
+}
+
+response list
+{
+    "data" : [
+        {
+            "id" : "pay_3af44644dd6d25c820a8",
+            "type" : "creditcard",
+            "client" : null,
+            "card_type" : "visa",
+            "country" : null,
+            "expire_month" : 10,
+            "expire_year" : 2013,
+            "card_holder" : null,
+            "last4" : "1111",
+            "created_at" : 1349942085,
+            "updated_at" : 1349942085
+        },
+        {
+            "id" : "pay_917018675b21ca03c4fb",
+            "type" : "debit",
+            "client" : null,
+            "code" : "860555000",
+            "holder" : "Max Mustermann",
+            "account" : "******2345",
+            "created_at" : 1349944973,
+            "updated_at" : 1349944973
+        }
+    ],
+    "data_count" : "2"
+}
+
+response remove
+{
+    "data":[
+
+    ]
+}

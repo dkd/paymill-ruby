@@ -1,0 +1,32 @@
+{
+    "id" : "preauth_0b771c503680c341548e",
+    "amount" : "4200",
+    "status" : "closed",
+    "livemode" : false,
+    "created_at" : 1349950324,
+    "updated_at" : 1349950324,
+    "payment" : {
+        "id" : "pay_d43cf0ee969d9847512b",
+        "type" : "creditcard",
+        "client" : "client_131be8f66341fc8fc464",
+        "card_type" : "visa",
+        "country" : null,
+        "expire_month" : 10,
+        "expire_year" : 2013,
+        "card_holder" : null,
+        "last4" : "1111",
+        "created_at" : 1349946771,
+        "updated_at" : 1349946811
+    },
+    "client" : {
+        "id" : "client_131be8f66341fc8fc464",
+        "email" : null,
+        "description" : null,
+        "created_at" : 1349946811,
+        "updated_at" : 1349946811,
+        "payment" : [
+            "pay_d43cf0ee969d9847512b"
+        ],
+        "subscription" : null
+    }
+}

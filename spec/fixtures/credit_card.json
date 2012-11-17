@@ -1,0 +1,76 @@
+{
+    "id" : "pay_3af44644dd6d25c820a8",
+    "type" : "creditcard",
+    "client" : null,
+    "card_type" : "visa",
+    "country" : null,
+    "expire_month" : 10,
+    "expire_year" : 2013,
+    "card_holder" : null,
+    "last4" : "1111",
+    "created_at" : 1349942085,
+    "updated_at" : 1349942085
+}
+
+
+// Response from create
+{
+    "data" : {
+        "id" : "pay_3af44644dd6d25c820a8",
+        "type" : "creditcard",
+        "client" : null,
+        "card_type" : "visa",
+        "country" : null,
+        "expire_month" : 10,
+        "expire_year" : 2013,
+        "card_holder" : null,
+        "last4" : "1111",
+        "created_at" : 1349942085,
+        "updated_at" : 1349942085
+    }
+}
+
+response from details
+{
+    "data" : {
+        "id" : "pay_3af44644dd6d25c820a8",
+        "type" : "creditcard",
+        "client" : null,
+        "card_type" : "visa",
+        "country" : null,
+        "expire_month" : 10,
+        "expire_year" : 2013,
+        "card_holder" : null,
+        "last4" : "1111",
+        "created_at" : 1349942085,
+        "updated_at" : 1349942085
+    }
+}
+
+response from list
+{
+   "data" : [
+        {
+            "id" : "pay_3af44644dd6d25c820a8",
+            "type" : "creditcard",
+            "client" : null,
+            "card_type" : "visa",
+            "country" : null,
+            "expire_month" : 10,
+            "expire_year" : 2013,
+            "card_holder" : null,
+            "last4" : "1111",
+            "created_at" : 1349942085,
+            "updated_at" : 1349942085
+        }
+    ],
+    "data_count" : "1"
+}
+
+
+response remove
+{
+    "data":[
+
+    ]
+}
