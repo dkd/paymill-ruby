@@ -29,7 +29,7 @@ describe Paymill::DirectDebit do
 
   describe "number" do
     it "should return a formatted number" do
-      payment.number.must_equal "••••-••••-••••-2345"
+      payment.number.must_equal "•••• •••• •••• 2345"
     end
     
     it "should return a formatted number with custom settings" do
