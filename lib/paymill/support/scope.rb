@@ -42,7 +42,7 @@ module Paymill
     # trigger methods
     
     def each(&block)
-      _find_and_initialize.each(&block)
+      find_and_initialize.each(&block)
     end
     
     def all
@@ -62,7 +62,7 @@ module Paymill
     end
 
     def total
-      _find['data_count'].to_i
+      find['data_count'].to_i
     end
     
     def empty?
@@ -71,12 +71,12 @@ module Paymill
     
     private
     
-    def _find
+    def find
       @cached ||= Paymill.request(:get, @resource.api_path, @scope.sort)
     end
     
-    def _find_and_initialize
-      @cached_items ||= _find['data'].map { |d| @resource.new(d) }
+    def find_and_initialize
+      @cached_items ||= find['data'].map { |d| @resource.build(d) }
     end
     
     def reset_cache

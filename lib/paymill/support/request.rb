@@ -1,6 +1,3 @@
-require "net/http"
-require "json"
-
 module Paymill
   class Request
     attr_reader :uri, :method, :payload, :header
