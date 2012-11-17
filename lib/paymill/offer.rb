@@ -9,5 +9,10 @@ module Paymill
     # trial_period_days: Integer (>0) or null, Give it a try or charge directly?
 
     attr_accessor :name, :amount, :interval, :trial_period_days
+    
+    # this should work, at least the api docs say so
+    def subscriptions
+      Subscription.where(offer: id)
+    end
   end
 end
