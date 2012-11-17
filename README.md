@@ -51,7 +51,7 @@ Paymill::Client.all
 Paymill::Client.count
 Paymill::Client.where(email: 'hi@te.am').limit(2).offset(10).first
 Paymill::Client.order(:description, :desc).last(3)
-Paymill::Client.where(description: 'old').order(:date_created, :desc).delete_all
+Paymill::Client.where(email: '@gmail.com').order(:date_created, :desc).delete_all
 ```
 
 Use <tt>scoped</tt>, <tt>where</tt>, <tt>order</tt>, <tt>limit</tt>, <tt>offset</tt>, <tt>paginate</tt> 
@@ -71,6 +71,14 @@ client.new? # false
 client.description = 'A new client'
 client.save # update  TODO: not working
 client.delete # delete
+
+client.subscribe!(offer_id, payment_id)
+```
+
+```ruby
+transaction = Paymill::Transaction.find('trans_1243124234')
+transaction.refundable?
+transaction.refund!(2000, 'Refund 20 EUR')
 ```
 
 ## Contributing
