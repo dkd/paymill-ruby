@@ -33,7 +33,7 @@ describe Paymill::DirectDebit do
     end
     
     it "should return a formatted number with custom settings" do
-      payment.number(placeholder: '*', separator: ':').must_equal '****:****:****:2345'
+      payment.number(mask: '*', separator: ':').must_equal '****:****:****:2345'
     end
     
     it "should return this last 4 digits" do

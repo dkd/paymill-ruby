@@ -12,9 +12,9 @@ module Paymill
     attr_accessor :type, :client
     
     def number(opts={})
-      p = opts.fetch(:placeholder, "\u2022")
+      m = opts.fetch(:mask, "\u2022")
       s = opts.fetch(:separator, " ")
-      last4.to_s.rjust(16, p).scan(/.{1,4}/m).join(s)
+      last4.to_s.rjust(16, m).scan(/.{1,4}/m).join(s)
     end
   end
 end
