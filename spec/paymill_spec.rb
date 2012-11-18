@@ -27,26 +27,26 @@ describe Paymill do
     end
   end
   
-  describe "currency" do
-    it "defaults to Money.default_currency" do
-      Paymill.currency.must_be_kind_of Money::Currency
-    end
-    
-    it "can assign a new currency as symbol" do
-      Paymill.currency = :eur
-      Paymill.currency.must_equal Money::Currency.new(:eur)
-    end
-    
-    it "can assign a new currency as string" do
-      Paymill.currency = 'SEK'
-      Paymill.currency.must_equal Money::Currency.new(:sek)
-    end
-    
-    it "can assign a new currency as Money::Currency" do
-      Paymill.currency = Money::Currency.new(:dkk)
-      Paymill.currency.must_equal Money::Currency.new(:dkk)
-    end
-  end
+  # describe "currency" do
+  #   it "defaults to Money.default_currency" do
+  #     Paymill.currency.must_be_kind_of Money::Currency
+  #   end
+  #   
+  #   it "can assign a new currency as symbol" do
+  #     Paymill.currency = :eur
+  #     Paymill.currency.must_equal Money::Currency.new(:eur)
+  #   end
+  #   
+  #   it "can assign a new currency as string" do
+  #     Paymill.currency = 'SEK'
+  #     Paymill.currency.must_equal Money::Currency.new(:sek)
+  #   end
+  #   
+  #   it "can assign a new currency as Money::Currency" do
+  #     Paymill.currency = Money::Currency.new(:dkk)
+  #     Paymill.currency.must_equal Money::Currency.new(:dkk)
+  #   end
+  # end
   
   # describe ".request" do
   #   context "given no api key exists" do

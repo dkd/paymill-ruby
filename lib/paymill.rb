@@ -1,7 +1,6 @@
 require "paymill/version"
 require "net/http"
 require "json"
-require "money"
 
 module Paymill
   autoload :Client,           'paymill/client'
@@ -36,14 +35,6 @@ module Paymill
       self
     end
     
-    def currency
-      @currency ||= Money.default_currency
-    end
-    
-    def currency=(value)
-      @currency = Money::Currency.new(value)
-    end
-    
     def user_agent
       "paymill-ruby #{Paymill::VERSION}"
     end
@@ -62,6 +53,6 @@ module Paymill
     
     def uri(path=nil)
       URI::HTTPS.build(host: 'api.paymill.de', path: "/v2/#{path}")
-    end   
+    end
   end
 end
