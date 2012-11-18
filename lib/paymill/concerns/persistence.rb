@@ -17,6 +17,10 @@ module Paymill
         self.class.delete(id) unless new?
       end
       alias :destroy :delete
+      
+      def update_attributes(attrs)
+        self.class.update(id, attrs)
+      end
     
       def reload
       end
