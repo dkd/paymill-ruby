@@ -1,6 +1,6 @@
 # Paymill
 
-A ruby wrapper for the paymill api.
+A ruby wrapper for the Paymill API.
 
 ## Installation
 
@@ -16,7 +16,7 @@ Or install it yourself as:
 
     $ gem install paymill
 
-## Usage
+## [Usage](https://github.com/max-power/paymill-ruby/wiki)
 
 First configure Paymill by setting your API key:
 
@@ -29,7 +29,6 @@ or more fancy:
 ```ruby
 Paymill.configure do |config|
   config.api_key = '1234'
-  config.logger  = Rails.logger
   config.timeout = 3
 end
 ```
