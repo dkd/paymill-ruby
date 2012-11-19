@@ -17,14 +17,6 @@ module Paymill
 
     alias :holder :card_holder
     alias :holder= :card_holder=
-
-    def visa?
-      card_type == 'visa'
-    end
-    
-    def mastercard?
-      card_type == 'mastercard'
-    end
     
     def expire_date
       Date.new(expire_year, expire_month)

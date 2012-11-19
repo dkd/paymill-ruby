@@ -1,13 +1,5 @@
 module Paymill
   class Refund < Resource
-    include Concerns::LiveMode
-    
-    def self.create(transaction_id, attributes)
-      request_and_build(:post, transaction_id, attributes)
-    end    
-    # no update and delete
-    
-    
     # https://www.paymill.com/de-de/dokumentation/referenz/api-referenz/index.html#document-refunds
     # id:          String, Unique identifier of this refund
     # transaction: Hash, transactions-object
@@ -18,6 +10,16 @@ module Paymill
     # created_at:  Integer, Unix-Timestamp for the creation date
     # updated_at:  Integer, Unix-Timestamp for the last update
     
+    include Concerns::LiveMode
+
     attr_accessor :transaction, :amount, :status, :description
+    
+    def self.create(transaction_id, attributes)
+      request_and_build(:post, transaction_id, attributes)
+    end    
+
+    def currency
+      transaction['currency'] # || Paymill.currency
+    end
   end
 end
