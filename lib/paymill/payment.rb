@@ -20,6 +20,10 @@ module Paymill
     def debit?
       type == 'debit'
     end
+    
+    def creditcard?
+      type == 'creditcard'
+    end
 
     def visa?
       card_type == 'visa'
