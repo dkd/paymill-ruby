@@ -1,4 +1,4 @@
-# Paymill [![Build Status](https://secure.travis-ci.org/dkd/paymill-ruby.png)](http://travis-ci.org/dkd/paymill-ruby)
+# Paymill [![Build Status](https://secure.travis-ci.org/max-power/paymill-ruby.png)](http://travis-ci.org/dkd/paymill-ruby)
 
 A ruby wrapper for the paymill api.
 
