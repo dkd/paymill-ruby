@@ -28,7 +28,7 @@ module Paymill
   class APIError < StandardError; end
   
   class << self
-    attr_accessor :api_key, :logger, :timeout
+    attr_accessor :api_key, :public_key, :logger, :timeout
 
     def configure
       yield self
