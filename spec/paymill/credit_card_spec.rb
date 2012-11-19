@@ -77,7 +77,7 @@ describe Paymill::CreditCard do
 
   describe "find" do
     it "makes a new GET request using the correct API endpoint to receive a specific creditcard" do
-      skip
+skip
       Paymill.should_receive(:request).with(:get, "payments/123", {}).and_return("data" => {})
       Paymill::CreditCard.find("123")
     end
@@ -85,7 +85,7 @@ describe Paymill::CreditCard do
 
   describe "all" do
     it "makes a new GET request using the correct API endpoint to receive all creditcards" do
-      skip
+skip
       Paymill.should_receive(:request).with(:get, "payments", {}).and_return("data" => {})
       Paymill::CreditCard.all
     end
@@ -93,7 +93,7 @@ describe Paymill::CreditCard do
 
   describe "create" do
     it "makes a new POST request using the correct API endpoint" do
-      skip
+skip
       Paymill.should_receive(:request).with(:post, "payments", valid_attributes).and_return("data" => {})
       Paymill::CreditCard.create(valid_attributes)
     end
