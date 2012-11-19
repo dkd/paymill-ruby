@@ -12,5 +12,11 @@ module Paymill
     # clients:     Hash, clients-object
     
     attr_accessor :offer, :cancel_at_period_end, :canceled_at, :client, :payment, :trial_start, :trial_end
+    
+    alias :cancel! :delete
+
+    def canceled?
+      !canceled_at.nil?
+    end
   end
 end
