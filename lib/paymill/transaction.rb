@@ -19,12 +19,6 @@ module Paymill
     # preauthorization: Hash or null, preauthorizations-object
     # created_at:    Integer, Unix-Timestamp for the creation date
     # updated_at:    Integer, Unix-Timestamp for the last update
-
-    # Create new Transaction with ...
-    # - Token
-    # - Payment
-    # - Client & Payment
-    # - Preauthorization
     
     attr_accessor :amount, :origin_amount, :currency, :status, :description, :payment, :refunds, :client, :preauthorization
 
