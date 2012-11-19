@@ -16,5 +16,17 @@ module Paymill
       s = opts.fetch(:separator, " ")
       last4.to_s.rjust(16, m).scan(/.{1,4}/m).join(s)
     end
+    
+    def debit?
+      type == 'debit'
+    end
+
+    def visa?
+      card_type == 'visa'
+    end
+    
+    def mastercard?
+      card_type == 'mastercard'
+    end
   end
 end

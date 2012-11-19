@@ -15,5 +15,9 @@ module Paymill
     def last4
       account.to_s[-4,4]
     end
+    
+    def card_type
+      type
+    end
   end
 end
