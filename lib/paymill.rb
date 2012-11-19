@@ -1,6 +1,7 @@
 require "paymill/version"
 require "net/http"
 require "json"
+require "money"
 
 module Paymill
   autoload :Client,           'paymill/client'

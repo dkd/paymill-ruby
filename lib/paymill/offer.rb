@@ -8,7 +8,7 @@ module Paymill
     # interval:  Enum(week, month, year), Defining how often the client should be charged.
     # trial_period_days: Integer (>0) or null, Give it a try or charge directly?
 
-    attr_accessor :name, :amount, :interval, :trial_period_days
+    attr_accessor :name, :amount, :interval, :trial_period_days, :currency
     
     # this should work, at least the api docs say so
     def subscriptions

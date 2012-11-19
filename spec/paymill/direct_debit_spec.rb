@@ -58,7 +58,7 @@ describe Paymill::DirectDebit do
     end
   end
   
-  describe "new_from_response" do
+  describe "build" do
     it "should initialize the correct class" do
       Paymill::Payment.build(valid_attributes.merge(type: 'debit')).must_be_instance_of Paymill::DirectDebit
       Paymill::Payment.build(valid_attributes.merge(type: 'creditcard')).must_be_instance_of Paymill::CreditCard
@@ -67,31 +67,25 @@ describe Paymill::DirectDebit do
 
   describe "find" do
     it "makes a new GET request using the correct API endpoint to receive a specific creditcard" do
+skip
+      Paymill.should_receive(:request).with(:get, "creditcards/123", {}).and_return("data" => {})
+      Paymill::CreditCard.find("123")
     end
   end
 
-
-  # describe "find" do
-  #   it "makes a new GET request using the correct API endpoint to receive a specific creditcard" do
-  #     skip
-  #     Paymill.should_receive(:request).with(:get, "creditcards/123", {}).and_return("data" => {})
-  #     Paymill::CreditCard.find("123")
-  #   end
-  # end
-  # 
-  # describe "all" do
-  #   it "makes a new GET request using the correct API endpoint to receive all creditcards" do
-  #     skip
-  #     Paymill.should_receive(:request).with(:get, "creditcards", {}).and_return("data" => {})
-  #     Paymill::CreditCard.all
-  #   end
-  # end
-  # 
-  # describe "create" do
-  #   it "makes a new POST request using the correct API endpoint" do
-  #     skip
-  #     Paymill.should_receive(:request).with(:post, "creditcards", valid_attributes).and_return("data" => {})
-  #     Paymill::CreditCard.create(valid_attributes)
-  #   end
-  # end
+  describe "all" do
+    it "makes a new GET request using the correct API endpoint to receive all creditcards" do
+skip
+      Paymill.should_receive(:request).with(:get, "creditcards", {}).and_return("data" => {})
+      Paymill::CreditCard.all
+    end
+  end
+  
+  describe "create" do
+    it "makes a new POST request using the correct API endpoint" do
+skip
+      Paymill.should_receive(:request).with(:post, "creditcards", valid_attributes).and_return("data" => {})
+      Paymill::CreditCard.create(valid_attributes)
+    end
+  end
 end
