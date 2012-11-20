@@ -67,25 +67,28 @@ describe Paymill::DirectDebit do
 
   describe "find" do
     it "makes a new GET request using the correct API endpoint to receive a specific creditcard" do
-skip
-      Paymill.should_receive(:request).with(:get, "creditcards/123", {}).and_return("data" => {})
-      Paymill::CreditCard.find("123")
+      url = "https://api.paymill.de/v2/payments/123"
+      stub_request(:get, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
+      Paymill::DirectDebit.find("123")
+      assert_requested :get, url
     end
   end
 
   describe "all" do
     it "makes a new GET request using the correct API endpoint to receive all creditcards" do
-skip
-      Paymill.should_receive(:request).with(:get, "creditcards", {}).and_return("data" => {})
-      Paymill::CreditCard.all
+      url = "https://api.paymill.de/v2/payments?order=created_at_asc"
+      stub_request(:get, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
+      Paymill::DirectDebit.all
+      assert_requested :get, url
     end
   end
   
   describe "create" do
     it "makes a new POST request using the correct API endpoint" do
-skip
-      Paymill.should_receive(:request).with(:post, "creditcards", valid_attributes).and_return("data" => {})
-      Paymill::CreditCard.create(valid_attributes)
+      url = "https://api.paymill.de/v2/payments"
+      stub_request(:post, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
+      Paymill::DirectDebit.create(valid_attributes)
+      assert_requested :post, url
     end
   end
 end

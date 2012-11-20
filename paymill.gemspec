@@ -20,5 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'money'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'turn'
+  gem.add_development_dependency 'webmock'
   gem.add_development_dependency 'guard-minitest'
 end

@@ -29,35 +29,48 @@ describe Paymill::Client do
   end  
     
     
-  describe ".find" do
+  describe "find" do
     it "makes a new GET request using the correct API endpoint to receive a specific client" do
-skip
-      Paymill.should_receive(:request).with(:get, "clients/123", {}).and_return("data" => {})
+      url = "https://api.paymill.de/v2/clients/123"
+      stub_request(:get, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Client.find("123")
+      assert_requested :get, url
     end
   end
     
-  describe ".all" do
+  describe "all" do
     it "makes a new GET request using the correct API endpoint to receive all clients" do
-skip
-      Paymill.should_receive(:request).with(:get, "clients", {}).and_return("data" => {})
+      url = "https://api.paymill.de/v2/clients?order=created_at_asc"
+      stub_request(:get, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Client.all
+      assert_requested :get, url
     end
   end
     
-  describe ".delete" do
+  describe "delete" do
     it "makes a new DELETE request using the correct API endpoint" do
-skip
-      Paymill.should_receive(:request).with(:delete, "clients/123", {}).and_return(true)
+      url = "https://api.paymill.de/v2/clients/123"
+      stub_request(:delete, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Client.delete("123")
+      assert_requested :delete, url
     end
   end
     
-  describe ".create" do
+  describe "create" do
     it "makes a new POST request using the correct API endpoint" do
-skip
-      Paymill.should_receive(:request).with(:post, "clients", valid_attributes).and_return("data" => {})
+      url = "https://api.paymill.de/v2/clients"
+      stub_request(:post, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Client.create(valid_attributes)
+      assert_requested :post, url
+    end
+  end
+  
+  describe "update" do
+    it "makes a new PUT request using the correct API endpoint" do
+      url = "https://api.paymill.de/v2/clients/123"
+      stub_request(:put, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
+      Paymill::Client.update(123, valid_attributes)
+      assert_requested :put, url
     end
   end
 end

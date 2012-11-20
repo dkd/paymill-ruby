@@ -23,35 +23,39 @@ describe Paymill::Offer do
     end
   end
 
-  describe ".find" do
+  describe "find" do
     it "makes a new GET request using the correct API endpoint to receive a specific offer" do
-      skip
-      Paymill.should_receive(:request).with(:get, "offers/123", {}).and_return("data" => {})
+      url = "https://api.paymill.de/v2/offers/123"
+      stub_request(:get, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Offer.find("123")
+      assert_requested :get, url
     end
   end
   
-  describe ".all" do
+  describe "all" do
     it "makes a new GET request using the correct API endpoint to receive all offers" do
-      skip
-      Paymill.should_receive(:request).with(:get, "offers", {}).and_return("data" => {})
+      url = "https://api.paymill.de/v2/offers?order=created_at_asc"
+      stub_request(:get, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Offer.all
+      assert_requested :get, url
     end
   end
   
-  describe ".delete" do
+  describe "delete" do
     it "makes a new DELETE request using the correct API endpoint" do
-      skip
-      Paymill.should_receive(:request).with(:delete, "offers/123", {}).and_return(true)
+      url = "https://api.paymill.de/v2/offers/123"
+      stub_request(:delete, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Offer.delete("123")
+      assert_requested :delete, url
     end
   end
   
-  describe ".create" do
+  describe "create" do
     it "makes a new POST request using the correct API endpoint" do
-      skip
-      Paymill.should_receive(:request).with(:post, "offers", valid_attributes).and_return("data" => {})
+      url = "https://api.paymill.de/v2/offers"
+      stub_request(:post, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Offer.create(valid_attributes)
+      assert_requested :post, url
     end
   end
 end

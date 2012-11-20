@@ -44,33 +44,37 @@ describe Paymill::Subscription do
 
   describe "find" do
     it "makes a new GET request using the correct API endpoint to receive a specific subscription" do
-skip
-      Paymill.should_receive(:request).with(:get, "subscriptions/123", {}).and_return("data" => {})
+      url = "https://api.paymill.de/v2/subscriptions/123"
+      stub_request(:get, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Subscription.find("123")
+      assert_requested :get, url
     end
   end
 
   describe "all" do
     it "makes a new GET request using the correct API endpoint to receive all subscriptions" do
-skip
-      Paymill.should_receive(:request).with(:get, "subscriptions", {}).and_return("data" => {})
+      url = "https://api.paymill.de/v2/subscriptions?order=created_at_asc"
+      stub_request(:get, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Subscription.all
+      assert_requested :get, url
     end
   end
 
   describe "delete" do
     it "makes a new DELETE request using the correct API endpoint" do
-skip
-      Paymill.should_receive(:request).with(:delete, "subscriptions/123", {}).and_return(true)
+      url = "https://api.paymill.de/v2/subscriptions/123"
+      stub_request(:delete, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Subscription.delete("123")
+      assert_requested :delete, url
     end
   end
 
   describe "create" do
     it "makes a new POST request using the correct API endpoint" do
-skip
-      Paymill.should_receive(:request).with(:post, "subscriptions", valid_attributes).and_return("data" => {})
+      url = "https://api.paymill.de/v2/subscriptions"
+      stub_request(:post, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Subscription.create(valid_attributes)
+      assert_requested :post, url
     end
   end
 end

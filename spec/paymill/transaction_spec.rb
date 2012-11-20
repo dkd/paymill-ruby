@@ -4,7 +4,7 @@ describe Paymill::Transaction do
   let(:valid_attributes) do
     {
       amount: 4200,
-      status: "pending",
+      status: "partial_refunded",
       description: "Test transaction.",
       livemode: false,
       payment: {
@@ -22,7 +22,7 @@ describe Paymill::Transaction do
   describe "initialize" do
     it "initializes all attributes correctly" do
       transaction.amount.must_equal(4200)
-      transaction.status.must_equal("pending")
+      transaction.status.must_equal("partial_refunded")
       transaction.description.must_equal("Test transaction.")
       transaction.livemode.must_equal(false)
       transaction.payment[:card_type].must_equal("visa")
@@ -44,25 +44,38 @@ describe Paymill::Transaction do
 
   describe "find" do
     it "makes a new GET request using the correct API endpoint to receive a specific transaction" do
-      skip
-      Paymill.should_receive(:request).with(:get, "transactions/123", {}).and_return("data" => {})
+      url = "https://api.paymill.de/v2/transactions/123"
+      stub_request(:get, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Transaction.find("123")
+      assert_requested :get, url
     end
   end
 
-  describe ".all" do
+  describe "all" do
     it "makes a new GET request using the correct API endpoint to receive all transactions" do
-      skip
-      Paymill.should_receive(:request).with(:get, "transactions", {}).and_return("data" => {})
+      url = "https://api.paymill.de/v2/transactions?order=created_at_asc"
+      stub_request(:get, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Transaction.all
+      assert_requested :get, url
     end
   end
 
-  describe ".create" do
+  describe "create" do
     it "makes a new POST request using the correct API endpoint" do
-      skip
-      Paymill.should_receive(:request).with(:post, "transactions", valid_attributes).and_return("data" => {})
+      url = "https://api.paymill.de/v2/transactions"
+      stub_request(:post, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Transaction.create(valid_attributes)
+      assert_requested :post, url
+    end
+  end
+  
+  describe "refund!" do
+    it "makes a new POST request using the correct API endpoint" do
+      url = "https://api.paymill.de/v2/refunds/trans_123"
+      stub_request(:post, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
+      transaction.id = 'trans_123'
+      transaction.refund!
+      assert_requested :post, url
     end
   end
 end
