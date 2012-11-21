@@ -5,6 +5,7 @@ require "money"
 
 module Paymill
   autoload :Client,           'paymill/client'
+  autoload :Coupon,           'paymill/coupon'
   autoload :CreditCard,       'paymill/credit_card'
   autoload :DirectDebit,      'paymill/direct_debit'
   autoload :Offer,            'paymill/offer'
