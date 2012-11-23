@@ -13,6 +13,18 @@ module Paymill
       Subscription.create({ client: id, offer: offer_id, payment: payment_id })
     end
     
+    def subscriptions
+      Array(subscription).map do |sub|
+        Subscription.build(sub.merge(client: self))
+      end
+    end
+    
+    def payments
+      Array(payment).map do |pay|
+        Payment.build(pay.merge(client: self))
+      end
+    end
+    
     def transactions
       Transaction.where(client: id)
     end
