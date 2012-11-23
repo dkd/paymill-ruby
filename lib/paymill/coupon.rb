@@ -11,6 +11,10 @@ module Paymill
       end
     end
     
+    def valid?
+      max_usable && (usage_time < max_usable) && valid_from && valid_until && (valid_from..valid_until).cover?(Time.now.to_i)
+    end
+    
     class Fixed < Coupon
       def self.scoped
         super.where(type: 'fixed_value')
