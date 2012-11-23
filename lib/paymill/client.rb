@@ -12,5 +12,9 @@ module Paymill
     def subscribe!(offer_id, payment_id=nil)
       Subscription.create({ client: id, offer: offer_id, payment: payment_id })
     end
+    
+    def transactions
+      Transaction.where(client: id)
+    end
   end
 end
