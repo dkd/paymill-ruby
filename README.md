@@ -22,7 +22,7 @@ Now you can e.g. create a new client:
 
     Paymill::Client.create(email: "stefan.sprenger@dkd.de", description: "He is a Ruby guy.")
 
-Or find a existing client:
+Or find an existing client:
 
     Paymill::Client.find("client_88a388d9dd48f86c3136")
 
