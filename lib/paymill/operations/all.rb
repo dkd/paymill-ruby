@@ -2,7 +2,7 @@ module Paymill
   module Operations
     module All
       module ClassMethods
-        def all()
+        def all
           response = Paymill.request(:get, "#{self.name.split("::").last.downcase}s/", {})
           results = []
           response["data"].each do |obj|
