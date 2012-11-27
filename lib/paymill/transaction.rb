@@ -5,7 +5,7 @@ module Paymill
     include Paymill::Operations::Find
 
     attr_accessor :id, :amount, :status, :description, :livemode,
-                  :payment, :client, :created_at, :updated_at
+                  :payment, :currency, :client, :created_at, :updated_at
 
     def initialize(attributes = {})
       attributes.each_pair do |key, value|
