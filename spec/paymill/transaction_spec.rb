@@ -4,6 +4,7 @@ describe Paymill::Transaction do
   let(:valid_attributes) do
     {
       amount: 4200,
+      currency: "EUR",
       status: "pending",
       description: "Test transaction.",
       livemode: false,
@@ -28,6 +29,7 @@ describe Paymill::Transaction do
       transaction.payment[:card_type].should eql("visa")
       transaction.payment[:country].should eql("germany")
       transaction.client.should eql("client_a013c")
+      transaction.currency.should eql("EUR")
     end
   end
 
