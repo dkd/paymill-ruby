@@ -31,7 +31,7 @@ describe Paymill::Client do
     
   describe "find" do
     it "makes a new GET request using the correct API endpoint to receive a specific client" do
-      url = "https://api.paymill.de/v2/clients/123"
+      url = "https://api.paymill.com/v2/clients/123"
       stub_request(:get, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Client.find("123")
       assert_requested :get, url
@@ -40,7 +40,7 @@ describe Paymill::Client do
     
   describe "all" do
     it "makes a new GET request using the correct API endpoint to receive all clients" do
-      url = "https://api.paymill.de/v2/clients?order=created_at_asc"
+      url = "https://api.paymill.com/v2/clients?order=created_at_asc"
       stub_request(:get, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Client.all
       assert_requested :get, url
@@ -49,7 +49,7 @@ describe Paymill::Client do
     
   describe "delete" do
     it "makes a new DELETE request using the correct API endpoint" do
-      url = "https://api.paymill.de/v2/clients/123"
+      url = "https://api.paymill.com/v2/clients/123"
       stub_request(:delete, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Client.delete("123")
       assert_requested :delete, url
@@ -58,7 +58,7 @@ describe Paymill::Client do
     
   describe "create" do
     it "makes a new POST request using the correct API endpoint" do
-      url = "https://api.paymill.de/v2/clients"
+      url = "https://api.paymill.com/v2/clients"
       stub_request(:post, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Client.create(valid_attributes)
       assert_requested :post, url
@@ -67,7 +67,7 @@ describe Paymill::Client do
   
   describe "update" do
     it "makes a new PUT request using the correct API endpoint" do
-      url = "https://api.paymill.de/v2/clients/123"
+      url = "https://api.paymill.com/v2/clients/123"
       stub_request(:put, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Client.update(123, valid_attributes)
       assert_requested :put, url

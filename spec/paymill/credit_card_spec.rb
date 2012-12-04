@@ -77,7 +77,7 @@ describe Paymill::CreditCard do
 
   describe "find" do
     it "makes a new GET request using the correct API endpoint to receive a specific creditcard" do
-      url = "https://api.paymill.de/v2/payments/123"
+      url = "https://api.paymill.com/v2/payments/123"
       stub_request(:get, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::CreditCard.find("123")
       assert_requested :get, url
@@ -86,7 +86,7 @@ describe Paymill::CreditCard do
 
   describe "all" do
     it "makes a new GET request using the correct API endpoint to receive all creditcards" do
-      url = "https://api.paymill.de/v2/payments?order=created_at_asc"
+      url = "https://api.paymill.com/v2/payments?order=created_at_asc"
       stub_request(:get, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::CreditCard.all
       assert_requested :get, url
@@ -95,7 +95,7 @@ describe Paymill::CreditCard do
   
   describe "create" do
     it "makes a new POST request using the correct API endpoint" do
-      url = "https://api.paymill.de/v2/payments"
+      url = "https://api.paymill.com/v2/payments"
       stub_request(:post, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::CreditCard.create(valid_attributes)
       assert_requested :post, url

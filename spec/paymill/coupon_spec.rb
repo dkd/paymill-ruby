@@ -36,7 +36,7 @@ describe Paymill::Coupon do
     
   describe "find" do
     it "makes a new GET request using the correct API endpoint to receive a specific client" do
-      url = "https://api.paymill.de/v2/coupons/123"
+      url = "https://api.paymill.com/v2/coupons/123"
       stub_request(:get, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Coupon.find("123")
       assert_requested :get, url
@@ -45,7 +45,7 @@ describe Paymill::Coupon do
     
   describe "all" do
     it "makes a new GET request using the correct API endpoint to receive all clients" do
-      url = "https://api.paymill.de/v2/coupons?order=created_at_asc"
+      url = "https://api.paymill.com/v2/coupons?order=created_at_asc"
       stub_request(:get, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Coupon.all
       assert_requested :get, url
@@ -54,7 +54,7 @@ describe Paymill::Coupon do
     
   describe "delete" do
     it "makes a new DELETE request using the correct API endpoint" do
-      url = "https://api.paymill.de/v2/coupons/123"
+      url = "https://api.paymill.com/v2/coupons/123"
       stub_request(:delete, url).to_return(:status => 200, :body => '{"data": []}', :headers => {})
       Paymill::Coupon.delete("123")
       assert_requested :delete, url
@@ -63,7 +63,7 @@ describe Paymill::Coupon do
     
   describe "create" do
     it "makes a new POST request using the correct API endpoint" do
-      url = "https://api.paymill.de/v2/coupons"
+      url = "https://api.paymill.com/v2/coupons"
       stub_request(:post, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Coupon.create(fixed_value_attributes)
       assert_requested :post, url
@@ -72,7 +72,7 @@ describe Paymill::Coupon do
   
   describe "update" do
     it "makes a new PUT request using the correct API endpoint" do
-      url = "https://api.paymill.de/v2/coupons/123"
+      url = "https://api.paymill.com/v2/coupons/123"
       stub_request(:put, url).to_return(:status => 200, :body => '{"data": {}}', :headers => {})
       Paymill::Coupon.update(123, fixed_value_attributes)
       assert_requested :put, url
