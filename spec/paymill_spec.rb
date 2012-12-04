@@ -11,7 +11,7 @@ describe Paymill do
     it "should return an proper URI" do
       Paymill.uri.must_be_instance_of URI::HTTPS
       Paymill.uri.scheme.must_equal 'https'
-      Paymill.uri.host.must_equal 'api.paymill.de'
+      Paymill.uri.host.must_equal 'api.paymill.com'
       Paymill.uri.path.must_match /^\/v2\//
     end
   end
