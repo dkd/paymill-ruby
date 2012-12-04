@@ -54,7 +54,7 @@ module Paymill
     end
     
     def uri(path=nil)
-      URI::HTTPS.build(host: 'api.paymill.de', path: "/v2/#{path}")
+      URI::HTTPS.build(host: 'api.paymill.com', path: "/v2/#{path}")
     end
   end
 end
