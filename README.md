@@ -36,7 +36,7 @@ We currently only support the operations `create`, `find` and `all`.
 Requirements
 =====
 
-This gem was developed using Ruby 1.9 and version 2 of Paymill's API. Nonetheless, it should also work with Ruby 1.8.
+This gem requires Ruby 1.9 and faces version 2 of Paymill's API.
 
 Bugs
 ======
