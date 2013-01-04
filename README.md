@@ -33,7 +33,7 @@ Updating an existing client only works on an instance:
 
 Deleting a client:
 
-  Paymill::Client.delete("client_88a388d9dd48f86c3136")
+    Paymill::Client.delete("client_88a388d9dd48f86c3136")
 
 
 For retrieving a collection of all clients you might use the `all`
