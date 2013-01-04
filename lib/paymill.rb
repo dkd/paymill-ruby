@@ -19,8 +19,9 @@ module Paymill
   module Operations
     autoload :All,    "paymill/operations/all"
     autoload :Create, "paymill/operations/create"
-    autoload :Delete, "paymill/operations/delete"
     autoload :Find,   "paymill/operations/find"
+    autoload :Update, "paymill/operations/update"
+    autoload :Delete, "paymill/operations/delete"
   end
 
   class PaymillError < StandardError
