@@ -51,13 +51,15 @@ module Paymill
         https_request = case http_method
               when :post
                 Net::HTTP::Post.new(url)
+              when :put
+                Net::HTTP::Put.new(url)
               when :delete
                 Net::HTTP::Delete.new(url)
               else
                 Net::HTTP::Get.new(url)
               end
         https_request.basic_auth(api_key, "")
-        https_request.set_form_data(data) if http_method == :post
+        https_request.set_form_data(data) if [:post, :put].include? http_method
         @response = https.request(https_request)
       end
       raise AuthenticationError if @response.code.to_i == 401
