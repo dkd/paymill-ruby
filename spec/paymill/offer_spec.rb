@@ -3,10 +3,10 @@ require "spec_helper"
 describe Paymill::Offer do
   let(:valid_attributes) do
     {
-      amount: 4200,
+      amount:   4200,
       currency: "eur",
       interval: "month",
-      name: "Medium Plan"
+      name:     "Medium Plan"
     }
   end
 
@@ -49,5 +49,23 @@ describe Paymill::Offer do
       Paymill.should_receive(:request).with(:post, "offers", valid_attributes).and_return("data" => {})
       Paymill::Offer.create(valid_attributes)
     end
+  end
+
+  describe "#update" do
+    it "makes a new PUT request using the correct API endpoint" do
+      offer.id = "offer_123"
+      Paymill.should_receive(:request).with(:put, "offers/offer_123", {:name => "Large Plan"}).and_return("data" => {})
+
+      offer.update({:name => "Large Plan"})
+    end
+
+    it "updates the instance with the returned attributes" do
+      changed_attributes = {:name => "Large Plan"}
+      Paymill.should_receive(:request).and_return("data" => changed_attributes)
+      offer.update(changed_attributes)
+
+      offer.name.should eql("Large Plan")
+    end
+
   end
 end
