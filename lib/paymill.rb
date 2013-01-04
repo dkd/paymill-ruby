@@ -9,6 +9,7 @@ module Paymill
 
   @@api_key = nil
 
+  autoload :Base,         "paymill/base"
   autoload :Client,       "paymill/client"
   autoload :Offer,        "paymill/offer"
   autoload :Payment,      "paymill/payment"
