@@ -26,12 +26,22 @@ Or find an existing client:
 
     Paymill::Client.find("client_88a388d9dd48f86c3136")
 
+Updating an existing client only works on an instance:
+
+    client = Paymill::Client.find("client_88a388d9dd48f86c3136")
+    client.update(:email => "carl.client@example.com")
+
+Deleting a client:
+
+    Paymill::Client.delete("client_88a388d9dd48f86c3136")
+
+
 For retrieving a collection of all clients you might use the `all`
 operation:
 
     Paymill::Client.all
 
-We currently only support the operations `create`, `find` and `all`.
+Please note that Transactions and Payments may not be able to be updated at all.
 
 Requirements
 =====
