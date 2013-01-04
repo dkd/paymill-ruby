@@ -1,5 +1,8 @@
 module Paymill
   class Base
+    include Paymill::Operations::All
+    include Paymill::Operations::Create
+    include Paymill::Operations::Find
 
     def initialize(attributes = {})
       set_attributes(attributes)
@@ -10,6 +13,5 @@ module Paymill
         instance_variable_set("@#{key}", value)
       end
     end
-
   end
 end

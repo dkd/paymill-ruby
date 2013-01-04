@@ -44,21 +44,20 @@ describe Paymill::Client do
     end
   end
 
-  describe "#update" do
+  describe "#update_attributes" do
     it "makes a new PUT request using the correct API endpoint" do
       client.id = "client_123"
       Paymill.should_receive(:request).with(:put, "clients/client_123", {:email => "tim.test@exmaple.com"}).and_return("data" => {})
 
-      client.update({:email => "tim.test@exmaple.com"})
+      client.update_attributes({:email => "tim.test@exmaple.com"})
     end
 
     it "updates the instance with the returned attributes" do
       changed_attributes = {:email => "tim.test@example.com"}
       Paymill.should_receive(:request).and_return("data" => changed_attributes)
-      client.update(changed_attributes)
+      client.update_attributes(changed_attributes)
 
       client.email.should eql("tim.test@example.com")
     end
-
   end
 end

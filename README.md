@@ -29,7 +29,7 @@ Or find an existing client:
 Updating an existing client only works on an instance:
 
     client = Paymill::Client.find("client_88a388d9dd48f86c3136")
-    client.update(:email => "carl.client@example.com")
+    client.update_attributes(email: "carl.client@example.com")
 
 Deleting a client:
 
@@ -41,7 +41,7 @@ operation:
 
     Paymill::Client.all
 
-Please note that Transactions and Payments may not be able to be updated at all.
+Please note that Transactions and Payments cannot be updated.
 
 Requirements
 =====

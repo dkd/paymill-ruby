@@ -51,21 +51,20 @@ describe Paymill::Offer do
     end
   end
 
-  describe "#update" do
+  describe "#update_attributes" do
     it "makes a new PUT request using the correct API endpoint" do
       offer.id = "offer_123"
       Paymill.should_receive(:request).with(:put, "offers/offer_123", {:name => "Large Plan"}).and_return("data" => {})
 
-      offer.update({:name => "Large Plan"})
+      offer.update_attributes({:name => "Large Plan"})
     end
 
     it "updates the instance with the returned attributes" do
       changed_attributes = {:name => "Large Plan"}
       Paymill.should_receive(:request).and_return("data" => changed_attributes)
-      offer.update(changed_attributes)
+      offer.update_attributes(changed_attributes)
 
       offer.name.should eql("Large Plan")
     end
-
   end
 end
