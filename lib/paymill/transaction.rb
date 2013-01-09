@@ -29,7 +29,7 @@ module Paymill
     def refund!(cents=nil, description=nil)
       raise APIError, 'Transaction not refundable' unless refundable?
       cents = amount if cents.nil?
-      raise ArgumentError, 'Refund amount is greater than transaction amount' if cents > amount#.cents
+      raise ArgumentError, 'Refund amount is greater than transaction amount' if cents > amount.to_s
       Refund.create(id, amount: cents, description: description)
     end
   end
