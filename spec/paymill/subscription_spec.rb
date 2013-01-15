@@ -9,6 +9,8 @@ describe Paymill::Subscription do
         interval: "week"
       },
       livemode:             false,
+      trial_start:          1349945681,
+      trial_end:            1349945682,
       cancel_at_period_end: false,
       client:               {
         email: "stefan.sprenger@dkd.de"
@@ -28,6 +30,8 @@ describe Paymill::Subscription do
       subscription.livemode.should be_false
       subscription.cancel_at_period_end.should be_false
       subscription.client[:email].should eql("stefan.sprenger@dkd.de")
+      subscription.trial_start.should eql(1349945681)
+      subscription.trial_end.should eql(1349945682)
     end
   end
 
