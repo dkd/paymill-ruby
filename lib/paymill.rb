@@ -15,6 +15,7 @@ module Paymill
   autoload :Payment,      "paymill/payment"
   autoload :Subscription, "paymill/subscription"
   autoload :Transaction,  "paymill/transaction"
+  autoload :Webhook,      "paymill/webhook"
 
   module Operations
     autoload :All,    "paymill/operations/all"
