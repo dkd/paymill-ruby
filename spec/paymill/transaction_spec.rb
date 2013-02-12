@@ -47,6 +47,13 @@ describe Paymill::Transaction do
     end
   end
 
+  describe ".all with options" do
+    it "makes a new GET request using the correct API endpoint to receive all transactions" do
+      Paymill.should_receive(:request).with(:get, "transactions/", {client: "client_id"}).and_return("data" => {})
+      Paymill::Transaction.all(client: "client_id")
+    end
+  end
+
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
       Paymill.should_receive(:request).with(:post, "transactions", valid_attributes).and_return("data" => {})
