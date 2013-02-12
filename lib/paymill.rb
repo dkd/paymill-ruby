@@ -50,15 +50,15 @@ module Paymill
       https.start do |connection|
         url = "/#{API_VERSION}/#{api_url}"
         https_request = case http_method
-              when :post
-                Net::HTTP::Post.new(url)
-              when :put
-                Net::HTTP::Put.new(url)
-              when :delete
-                Net::HTTP::Delete.new(url)
-              else
-                Net::HTTP::Get.new(url)
-              end
+                        when :post
+                          Net::HTTP::Post.new(url)
+                        when :put
+                          Net::HTTP::Put.new(url)
+                        when :delete
+                          Net::HTTP::Delete.new(url)
+                        else
+                          Net::HTTP::Get.new(path_with_params(url, data))
+                        end
         https_request.basic_auth(api_key, "")
         https_request.set_form_data(data) if [:post, :put].include? http_method
         @response = https.request(https_request)
@@ -70,6 +70,11 @@ module Paymill
       raise APIError.new(data["error"]) if data["error"]
 
       data
+    end
+
+    def path_with_params(path, params)
+      encoded_params = URI.encode_www_form(params)
+      [path, encoded_params].join("?")
     end
   end
 end
