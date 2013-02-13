@@ -15,11 +15,12 @@ describe Paymill do
       end
 
       it "attempts to get a url with one param" do
-        Paymill.request(:get, "transactions", {param_name: "param_value"})
+        Paymill.request(:get, "transactions", { param_name: "param_value" })
         WebMock.should have_requested(:get, "https://#{Paymill::api_key}:@#{Paymill::API_BASE}/#{Paymill::API_VERSION}/transactions?param_name=param_value")
       end
+
       it "attempts to get a url with more than one param" do
-        Paymill.request(:get, "transactions", {client: "client_id", order: "created_at_desc"})
+        Paymill.request(:get, "transactions", { client: "client_id", order: "created_at_desc" })
         WebMock.should have_requested(:get, "https://#{Paymill::api_key}:@#{Paymill::API_BASE}/#{Paymill::API_VERSION}/transactions?client=client_id&order=created_at_desc")
       end
     end
