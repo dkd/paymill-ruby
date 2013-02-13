@@ -43,9 +43,9 @@ operation:
 
 To sort and filter collection lists of objects, use the `all` method
 with an options hash. For example to find the most recent transactions
-belonging to a client:
+belonging to a client you can use the following code:
     
-    Paymill::Transaction.all({client: "client_id", order: "created_at_desc"})
+    Paymill::Transaction.all(client: "<client_id>", order: "created_at_desc")
 
 Please note that Transactions and Payments cannot be updated.
 

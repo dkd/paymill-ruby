@@ -49,7 +49,7 @@ describe Paymill::Transaction do
 
   describe ".all with options" do
     it "makes a new GET request using the correct API endpoint to receive all transactions" do
-      Paymill.should_receive(:request).with(:get, "transactions/", {client: "client_id"}).and_return("data" => {})
+      Paymill.should_receive(:request).with(:get, "transactions/", { client: "client_id" }).and_return("data" => {})
       Paymill::Transaction.all(client: "client_id")
     end
   end
