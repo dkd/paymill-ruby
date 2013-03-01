@@ -47,4 +47,11 @@ describe Paymill::Payment do
       Paymill::Payment.create(valid_attributes)
     end
   end
+
+  describe ".delete" do
+    it "makes a new DELETE request using the correct API endpoint" do
+      Paymill.should_receive(:request).with(:delete, "payments/123", {}).and_return(true)
+      Paymill::Payment.delete("123")
+    end
+  end
 end
