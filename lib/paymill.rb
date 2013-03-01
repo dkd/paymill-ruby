@@ -73,8 +73,12 @@ module Paymill
     end
 
     def path_with_params(path, params)
-      encoded_params = URI.encode_www_form(params)
-      [path, encoded_params].join("?")
+      if params != {}
+        encoded_params = URI.encode_www_form(params)
+        [path, encoded_params].join("?")
+      else
+        path
+      end
     end
   end
 end

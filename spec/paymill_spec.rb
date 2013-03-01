@@ -23,6 +23,11 @@ describe Paymill do
         Paymill.request(:get, "transactions", { client: "client_id", order: "created_at_desc" })
         WebMock.should have_requested(:get, "https://#{Paymill::api_key}:@#{Paymill::API_BASE}/#{Paymill::API_VERSION}/transactions?client=client_id&order=created_at_desc")
       end
+
+      it "doesn't add a question mark if no params" do
+        Paymill.request(:get, "transactions", {})
+        WebMock.should have_requested(:get, "https://#{Paymill::api_key}:@#{Paymill::API_BASE}/#{Paymill::API_VERSION}/transactions")
+      end
     end
   end
 end
