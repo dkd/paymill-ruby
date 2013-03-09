@@ -30,8 +30,31 @@ describe Paymill::Subscription do
       subscription.livemode.should be_false
       subscription.cancel_at_period_end.should be_false
       subscription.client[:email].should eql("stefan.sprenger@dkd.de")
-      subscription.trial_start.should eql(1349945681)
-      subscription.trial_end.should eql(1349945682)
+      subscription.trial_start.to_i.should eql(1349945681)
+      subscription.trial_end.to_i.should eql(1349945682)
+    end
+  end
+
+  describe "#parse_timestamps" do
+    context "given #canceled_at is present" do
+      it "creates a Time object" do
+        subscription = Paymill::Subscription.new(canceled_at: 1362823928)
+        subscription.canceled_at.class.should eql(Time)
+      end
+    end
+
+    context "given #trial_start is present" do
+      it "creates a Time object" do
+        subscription = Paymill::Subscription.new(trial_start: 1362823928)
+        subscription.trial_start.class.should eql(Time)
+      end
+    end
+
+    context "given #trial_end is present" do
+      it "creates a Time object" do
+        subscription = Paymill::Subscription.new(trial_end: 1362823928)
+        subscription.trial_end.class.should eql(Time)
+      end
     end
   end
 
