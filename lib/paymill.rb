@@ -13,6 +13,8 @@ module Paymill
   autoload :Client,       "paymill/client"
   autoload :Offer,        "paymill/offer"
   autoload :Payment,      "paymill/payment"
+  autoload :Preauthorization, "paymill/preauthorization"
+  autoload :Refund,           "paymill/refund"
   autoload :Subscription, "paymill/subscription"
   autoload :Transaction,  "paymill/transaction"
   autoload :Webhook,      "paymill/webhook"
@@ -48,7 +50,12 @@ module Paymill
       https.verify_mode = OpenSSL::SSL::VERIFY_PEER
       https.ca_file     = File.join(File.dirname(__FILE__), "data/paymill.crt")
       https.start do |connection|
-        url = "/#{API_VERSION}/#{api_url}"
+        if api_url == "refunds"
+          url = "/#{API_VERSION}/#{api_url}/#{data[:id]}"
+          data.delete(:id)
+        else
+          url = "/#{API_VERSION}/#{api_url}"
+        end
         https_request = case http_method
                         when :post
                           Net::HTTP::Post.new(url)
