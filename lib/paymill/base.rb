@@ -4,6 +4,8 @@ module Paymill
     include Paymill::Operations::Create
     include Paymill::Operations::Find
 
+    attr_accessor :created_at, :updated_at
+
     def initialize(attributes = {})
       set_attributes(attributes)
     end
