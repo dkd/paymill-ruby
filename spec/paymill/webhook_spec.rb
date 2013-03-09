@@ -20,8 +20,8 @@ describe Paymill::Webhook do
       webhook.url.should eql("<your-webhook-url>")
       webhook.livemode.should eql(false)
       webhook.event_types.should eql(["transaction.succeeded","transaction.failed"])   
-      webhook.created_at.should eql(1360368749)
-      webhook.updated_at.should eql(1360368749)
+      webhook.created_at.to_i.should eql(1360368749)
+      webhook.updated_at.to_i.should eql(1360368749)
     end
   end
   
