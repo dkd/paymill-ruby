@@ -3,7 +3,7 @@ require "spec_helper"
 describe Paymill::Subscription do
   let(:valid_attributes) do
     {
-      plan:                 {
+      offer:                {
         name:     "Nerd special",
         amount:   123,
         interval: "week"
@@ -24,9 +24,9 @@ describe Paymill::Subscription do
 
   describe "#initialize" do
     it "initializes all attributes correctly" do
-      subscription.plan[:name].should eql("Nerd special")
-      subscription.plan[:amount].should eql(123)
-      subscription.plan[:interval].should eql("week")
+      subscription.offer[:name].should eql("Nerd special")
+      subscription.offer[:amount].should eql(123)
+      subscription.offer[:interval].should eql("week")
       subscription.livemode.should be_false
       subscription.cancel_at_period_end.should be_false
       subscription.client[:email].should eql("stefan.sprenger@dkd.de")
