@@ -9,15 +9,15 @@ module Paymill
 
   @@api_key = nil
 
-  autoload :Base,         "paymill/base"
-  autoload :Client,       "paymill/client"
-  autoload :Offer,        "paymill/offer"
-  autoload :Payment,      "paymill/payment"
+  autoload :Base,             "paymill/base"
+  autoload :Client,           "paymill/client"
+  autoload :Offer,            "paymill/offer"
+  autoload :Payment,          "paymill/payment"
   autoload :Preauthorization, "paymill/preauthorization"
   autoload :Refund,           "paymill/refund"
-  autoload :Subscription, "paymill/subscription"
-  autoload :Transaction,  "paymill/transaction"
-  autoload :Webhook,      "paymill/webhook"
+  autoload :Subscription,     "paymill/subscription"
+  autoload :Transaction,      "paymill/transaction"
+  autoload :Webhook,          "paymill/webhook"
 
   module Operations
     autoload :All,    "paymill/operations/all"
