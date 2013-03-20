@@ -4,7 +4,7 @@ require "json"
 require "paymill/version"
 
 module Paymill
-  API_BASE    = "api.paymill.de"
+  API_BASE    = "api.paymill.com"
   API_VERSION = "v2"
 
   @@api_key = nil
