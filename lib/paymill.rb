@@ -34,14 +34,26 @@ module Paymill
   class APIError            < PaymillError; end
 
   class << self
+    # Returns the set api key
+    #
+    # @return [String] The api key
     def api_key
       @@api_key
     end
 
+    # Sets the api key
+    #
+    # @param [String] api_key The api key
     def api_key=(api_key)
       @@api_key = api_key
     end
 
+    # Makes a request against the Paymill API
+    #
+    # @param [Symbol] http_method The http method to use, must be one of :get, :post, :put and :delete
+    # @param [String] api_url The API url to use
+    # @param [Hash] data The data to send, e.g. used when creating new objects.
+    # @return [Array] The parsed JSON response.
     def request(http_method, api_url, data)
       raise AuthenticationError if api_key.nil?
 
@@ -79,6 +91,11 @@ module Paymill
       data
     end
 
+    # Builds and encodes a URI using given path and params.
+    #
+    # @param [String] path The path to use
+    # @param [Array] params The params to use
+    # @return [String] The built URI.
     def path_with_params(path, params)
       unless params.empty?
         encoded_params = URI.encode_www_form(params)

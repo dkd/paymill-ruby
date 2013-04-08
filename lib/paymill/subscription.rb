@@ -5,6 +5,7 @@ module Paymill
 
     attr_accessor :id, :offer, :livemode, :cancel_at_period_end, :canceled_at, :client, :trial_start, :trial_end
 
+    # Parses UNIX timestamps and creates Time objects
     def parse_timestamps
       super
       @canceled_at = Time.at(canceled_at) if canceled_at
