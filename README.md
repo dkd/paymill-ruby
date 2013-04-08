@@ -7,6 +7,7 @@ Documentation
 =====
 
 We use RubyDoc for documentation.
+
 The documentation of the current release can be found here:
 http://rubydoc.info/gems/paymill/frames/index
 
