@@ -3,6 +3,13 @@ Paymill [![Build Status](https://secure.travis-ci.org/dkd/paymill-ruby.png)](htt
 
 This is a Ruby wrapper for Paymill's API.
 
+Documentation
+=====
+
+We use RubyDoc for documentation.
+The documentation of the current release can be found here:
+http://rubydoc.info/gems/paymill/frames/index
+
 Usage
 ======
 
