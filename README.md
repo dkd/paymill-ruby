@@ -73,4 +73,4 @@ Note on Patches/Pull Requests
 Copyright
 ======
 
-Copyright (c) 2012 dkd Internet Service GmbH, Stefan Sprenger. See LICENSE for details.
+Copyright (c) 2012-2013 dkd Internet Service GmbH, Stefan Sprenger. See LICENSE for details.
