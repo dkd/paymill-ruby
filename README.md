@@ -26,7 +26,12 @@ Then you have to set your API key:
 
     Paymill.api_key = "your-api-key"
 
-Now you can e.g. create a new client:
+Clients
+-------
+
+*[Paymill documentation on clients](https://www.paymill.com/en-gb/documentation-3/reference/api-reference/#clients)*
+
+Creating a new client:
 
     Paymill::Client.create(email: "stefan.sprenger@dkd.de", description: "He is a Ruby guy.")
 
@@ -56,6 +61,61 @@ belonging to a client you can use the following code:
     Paymill::Transaction.all(client: "<client_id>", order: "created_at_desc")
 
 Please note that Transactions and Payments cannot be updated.
+
+
+Offers
+------
+
+*[Paymill documentation on offers](https://www.paymill.com/en-gb/documentation-3/reference/api-reference/#offers)*
+
+Creating a new offer:
+
+    Paymill::Offer.create(name: 'Monthly', interval: '1 month', amount: 1000, currency: 'GBP', trial_period_days: 0)
+
+Updating an offer (works on an Offer instance and only the name can be changed):
+
+    offer = Paymill::Offer.find('offer_08064e30032afa3aa046')
+    offer.update_attributes(name: 'New name')
+
+Deleting an offer:
+
+    Paymill::Offer.delete('offer_08064e30032afa3aa046')
+
+Retrieving an offer:
+
+    Paymill::Offer.find('offer_753480df39aeb114f2f3')
+
+Retrieving all offers:
+
+    Paymill::Offer.all
+
+
+Webhooks
+------
+
+*[Paymill documentation on webhooks](https://www.paymill.com/en-gb/documentation-3/reference/api-reference/#webhooks)*
+
+Creating a new webhook:
+
+    Paymill::Webhook.create(email: 'email@bob.com', event_types: ['transaction.succeeded', 'subscription.succeeded'])
+
+Updating a webhook works on an instance (url/email and the event types can be changed):
+
+    hook = Paymill::Webhook.find('hook_940143bcdc0c40e7756f')
+    hook.update_attributes(email: 'bob@email.com')
+
+Deleting a webhook:
+
+    Paymill::Webhook.delete('hook_940143bcdc0c40e7756f')
+
+Retrieving a webhook:
+
+    hook = Paymill::Webhook.find('hook_940143bcdc0c40e7756f')
+
+Retrieving all webhooks:
+
+    Paymill::Webhook.all
+
 
 Requirements
 =====
