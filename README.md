@@ -70,12 +70,12 @@ Offers
 
 Creating a new offer:
 
-    Paymill::Offer.create(name: 'Monthly', interval: '1 month', amount: 1000, currency: 'GBP', trial_period_days: 0)
+    Paymill::Offer.create(name: "Monthly", interval: "1 month", amount: 1000, currency: "GBP", trial_period_days: 0)
 
 Updating an offer (works on an Offer instance and only the name can be changed):
 
-    offer = Paymill::Offer.find('offer_08064e30032afa3aa046')
-    offer.update_attributes(name: 'New name')
+    offer = Paymill::Offer.find("offer_08064e30032afa3aa046")
+    offer.update_attributes(name: "New name")
 
 Deleting an offer:
 
@@ -83,7 +83,7 @@ Deleting an offer:
 
 Retrieving an offer:
 
-    Paymill::Offer.find('offer_753480df39aeb114f2f3')
+    Paymill::Offer.find("offer_753480df39aeb114f2f3")
 
 Retrieving all offers:
 
@@ -97,20 +97,20 @@ Webhooks
 
 Creating a new webhook:
 
-    Paymill::Webhook.create(email: 'email@bob.com', event_types: ['transaction.succeeded', 'subscription.succeeded'])
+    Paymill::Webhook.create(email: "email@bob.com", event_types: ["transaction.succeeded", "subscription.succeeded"])
 
 Updating a webhook works on an instance (url/email and the event types can be changed):
 
-    hook = Paymill::Webhook.find('hook_940143bcdc0c40e7756f')
-    hook.update_attributes(email: 'bob@email.com')
+    hook = Paymill::Webhook.find("hook_940143bcdc0c40e7756f")
+    hook.update_attributes(email: "bob@email.com")
 
 Deleting a webhook:
 
-    Paymill::Webhook.delete('hook_940143bcdc0c40e7756f')
+    Paymill::Webhook.delete("hook_940143bcdc0c40e7756f")
 
 Retrieving a webhook:
 
-    hook = Paymill::Webhook.find('hook_940143bcdc0c40e7756f')
+    hook = Paymill::Webhook.find("hook_940143bcdc0c40e7756f")
 
 Retrieving all webhooks:
 
