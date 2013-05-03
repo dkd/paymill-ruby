@@ -15,6 +15,9 @@ describe Paymill::Subscription do
       cancel_at_period_end: false,
       client:               {
         email: "stefan.sprenger@dkd.de"
+      },
+      payment:              {
+        id: "pay_3af44644dd6d25c820a8",
       }
     }
   end
@@ -31,6 +34,7 @@ describe Paymill::Subscription do
       subscription.livemode.should be_false
       subscription.cancel_at_period_end.should be_false
       subscription.client[:email].should eql("stefan.sprenger@dkd.de")
+      subscription.payment[:id].should eql("pay_3af44644dd6d25c820a8")
       subscription.trial_start.to_i.should eql(1349945681)
       subscription.trial_end.to_i.should eql(1349945682)
     end
