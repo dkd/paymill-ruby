@@ -4,7 +4,7 @@ module Paymill
     include Paymill::Operations::Update
 
     attr_accessor :id, :offer, :livemode, :cancel_at_period_end, :canceled_at, :client,
-                  :trial_start, :trial_end, :next_capture_at
+                  :trial_start, :trial_end, :next_capture_at, :payment
 
     # Parses UNIX timestamps and creates Time objects
     def parse_timestamps
