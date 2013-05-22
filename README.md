@@ -117,6 +117,24 @@ Retrieving all webhooks:
     Paymill::Webhook.all
 
 
+Refunds
+------
+
+*[Paymill documentation on refunds](https://www.paymill.com/en-gb/documentation-3/reference/api-reference/#refunds)*
+
+Creating a new refund:
+
+    Paymill::Refund.create(id: "tran_023d3b5769321c649435", amount: 4200)
+
+Retrieving a refund:
+
+    refund = Paymill::Refund.find("refund_87bc404a95d5ce616049")
+
+Retrieving all refunds:
+
+    Paymill::Refund.all
+
+
 Requirements
 =====
 
