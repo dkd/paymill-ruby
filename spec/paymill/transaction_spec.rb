@@ -4,6 +4,7 @@ describe Paymill::Transaction do
   let(:valid_attributes) do
     {
       amount: 4200,
+      origin_amount: 4200,
       currency: "EUR",
       status: "pending",
       description: "Test transaction.",
@@ -24,6 +25,7 @@ describe Paymill::Transaction do
   describe "#initialize" do
     it "initializes all attributes correctly" do
       transaction.amount.should eql(4200)
+      transaction.origin_amount.should eql(4200)
       transaction.status.should eql("pending")
       transaction.description.should eql("Test transaction.")
       transaction.livemode.should eql(false)
