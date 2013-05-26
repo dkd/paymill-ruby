@@ -98,6 +98,13 @@ describe Paymill::Subscription do
     end
   end
 
+  describe ".update_attributes" do
+    it "makes a new PUT request using the correct API endpoint" do
+      Paymill.should_receive(:request).with(:put, "subscriptions/sub_123", {:offer => 50 }).and_return("data" => {})
+      Paymill::Subscription.update_attributes('sub_123', {:offer => 50 })
+    end
+  end
+
   describe "#update_attributes" do
     it "makes a new PUT request using the correct API endpoint" do
       changed_attributes = {:cancel_at_period_end => true}
