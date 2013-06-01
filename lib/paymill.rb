@@ -2,10 +2,12 @@ require "net/http"
 require "net/https"
 require "json"
 require "paymill/version"
+require "pry"
 
 module Paymill
   API_BASE    = "api.paymill.com"
   API_VERSION = "v2"
+  ROOT_PATH   = File.dirname(__FILE__)
 
   @@api_key = nil
 
@@ -15,7 +17,6 @@ module Paymill
   autoload :Payment,          "paymill/payment"
   autoload :Preauthorization, "paymill/preauthorization"
   autoload :Refund,           "paymill/refund"
-  autoload :Request,          "paymill/request"
   autoload :Subscription,     "paymill/subscription"
   autoload :Transaction,      "paymill/transaction"
   autoload :Webhook,          "paymill/webhook"
@@ -26,6 +27,11 @@ module Paymill
     autoload :Find,   "paymill/operations/find"
     autoload :Update, "paymill/operations/update"
     autoload :Delete, "paymill/operations/delete"
+  end
+
+  module Request
+    autoload :Base,        "paymill/request/base"
+    autoload :Info,        "paymill/request/info"
   end
 
   class PaymillError < StandardError; end
@@ -53,6 +59,7 @@ module Paymill
   # @param [Hash] data The data to send, e.g. used when creating new objects.
   # @return [Array] The parsed JSON response.
   def self.request(http_method, api_url, data)
-    Request.new(http_method, api_url, data, api_key).send
+    info = Request::Info.new(http_method, api_url, data)
+    Request::Base.new(info).send
   end
 end
