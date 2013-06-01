@@ -9,12 +9,9 @@ module Paymill
 
     def send
       raise AuthenticationError if @api_key.nil?
+      setup_https
 
-      https             = Net::HTTP.new(API_BASE, Net::HTTP.https_default_port)
-      https.use_ssl     = true
-      https.verify_mode = OpenSSL::SSL::VERIFY_PEER
-      https.ca_file     = File.join(File.dirname(__FILE__), "@data/paymill.crt")
-      https.start do |connection|
+      @https.start do |connection|
         if @api_url == "refunds"
           url = "/#{API_VERSION}/#{@api_url}/#{@data[:id]}"
           @data.delete(:id)
@@ -33,7 +30,7 @@ module Paymill
                         end
         https_request.basic_auth(@api_key, "")
         https_request.set_form_data(data) if [:post, :put].include? @http_method
-        @response = https.request(https_request)
+        @response = @https.request(https_request)
       end
       raise AuthenticationError if @response.code.to_i == 401
       raise APIError if @response.code.to_i >= 500
@@ -57,6 +54,13 @@ module Paymill
       else
         path
       end
+    end
+
+    def setup_https
+      @https             = Net::HTTP.new(API_BASE, Net::HTTP.https_default_port)
+      @https.use_ssl     = true
+      @https.verify_mode = OpenSSL::SSL::VERIFY_PEER
+      @https.ca_file     = File.join(File.dirname(__FILE__), "data/paymill.crt")
     end
   end
 end
