@@ -31,7 +31,7 @@ module Paymill
                           Net::HTTP::Get.new(@info.path_with_params(@info.url, @info.data))
                         end
         https_request.basic_auth(Paymill.api_key, "")
-        https_request.set_form_data(data) if [:post, :put].include? @info.http_method
+        https_request.set_form_data(@info.data) if [:post, :put].include? @info.http_method
         return https_request
       end
     end
