@@ -10,9 +10,6 @@ module Paymill
         @validator = Validator.new(@info)
       end
 
-      # Makes a request against the Paymill API
-      #
-      # @return [Array] The parsed JSON response
       def send
         raise AuthenticationError if Paymill.api_key.nil?
         @connection.setup_https
