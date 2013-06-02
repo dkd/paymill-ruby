@@ -9,10 +9,10 @@ module Paymill
       end
 
       def url
-        url = "/#{API_VERSION}/#{@api_url}"
+        url = "/#{API_VERSION}/#{api_url}"
         if is_refund?
-          url += "/#{@data[:id]}"
-          @data.delete(:id)
+          url += "/#{data[:id]}"
+          data.delete(:id)
         end
         return url
       end
@@ -28,7 +28,7 @@ module Paymill
 
       private
       def is_refund?
-        @api_url == "refunds"
+        api_url == "refunds"
       end
     end
   end
