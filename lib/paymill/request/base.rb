@@ -5,6 +5,7 @@ module Paymill
   module Request
     class Base
       attr_reader :info
+
       def initialize(info)
         @info = info
       end
@@ -17,12 +18,10 @@ module Paymill
       end
 
       private
-      def send_request
-        @response = connection.request
-      end
+      attr_accessor :response
 
-      def response
-        @response
+      def send_request
+        self.response = connection.request
       end
 
       def connection
