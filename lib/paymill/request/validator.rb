@@ -13,6 +13,10 @@ module Paymill
         return info.data
       end
 
+      private
+      attr_reader :info
+      attr_accessor :response
+
       def verify_response_code
         raise AuthenticationError if response.code.to_i == 401
         raise APIError if response.code.to_i >= 500
@@ -21,10 +25,6 @@ module Paymill
       def validate_response_data
         raise APIError.new(info.data["error"]) if info.data["error"]
       end
-
-      private
-      attr_reader :info
-      attr_accessor :response
     end
   end
 end

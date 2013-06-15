@@ -1,6 +1,7 @@
 module Paymill
   module Request
     class Connection
+      attr_reader :https
       def initialize(request_info)
         @info = request_info
       end
@@ -13,8 +14,8 @@ module Paymill
       end
 
       def request
-        @https.start do |connection|
-          @https.request(https_request)
+        https.start do |connection|
+          https.request(https_request)
         end
       end
 

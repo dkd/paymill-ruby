@@ -10,7 +10,7 @@ module Paymill
         @info = info
       end
 
-      def send
+      def perform
         raise AuthenticationError if Paymill.api_key.nil?
         connection.setup_https
         send_request

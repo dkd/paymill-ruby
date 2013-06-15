@@ -59,6 +59,6 @@ module Paymill
   # @return [Array] The parsed JSON response.
   def self.request(http_method, api_url, data)
     info = Request::Info.new(http_method, api_url, data)
-    Request::Base.new(info).send
+    Request::Base.new(info).perform
   end
 end
