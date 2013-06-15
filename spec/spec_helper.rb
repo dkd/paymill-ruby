@@ -4,6 +4,7 @@ require "paymill"
 require "rspec"
 require "rspec/autorun"
 require "webmock/rspec"
+require "pry"
 
 RSpec.configure do |config|
 end
