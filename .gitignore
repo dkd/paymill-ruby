@@ -5,3 +5,5 @@ pkg/*
 *.html
 /.rvmrc
 .project
+.ruby-version
+.ruby-gemset
