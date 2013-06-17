@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Paymill::Request::Validator do
-  context "#validated_data_for" do
+  describe "#validated_data_for" do
     it "validates the data" do
       info = Paymill::Request::Info.new(:get, "random", OpenStruct.new(id: 1))
       validator = Paymill::Request::Validator.new info

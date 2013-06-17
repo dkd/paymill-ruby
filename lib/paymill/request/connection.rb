@@ -2,6 +2,7 @@ module Paymill
   module Request
     class Connection
       attr_reader :https
+
       def initialize(request_info)
         @info = request_info
       end
@@ -19,7 +20,8 @@ module Paymill
         end
       end
 
-      private
+      protected
+
       def https_request
         https_request = case @info.http_method
                         when :post
@@ -32,8 +34,8 @@ module Paymill
                           Net::HTTP::Get.new(@info.path_with_params(@info.url, @info.data))
                         end
         https_request.basic_auth(Paymill.api_key, "")
-        https_request.set_form_data(@info.data) if [:post, :put].include? @info.http_method
-        return https_request
+        https_request.set_form_data(@info.data) if [:post, :put].include?(@info.http_method)
+        https_request
       end
     end
   end

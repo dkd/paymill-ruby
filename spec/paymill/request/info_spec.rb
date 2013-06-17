@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Paymill::Request::Info do
-  context "#url" do
+  describe "#url" do
     it "constructs the url" do
       info = Paymill::Request::Info.new(:get, "random", OpenStruct.new(id: 1))
 
@@ -9,7 +9,7 @@ describe Paymill::Request::Info do
     end
   end
 
-  context "#path_with_params" do
+  describe "#path_with_params" do
     it "does nothing when no params" do
       info = Paymill::Request::Info.new(:get, "random", nil)
       path = "/path/to/someplace"

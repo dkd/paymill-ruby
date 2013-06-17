@@ -29,8 +29,10 @@ module Paymill
   end
 
   module Request
-    autoload :Base,        "paymill/request/base"
-    autoload :Info,        "paymill/request/info"
+    autoload :Base,       "paymill/request/base"
+    autoload :Connection, "paymill/request/connection"
+    autoload :Info,       "paymill/request/info"
+    autoload :Validator,  "paymill/request/validator"
   end
 
   class PaymillError < StandardError; end

@@ -2,10 +2,11 @@ module Paymill
   module Request
     class Info
       attr_accessor :http_method, :api_url, :data
+
       def initialize(http_method, api_url, data)
         @http_method = http_method
-        @api_url = api_url
-        @data = data
+        @api_url     = api_url
+        @data        = data
       end
 
       def url
@@ -14,7 +15,8 @@ module Paymill
           url += "/#{data[:id]}"
           data.delete(:id)
         end
-        return url
+
+        url
       end
 
       def path_with_params(path, params)
@@ -26,7 +28,8 @@ module Paymill
         end
       end
 
-      private
+      protected
+
       def is_refund?
         api_url == "refunds"
       end

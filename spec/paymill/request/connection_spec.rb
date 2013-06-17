@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Paymill::Request::Connection do
-  context "#setup_https" do
+  describe "#setup_https" do
     it "creates a https object" do
       connection = Paymill::Request::Connection.new(nil)
 
@@ -11,7 +11,7 @@ describe Paymill::Request::Connection do
     end
   end
 
-  context "#request" do
+  describe "#request" do
     it "performs the actual request" do
       connection = Paymill::Request::Connection.new(nil)
       connection.setup_https

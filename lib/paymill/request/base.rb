@@ -1,10 +1,8 @@
-require_relative 'connection'
-require_relative 'validator'
-
 module Paymill
   module Request
     class Base
       attr_reader :info
+      attr_accessor :response
 
       def initialize(info)
         @info = info
@@ -14,11 +12,11 @@ module Paymill
         raise AuthenticationError if Paymill.api_key.nil?
         connection.setup_https
         send_request
-        return validator.validated_data_for(response)
+
+        validator.validated_data_for(response)
       end
 
-      private
-      attr_accessor :response
+      protected
 
       def send_request
         self.response = connection.request

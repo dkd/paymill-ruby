@@ -1,6 +1,9 @@
 module Paymill
   module Request
     class Validator
+      attr_reader :info
+      attr_accessor :response
+
       def initialize(info)
         @info = info
       end
@@ -10,12 +13,10 @@ module Paymill
         verify_response_code
         info.data = JSON.parse(response.body)
         validate_response_data
-        return info.data
+        info.data
       end
 
-      private
-      attr_reader :info
-      attr_accessor :response
+      protected
 
       def verify_response_code
         raise AuthenticationError if response.code.to_i == 401
