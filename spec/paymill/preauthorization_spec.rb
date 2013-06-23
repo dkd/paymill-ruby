@@ -27,4 +27,11 @@ describe Paymill::Preauthorization do
       Paymill::Preauthorization.create(valid_attributes)
     end
   end
+
+  describe ".delete" do
+    it "makes a new DELETE request using the correct API endpoint" do
+      Paymill.should_receive(:request).with(:delete, "preauthorizations/123", {}).and_return(true)
+      Paymill::Preauthorization.delete("123")
+    end
+  end
 end
