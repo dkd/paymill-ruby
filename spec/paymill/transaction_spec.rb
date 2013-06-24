@@ -64,4 +64,21 @@ describe Paymill::Transaction do
       Paymill::Transaction.create(valid_attributes)
     end
   end
+
+  describe "#update_attributes" do
+    it "makes a new PUT request using the correct API endpoint" do
+      transaction.id = "trans_123"
+      Paymill.should_receive(:request).with(:put, "transactions/trans_123", {:description => "Transaction Description"}).and_return("data" => {})
+
+      transaction.update_attributes({:description => "Transaction Description"})
+    end
+
+    it "updates the instance with the returned attributes" do
+      changed_attributes = {:description => "Transaction Description"}
+      Paymill.should_receive(:request).and_return("data" => changed_attributes)
+      transaction.update_attributes(changed_attributes)
+
+      transaction.description.should eql("Transaction Description")
+    end
+  end
 end
