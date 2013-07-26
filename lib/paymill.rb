@@ -2,6 +2,7 @@ require "net/http"
 require "net/https"
 require "json"
 require "paymill/version"
+require "net_http_monkey_patch"
 
 module Paymill
   API_BASE    = "api.paymill.com"
