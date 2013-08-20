@@ -14,7 +14,10 @@ describe Paymill::Transaction do
         card_type: "visa",
         country: "germany"
       },
-      client: "client_a013c"
+      client: "client_a013c",
+      refunds: [
+        {:id => "refund_abc"}
+      ]
     }
   end
 
@@ -34,6 +37,10 @@ describe Paymill::Transaction do
       transaction.payment[:country].should eql("germany")
       transaction.client.should eql("client_a013c")
       transaction.currency.should eql("EUR")
+      transaction.refunds.should_not be_nil
+      transaction.refunds.should_not be_empty
+      transaction.refunds.first.should_not be_nil
+      transaction.refunds.first[:id].should eql("refund_abc")
     end
   end
 
