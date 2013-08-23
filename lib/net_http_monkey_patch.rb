@@ -1,33 +1,30 @@
-class Hash
-  def flatten_keys(newhash={}, keys=nil)
-    self.each do |k, v|
-      k = k.to_s
-      keys2 = keys ? keys+"[#{k}]" : k
-      if v.is_a?(Hash)
-        v.flatten_keys(newhash, keys2)
-      else
-        newhash[keys2] = v
-      end
+def flatten_hash_keys(old_hash, new_hash = {}, keys = nil)
+  old_hash.each do |key, value|
+    key = key.to_s
+    if value.is_a?(Hash)
+      all_keys_formatted = keys + "[#{key}]"
+      flatten_hash_keys(value, new_hash, all_keys_formatted)
+    else
+      new_hash[key] = value
     end
-    newhash
   end
+  new_hash
 end
 
 def normalize_params(params, key=nil)
-  params = params.flatten_keys if params.is_a?(Hash)
+  params = flatten_hash_keys(params) if params.is_a?(Hash)
   result = {}
-  params.each do |k,v|
-    case v
-      when Hash
-        result[k.to_s] = normalize_params(v)
-      when Array
-        v.each_with_index do |val,i|
-          result["#{k.to_s}[#{i}]"] = val.to_s
-        end
-      else
-        result[k.to_s] = v.to_s
+  params.each do |key, value|
+    case value
+    when Hash
+      result[key.to_s] = normalize_params(value)
+    when Array
+      value.each_with_index do |item_value, index|
+        result["#{key.to_s}[#{index}]"] = item_value.to_s
+      end
+    else
+      result[key.to_s] = value.to_s
     end
   end
   result
 end
-
