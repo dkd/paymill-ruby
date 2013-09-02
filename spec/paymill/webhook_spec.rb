@@ -14,7 +14,7 @@ describe Paymill::Webhook do
   let (:webhook) do
     Paymill::Webhook.new(valid_attributes)
   end
-  
+
   describe "#initialize" do
     it "initializes all attributes correctly" do
       webhook.url.should eql("<your-webhook-url>")
@@ -24,7 +24,7 @@ describe Paymill::Webhook do
       webhook.updated_at.to_i.should eql(1360368749)
     end
   end
-  
+
   describe ".find" do
     it "makes a new GET request using the correct API endpoint to receive a specific webhook" do
       Paymill.should_receive(:request).with(:get, "webhooks/123", {}).and_return("data" => {})
@@ -45,18 +45,18 @@ describe Paymill::Webhook do
       Paymill::Webhook.create(valid_attributes)
     end
   end
-  
+
   describe ".delete" do
     it "makes a new DELETE request using the correct API endpoint" do
       Paymill.should_receive(:request).with(:delete, "webhooks/123", {}).and_return(true)
       Paymill::Webhook.delete("123")
     end
   end
-  
+
   describe "#update_attributes" do
     it "makes a new PUT request using the correct API endpoint" do
       changed_attributes = {:url => "<new-webhook-url>"}
-      webhook.id    = 'hook_123'
+      webhook.id    = "hook_123"
       Paymill.should_receive(:request).with(:put, "webhooks/hook_123", changed_attributes).and_return("data" => changed_attributes)
       webhook.update_attributes(changed_attributes)
     end
