@@ -1,6 +1,7 @@
 module Paymill
   module Request
     class Connection
+      include Helpers
       attr_reader :https
 
       def initialize(request_info)

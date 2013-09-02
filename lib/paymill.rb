@@ -2,7 +2,6 @@ require "net/http"
 require "net/https"
 require "json"
 require "paymill/version"
-require "net_http_monkey_patch"
 
 module Paymill
   API_BASE    = "api.paymill.com"
@@ -34,6 +33,7 @@ module Paymill
     autoload :Connection, "paymill/request/connection"
     autoload :Info,       "paymill/request/info"
     autoload :Validator,  "paymill/request/validator"
+    autoload :Helpers,    "paymill/request/helpers"
   end
 
   class PaymillError < StandardError; end
