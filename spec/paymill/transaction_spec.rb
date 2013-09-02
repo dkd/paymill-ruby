@@ -14,7 +14,10 @@ describe Paymill::Transaction do
         card_type: "visa",
         country: "germany"
       },
-      client: "client_a013c"
+      client: "client_a013c",
+      refunds: [
+        {:id => "refund_abc"}
+      ]
     }
   end
 
@@ -34,6 +37,10 @@ describe Paymill::Transaction do
       transaction.payment[:country].should eql("germany")
       transaction.client.should eql("client_a013c")
       transaction.currency.should eql("EUR")
+      transaction.refunds.should_not be_nil
+      transaction.refunds.should_not be_empty
+      transaction.refunds.first.should_not be_nil
+      transaction.refunds.first[:id].should eql("refund_abc")
     end
   end
 
@@ -62,6 +69,23 @@ describe Paymill::Transaction do
     it "makes a new POST request using the correct API endpoint" do
       Paymill.should_receive(:request).with(:post, "transactions", valid_attributes).and_return("data" => {})
       Paymill::Transaction.create(valid_attributes)
+    end
+  end
+
+  describe "#update_attributes" do
+    it "makes a new PUT request using the correct API endpoint" do
+      transaction.id = "trans_123"
+      Paymill.should_receive(:request).with(:put, "transactions/trans_123", {:description => "Transaction Description"}).and_return("data" => {})
+
+      transaction.update_attributes({:description => "Transaction Description"})
+    end
+
+    it "updates the instance with the returned attributes" do
+      changed_attributes = {:description => "Transaction Description"}
+      Paymill.should_receive(:request).and_return("data" => changed_attributes)
+      transaction.update_attributes(changed_attributes)
+
+      transaction.description.should eql("Transaction Description")
     end
   end
 end

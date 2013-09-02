@@ -62,6 +62,32 @@ belonging to a client you can use the following code:
 
 Please note that Transactions and Payments cannot be updated.
 
+Payments
+-------
+
+*[Paymill documentation on payments](https://www.paymill.com/en-gb/documentation-3/reference/api-reference/#document-payments)*
+
+Creating a new credit card payment:
+
+    Paymill::Payment.create(token: "098f6bcd4621d373cade4e832627b4f6")
+
+Creating a new debit card payment:
+
+    Paymill::Payment.create(type: "debit", code: "12345678", account: "1234512345", holder: "Max Mustermann")
+
+Or finding an existing payment:
+
+    Paymill::Payment.find("pay_3af44644dd6d25c820a8")
+
+Deleting a payment:
+
+    Paymill::Payment.delete("pay_3af44644dd6d25c820a8")
+
+
+For retrieving a collection of all payments you might use the `all`
+operation:
+
+    Paymill::Payment.all
 
 Offers
 ------
