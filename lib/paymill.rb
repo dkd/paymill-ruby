@@ -33,6 +33,7 @@ module Paymill
     autoload :Connection, "paymill/request/connection"
     autoload :Info,       "paymill/request/info"
     autoload :Validator,  "paymill/request/validator"
+    autoload :Helpers,    "paymill/request/helpers"
   end
 
   class PaymillError < StandardError; end
