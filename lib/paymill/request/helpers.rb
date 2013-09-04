@@ -1,7 +1,7 @@
 module Paymill
   module Request
     module Helpers
-      def flatten_hash_keys(old_hash, new_hash = {}, keys = nil)
+      def flatten_hash_keys(old_hash, new_hash={}, keys=nil)
         old_hash.each do |key, value|
           key = key.to_s
           if value.is_a?(Hash)

@@ -23,17 +23,17 @@ module Paymill
   module Operations
     autoload :All,    "paymill/operations/all"
     autoload :Create, "paymill/operations/create"
+    autoload :Delete, "paymill/operations/delete"
     autoload :Find,   "paymill/operations/find"
     autoload :Update, "paymill/operations/update"
-    autoload :Delete, "paymill/operations/delete"
   end
 
   module Request
     autoload :Base,       "paymill/request/base"
     autoload :Connection, "paymill/request/connection"
+    autoload :Helpers,    "paymill/request/helpers"
     autoload :Info,       "paymill/request/info"
     autoload :Validator,  "paymill/request/validator"
-    autoload :Helpers,    "paymill/request/helpers"
   end
 
   class PaymillError < StandardError; end

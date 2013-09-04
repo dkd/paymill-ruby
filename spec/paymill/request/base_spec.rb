@@ -13,7 +13,7 @@ describe Paymill::Request::Base do
     it "performs an https request" do
       Paymill.stub(:api_key).and_return("some key")
       connection = double
-      validator = double
+      validator  = double
       Paymill::Request::Connection.stub(:new).and_return(connection)
       Paymill::Request::Validator.stub(:new).and_return(validator)
 
