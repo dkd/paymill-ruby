@@ -89,6 +89,20 @@ operation:
 
     Paymill::Payment.all
 
+Transaction
+-----------
+
+Don't forget to execute a transaction for the payment to take effect.
+
+    params = {
+        :amount => 2000, # cents. Must be an integer
+        :currency => 'USD', # iso
+        :client => 'client_123', # client id. Use 'Paymill::Payment'
+        :payment => 'payment_123', # payment id. Use 'Paymill::Client'
+        :description => "some comment if needed"
+    }
+    Paymill::Transaction.create(params)
+
 Offers
 ------
 
