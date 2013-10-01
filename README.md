@@ -92,6 +92,8 @@ operation:
 Transactions
 -----------
 
+*[Paymill documentation on transactions](https://www.paymill.com/en-gb/documentation-3/reference/api-reference/#transactions)*
+
 A transaction can be executed as following
 
     params = {
