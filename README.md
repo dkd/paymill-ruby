@@ -92,13 +92,13 @@ operation:
 Transaction
 -----------
 
-Don't forget to execute a transaction for the payment to take effect.
+A transaction can be executed as following
 
     params = {
         :amount => 2000, # cents. Must be an integer
         :currency => 'USD', # iso
-        :client => 'client_123', # client id. Use 'Paymill::Payment'
-        :payment => 'payment_123', # payment id. Use 'Paymill::Client'
+        :client => 'client_123', # client id. Use 'Paymill::Client'
+        :payment => 'payment_123', # payment id. Use 'Paymill::Payment'
         :description => "some comment if needed"
     }
     Paymill::Transaction.create(params)
