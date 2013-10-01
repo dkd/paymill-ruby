@@ -89,7 +89,7 @@ operation:
 
     Paymill::Payment.all
 
-Transaction
+Transactions
 -----------
 
 A transaction can be executed as following
