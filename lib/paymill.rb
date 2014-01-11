@@ -9,6 +9,9 @@ module Paymill
   ROOT_PATH   = File.dirname(__FILE__)
 
   @@api_key = nil
+  @@api_base = API_BASE
+  @@api_version = API_VERSION
+  @@api_port = Net::HTTP.https_default_port
 
   autoload :Base,             "paymill/base"
   autoload :Client,           "paymill/client"
@@ -40,7 +43,7 @@ module Paymill
   class AuthenticationError < PaymillError; end
   class APIError            < PaymillError; end
 
-  # Returns the set api key
+  # Returns the api key
   #
   # @return [String] The api key
   def self.api_key
@@ -52,6 +55,48 @@ module Paymill
   # @param [String] api_key The api key
   def self.api_key=(api_key)
     @@api_key = api_key
+  end
+
+  # Returns the api base endpoint
+  #
+  # @return [String] The api base endpoint
+  def self.api_base
+    @@api_base
+  end
+
+  # Sets the api base endpoint
+  #
+  # @param [String] api_base The api base endpoint
+  def self.api_base=(api_base)
+    @@api_base = api_base
+  end
+
+  # Returns the api version
+  #
+  # @return [String] The api version
+  def self.api_version
+    @@api_version
+  end
+
+  # Sets the api version
+  #
+  # @param [String] api_version The api version
+  def self.api_version=(api_version)
+    @@api_version = api_version
+  end
+
+  # Returns the api port
+  #
+  # @return [String] The api port
+  def self.api_port
+    @@api_port
+  end
+
+  # Sets the api port
+  #
+  # @param [String] api_port The api port
+  def self.api_port=(api_port)
+    @@api_port = api_port
   end
 
   # Makes a request against the Paymill API
