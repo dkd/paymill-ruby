@@ -10,9 +10,11 @@ module Paymill
 
       def setup_https
         @https             = Net::HTTP.new(Paymill.api_base, Paymill.api_port)
-        @https.use_ssl     = true
-        @https.verify_mode = OpenSSL::SSL::VERIFY_PEER
-        @https.ca_file     = File.join(ROOT_PATH, "data/paymill.crt")
+        unless Paymill.development?
+          @https.use_ssl     = true
+          @https.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          @https.ca_file     = File.join(ROOT_PATH, "data/paymill.crt")
+        end
       end
 
       def request
