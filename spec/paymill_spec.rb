@@ -30,4 +30,37 @@ describe Paymill do
       end
     end
   end
+
+  describe 'configurations' do
+    it 'allows you to set an api key' do
+      Paymill.api_key = 'xpto'
+      expect(Paymill.api_key).to eq 'xpto'
+    end
+
+    it 'allows you to set an api base endpoint' do
+      Paymill.api_base = 'xpto'
+      expect(Paymill.api_base).to eq 'xpto'
+    end
+
+    it 'allows you to set an api version' do
+      Paymill.api_version = 'v1'
+      expect(Paymill.api_version).to eq 'v1'
+    end
+
+    it 'allows you to set an api port' do
+      Paymill.api_port = 3000
+      expect(Paymill.api_port).to eq 3000
+    end
+
+    it 'allows to turn on development mode' do
+      Paymill.development = true
+      expect(Paymill.development?).to be_true
+    end
+
+    it 'allows to choose a logger' do
+      logger = double(:logger)
+      Paymill.logger = logger
+      expect(Paymill.logger).to eq logger
+    end
+  end
 end

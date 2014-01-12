@@ -18,12 +18,14 @@ module Paymill
       end
 
       def request
-        https.start do |connection|
+        response = https.start do |connection|
           https.request(https_request)
         end
+        log_request_info(response)
+        response
       end
 
-      protected
+      private
 
       def https_request
         https_request = case @info.http_method
@@ -43,6 +45,16 @@ module Paymill
         end
 
         https_request
+      end
+
+      def log_request_info(response)
+        if @info
+          Paymill.logger.info "[Paymill] [#{current_time}] #{@info.http_method.upcase} #{@info.url} #{response.code}"
+        end
+      end
+
+      def current_time
+        Time.now.utc.strftime("%d/%b/%Y %H:%M:%S %Z")
       end
     end
   end
