@@ -4,14 +4,14 @@ require "json"
 require "paymill/version"
 
 module Paymill
-  API_BASE    = "api.paymill.com"
-  API_VERSION = "v2"
-  ROOT_PATH   = File.dirname(__FILE__)
+  API_BASE      = "api.paymill.com"
+  API_VERSION   = "v2"
+  ROOT_PATH     = File.dirname(__FILE__)
 
-  @@api_key = nil
-  @@api_base = API_BASE
+  @@api_key     = nil
+  @@api_base    = API_BASE
   @@api_version = API_VERSION
-  @@api_port = Net::HTTP.https_default_port
+  @@api_port    = Net::HTTP.https_default_port
   @@development = false
 
   autoload :Base,             "paymill/base"
