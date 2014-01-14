@@ -26,6 +26,28 @@ Then you have to set your API key:
 
     Paymill.api_key = "your-api-key"
 
+## Configuration
+
+You can also set the API version, base endpoint and port:
+
+    Paymill.api_version = 'v1'
+    Paymill.api_base = '0.0.0.0'
+    Paymill.api_port = 3000
+
+### Development Mode
+
+This gem also has a development mode in which HTTP requests are made, instead of
+HTTPS, you can turn in on like this:
+
+    Paymill.development = true # false by default
+
+### Logging
+
+Out of the box paymill-ruby will log all requests and responses to `STDOUT`, you
+can use any logger you want, though:
+
+    Paymill.logger = Logger.new(STDERR)
+
 Clients
 -------
 
@@ -57,7 +79,7 @@ operation:
 To sort and filter collection lists of objects, use the `all` method
 with an options hash. For example to find the most recent transactions
 belonging to a client you can use the following code:
-    
+
     Paymill::Transaction.all(client: "<client_id>", order: "created_at_desc")
 
 Please note that Transactions and Payments cannot be updated.
