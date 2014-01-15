@@ -30,9 +30,9 @@ Then you have to set your API key:
 
 You can also set the API version, base endpoint and port:
 
-    Paymill.api_version = 'v1'
-    Paymill.api_base = '0.0.0.0'
-    Paymill.api_port = 3000
+    Paymill.api_version = "v1"
+    Paymill.api_base    = "0.0.0.0"
+    Paymill.api_port    = 3000
 
 ### Development Mode
 
@@ -223,4 +223,4 @@ Note on Patches/Pull Requests
 Copyright
 ======
 
-Copyright (c) 2012-2013 dkd Internet Service GmbH, Stefan Sprenger. See LICENSE for details.
+Copyright (c) 2012-2014 dkd Internet Service GmbH, Stefan Sprenger. See LICENSE for details.
