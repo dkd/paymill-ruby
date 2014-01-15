@@ -6,5 +6,8 @@ require "rspec/autorun"
 require "webmock/rspec"
 require "pry"
 
+require "fake_logger"
+Paymill.logger = FakeLogger.new
+
 RSpec.configure do |config|
 end

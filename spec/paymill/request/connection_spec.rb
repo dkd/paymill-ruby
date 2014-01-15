@@ -21,6 +21,18 @@ describe Paymill::Request::Connection do
 
       connection.request
     end
+
+    it 'logs information about the request' do
+      info = double(http_method: :post, url: "/some/path", data: params)
+      connection = Paymill::Request::Connection.new(info)
+      connection.setup_https
+      connection.stub(:https_request)
+      connection.https.stub(:request).and_return(double(code: 200))
+
+      Paymill.logger.should_receive(:info)
+
+      connection.request
+    end
   end
 
   describe "#https_request" do

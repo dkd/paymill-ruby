@@ -2,6 +2,7 @@ require "net/http"
 require "net/https"
 require "json"
 require "paymill/version"
+require "logger"
 
 module Paymill
   API_BASE      = "api.paymill.com"
@@ -13,6 +14,7 @@ module Paymill
   @@api_version = API_VERSION
   @@api_port    = Net::HTTP.https_default_port
   @@development = false
+  @@logger      = Logger.new(STDOUT)
 
   autoload :Base,             "paymill/base"
   autoload :Client,           "paymill/client"
@@ -112,6 +114,20 @@ module Paymill
   # @param [Boolean] development Development mode on or not
   def self.development=(development)
     @@development = development
+  end
+
+  # Returns the current logger
+  #
+  # @return [Logger] The current logger
+  def self.logger
+    @@logger
+  end
+
+  # Sets the logger for Paymill
+  #
+  # @param [Logger] logger The logger instance to be used
+  def self.logger=(logger)
+    @@logger = logger
   end
 
   # Makes a request against the Paymill API
