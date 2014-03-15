@@ -4,6 +4,7 @@ describe Paymill do
   describe ".request" do
     context "given no api key exists" do
       it "raises an authentication error" do
+        WebMock.stub_request(:get, /#{Paymill.api_base}/).to_return(:body => "{}", :status => 401)
         expect { Paymill.request(:get, "clients", {}) }.to raise_error(Paymill::AuthenticationError)
       end
     end
