@@ -34,13 +34,6 @@ You can also set the API version, base endpoint and port:
     Paymill.api_base    = "0.0.0.0"
     Paymill.api_port    = 3000
 
-### Development Mode
-
-This gem also has a development mode in which HTTP requests are made, instead of
-HTTPS, you can turn in on like this:
-
-    Paymill.development = true # false by default
-
 ### Logging
 
 Out of the box paymill-ruby will log all requests and responses to `STDOUT`, you
