@@ -17,7 +17,8 @@ describe Paymill::Transaction do
       client: "client_a013c",
       refunds: [
         {:id => "refund_abc"}
-      ]
+      ],
+      source: 'paymill-ruby'
     }
   end
 
@@ -41,6 +42,7 @@ describe Paymill::Transaction do
       transaction.refunds.should_not be_empty
       transaction.refunds.first.should_not be_nil
       transaction.refunds.first[:id].should eql("refund_abc")
+      transaction.source.should eql("paymill-ruby")
     end
   end
 
