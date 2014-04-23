@@ -5,7 +5,8 @@ describe Paymill::Preauthorization do
     { 
       payment: "pay_d43cf0ee969d9847512b", 
       amount: 4200,
-      currency: "EUR" 
+      currency: "EUR",
+      response_code: 20000 
     }
   end
 
@@ -18,6 +19,7 @@ describe Paymill::Preauthorization do
       preauthorization.payment.should eql("pay_d43cf0ee969d9847512b")
       preauthorization.amount.should eql(4200)
       preauthorization.currency.should eql("EUR")
+      preauthorization.response_code.should eql(20000)
     end
   end
 
