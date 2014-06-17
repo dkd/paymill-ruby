@@ -1,7 +1,9 @@
 Paymill [![Build Status](https://secure.travis-ci.org/dkd/paymill-ruby.png)](https://travis-ci.org/dkd/paymill-ruby)
 ======
 
-This is a Ruby wrapper for Paymill's API.
+This is fork from dkd's Ruby wrapper for Paymill's API v2.
+
+Currently we are not maintaing this gem. But we will bring out a new version end of august, which features every functionality of our API. And yes we are going to provide and maintain an official gem.
 
 Documentation
 =====
