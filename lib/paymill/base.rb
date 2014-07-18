@@ -14,10 +14,16 @@ module Paymill
       parse_timestamps
     end
 
+    # Returns the attributes hash set via #set_attributes
+    def to_h
+      @attributes
+    end
+
     # Sets the attributes
     #
     # @param [Hash] attributes The attributes to initialize
     def set_attributes(attributes)
+      @attributes = attributes
       attributes.each_pair do |key, value|
         instance_variable_set("@#{key}", value)
       end

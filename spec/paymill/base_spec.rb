@@ -1,6 +1,12 @@
 require "spec_helper"
 
 describe Paymill::Base do
+  it "can be converted to a ruby hash" do
+    attributes = { id: "some id", created_at: 1362823928 }
+    base = Paymill::Base.new(attributes)
+    expect(base.to_h).to be == attributes
+  end
+
   describe "#parse_timestamps" do
     context "given #created_at is present" do
       it "creates a Time object" do
