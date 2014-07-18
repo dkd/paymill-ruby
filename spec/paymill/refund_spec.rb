@@ -64,11 +64,11 @@ describe Paymill::Refund do
 
   describe "#initialize" do
     it "initializes all attributes correctly" do
-      refund.id.should eql("refund_87bc404a95d5ce616049")
-      refund.amount.should eql("042")
-      refund.status.should eql("refunded")
-      refund.description.should be_nil
-      refund.livemode.should be_false
+      expect(refund.id).to eql("refund_87bc404a95d5ce616049")
+      expect(refund.amount).to eql("042")
+      expect(refund.status).to eql("refunded")
+      expect(refund.description).to be_nil
+      expect(refund.livemode).to be false
 =begin
       refund.transaction[:refunds].should eql(
         [
@@ -113,7 +113,7 @@ describe Paymill::Refund do
 
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
-      Paymill.should_receive(:request).with(:post, "refunds", valid_attributes).and_return("data" => {})
+      expect(Paymill).to receive(:request).with(:post, "refunds", valid_attributes).and_return("data" => {})
       Paymill::Refund.create(valid_attributes)
     end
   end

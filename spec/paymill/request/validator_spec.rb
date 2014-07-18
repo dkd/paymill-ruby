@@ -7,7 +7,7 @@ describe Paymill::Request::Validator do
       validator = Paymill::Request::Validator.new info
       response = OpenStruct.new(body: '{"response":"ok"}', code: 200)
 
-      validator.validated_data_for(response).should eq "response" => "ok"
+      expect(validator.validated_data_for(response)).to eq "response" => "ok"
     end
   end
 end

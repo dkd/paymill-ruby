@@ -11,35 +11,35 @@ describe Paymill::Client do
 
   describe "#initialize" do
     it "initializes all attributes correctly" do
-      client.email.should eql("stefan.sprenger@dkd.de")
-      client.description.should eql("First customer.")
+      expect(client.email).to eql("stefan.sprenger@dkd.de")
+      expect(client.description).to eql("First customer.")
     end
   end
 
   describe ".find" do
     it "makes a new GET request using the correct API endpoint to receive a specific client" do
-      Paymill.should_receive(:request).with(:get, "clients/123", {}).and_return("data" => {})
+      expect(Paymill).to receive(:request).with(:get, "clients/123", {}).and_return("data" => {})
       Paymill::Client.find("123")
     end
   end
 
   describe ".all" do
     it "makes a new GET request using the correct API endpoint to receive all clients" do
-      Paymill.should_receive(:request).with(:get, "clients/", {}).and_return("data" => {})
+      expect(Paymill).to receive(:request).with(:get, "clients/", {}).and_return("data" => {})
       Paymill::Client.all
     end
   end
 
   describe ".delete" do
     it "makes a new DELETE request using the correct API endpoint" do
-      Paymill.should_receive(:request).with(:delete, "clients/123", {}).and_return(true)
+      expect(Paymill).to receive(:request).with(:delete, "clients/123", {}).and_return(true)
       Paymill::Client.delete("123")
     end
   end
 
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
-      Paymill.should_receive(:request).with(:post, "clients", valid_attributes).and_return("data" => {})
+      expect(Paymill).to receive(:request).with(:post, "clients", valid_attributes).and_return("data" => {})
       Paymill::Client.create(valid_attributes)
     end
   end
@@ -47,17 +47,17 @@ describe Paymill::Client do
   describe "#update_attributes" do
     it "makes a new PUT request using the correct API endpoint" do
       client.id = "client_123"
-      Paymill.should_receive(:request).with(:put, "clients/client_123", {:email => "tim.test@exmaple.com"}).and_return("data" => {})
+      expect(Paymill).to receive(:request).with(:put, "clients/client_123", {:email => "tim.test@exmaple.com"}).and_return("data" => {})
 
       client.update_attributes({:email => "tim.test@exmaple.com"})
     end
 
     it "updates the instance with the returned attributes" do
       changed_attributes = {:email => "tim.test@example.com"}
-      Paymill.should_receive(:request).and_return("data" => changed_attributes)
+      expect(Paymill).to receive(:request).and_return("data" => changed_attributes)
       client.update_attributes(changed_attributes)
 
-      client.email.should eql("tim.test@example.com")
+      expect(client.email).to eql("tim.test@example.com")
     end
   end
 end
