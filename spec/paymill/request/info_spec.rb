@@ -5,7 +5,7 @@ describe Paymill::Request::Info do
     it "constructs the url" do
       info = Paymill::Request::Info.new(:get, "random", OpenStruct.new(id: 1))
 
-      info.url.should =~ /random/
+      expect(info.url).to match(/random/)
     end
   end
 
@@ -14,14 +14,14 @@ describe Paymill::Request::Info do
       info = Paymill::Request::Info.new(:get, "random", nil)
       path = "/path/to/someplace"
 
-      info.path_with_params(path, {}).should eq path
+      expect(info.path_with_params(path, {})).to eq path
     end
 
     it "constructs the path with params" do
       info = Paymill::Request::Info.new(:get, "random", nil)
       path = "/path/to/someplace"
 
-      info.path_with_params(path, {random: "stuff"}).should eq "#{path}?random=stuff"
+      expect(info.path_with_params(path, {random: "stuff"})).to eq "#{path}?random=stuff"
     end
   end
 end

@@ -17,17 +17,17 @@ describe Paymill do
 
       it "attempts to get a url with one param" do
         Paymill.request(:get, "transactions", { param_name: "param_value" })
-        WebMock.should have_requested(:get, "https://#{Paymill::api_key}:@#{Paymill::api_base}/#{Paymill::api_version}/transactions?param_name=param_value")
+        expect(WebMock).to have_requested(:get, "https://#{Paymill::api_key}:@#{Paymill::api_base}/#{Paymill::api_version}/transactions?param_name=param_value")
       end
 
       it "attempts to get a url with more than one param" do
         Paymill.request(:get, "transactions", { client: "client_id", order: "created_at_desc" })
-        WebMock.should have_requested(:get, "https://#{Paymill::api_key}:@#{Paymill::api_base}/#{Paymill::api_version}/transactions?client=client_id&order=created_at_desc")
+        expect(WebMock).to have_requested(:get, "https://#{Paymill::api_key}:@#{Paymill::api_base}/#{Paymill::api_version}/transactions?client=client_id&order=created_at_desc")
       end
 
       it "doesn't add a question mark if no params" do
         Paymill.request(:get, "transactions", {})
-        WebMock.should have_requested(:get, "https://#{Paymill::api_key}:@#{Paymill::api_base}/#{Paymill::api_version}/transactions")
+        expect(WebMock).to have_requested(:get, "https://#{Paymill::api_key}:@#{Paymill::api_base}/#{Paymill::api_version}/transactions")
       end
     end
   end
@@ -55,7 +55,7 @@ describe Paymill do
 
     it 'allows to turn on development mode' do
       Paymill.development = true
-      expect(Paymill.development?).to be_true
+      expect(Paymill.development?).to be true
     end
 
     it 'allows to choose a logger' do
