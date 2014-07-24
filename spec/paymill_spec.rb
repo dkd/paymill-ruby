@@ -54,7 +54,7 @@ describe Paymill do
 
     it 'allows to turn on development mode' do
       Paymill.development = true
-      expect(Paymill.development?).to be_true
+      expect(Paymill.development?).to eql(true)
     end
 
     it 'allows to choose a logger' do

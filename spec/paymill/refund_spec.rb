@@ -2,13 +2,13 @@ require "spec_helper"
 
 describe Paymill::Refund do
   let(:valid_attributes) do
-    { 
+    {
       id: "refund_87bc404a95d5ce616049",
       amount: "042",
       status: "refunded",
       description: nil,
       livemode: false,
-      created_at: 1349947042, 
+      created_at: 1349947042,
       updated_at: 1349947042,
       transaction: {
         id: "tran_2848cb20a6bb578177db",
@@ -68,7 +68,7 @@ describe Paymill::Refund do
       refund.amount.should eql("042")
       refund.status.should eql("refunded")
       refund.description.should be_nil
-      refund.livemode.should be_false
+      refund.livemode.should eql(false)
 =begin
       refund.transaction[:refunds].should eql(
         [
