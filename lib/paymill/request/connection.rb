@@ -9,19 +9,19 @@ module Paymill
       end
 
       def setup_https
-        @https             = Net::HTTP.new(API_BASE, Net::HTTP.https_default_port)
+        @https             = Net::HTTP.new(Paymill.api_base, Paymill.api_port)
         @https.use_ssl     = true
-        @https.verify_mode = OpenSSL::SSL::VERIFY_PEER
-        @https.ca_file     = File.join(ROOT_PATH, "data/paymill.crt")
       end
 
       def request
-        https.start do |connection|
+        response = https.start do |connection|
           https.request(https_request)
         end
+        log_request_info(response)
+        response
       end
 
-      protected
+      private
 
       def https_request
         https_request = case @info.http_method
@@ -41,6 +41,16 @@ module Paymill
         end
 
         https_request
+      end
+
+      def log_request_info(response)
+        if @info
+          Paymill.logger.info "[Paymill] [#{current_time}] #{@info.http_method.upcase} #{@info.url} #{response.code}"
+        end
+      end
+
+      def current_time
+        Time.now.utc.strftime("%d/%b/%Y %H:%M:%S %Z")
       end
     end
   end

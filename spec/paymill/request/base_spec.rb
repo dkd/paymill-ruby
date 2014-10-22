@@ -2,14 +2,6 @@ require "spec_helper"
 
 describe Paymill::Request::Base do
   context "#perform" do
-    it "checks for an api key" do
-      Paymill.stub(:api_key).and_return(nil)
-
-      expect{
-        Paymill::Request::Base.new(nil).perform
-      }.to raise_error Paymill::AuthenticationError
-    end
-
     it "performs an https request" do
       Paymill.stub(:api_key).and_return("some key")
       connection = double

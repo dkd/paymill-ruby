@@ -31,8 +31,8 @@ describe Paymill::Subscription do
       subscription.offer[:name].should eql("Nerd special")
       subscription.offer[:amount].should eql(123)
       subscription.offer[:interval].should eql("week")
-      subscription.livemode.should be_false
-      subscription.cancel_at_period_end.should be_false
+      subscription.livemode.should eql(false)
+      subscription.cancel_at_period_end.should eql(false)
       subscription.client[:email].should eql("stefan.sprenger@dkd.de")
       subscription.payment[:id].should eql("pay_3af44644dd6d25c820a8")
       subscription.trial_start.to_i.should eql(1349945681)
@@ -118,7 +118,7 @@ describe Paymill::Subscription do
     it "should set the returned attributes on the instance" do
       Paymill.should_receive(:request).and_return("data" => {:cancel_at_period_end => true})
       subscription.update_attributes({})
-      subscription.cancel_at_period_end.should be_true
+      subscription.cancel_at_period_end.should eql(true)
     end
   end
 end
