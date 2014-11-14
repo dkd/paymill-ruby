@@ -1,21 +1,18 @@
 require 'paymill'
 require 'vcr'
 require 'pry'
-require 'factory_girl'
 
 # initialize the library by getting paymill's api key from the envirounent variables
 Paymill.api_key = ENV['PAYMILL_API_TEST_KEY']
 
 # VCR basic configuration
 VCR.configure do |config|
+  config.allow_http_connections_when_no_cassette = true
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.filter_sensitive_data( '<PAYMILL_API_TEST_KEY>' ) { ENV['PAYMILL_API_TEST_KEY'] }
 end
-
-# Load all factories from spec/factories.rb
-FactoryGirl.find_definitions
 
 # RSpec configuration
 RSpec.configure do |config|

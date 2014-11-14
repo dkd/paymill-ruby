@@ -273,5 +273,47 @@ module Paymill
         expect{ Client.delete( client_id ) }.to raise_error PaymillError
       end
     end
+
+    context '::all' do
+      it 'should get all clients', :vcr do
+        clients = Client.all
+
+        expect( clients ).to be_a Array
+        expect( clients ).to respond_to :data_count
+      end
+
+      it 'should get all clients with sorting and filters' do
+        clients = Client.all( order: [:email_asc], filters: [created_at: "#{2.days.ago.to_i}-#{1.day.ago.to_i}"] )
+
+        expect( clients ).to be_a Array
+        expect( clients ).to respond_to :data_count
+        expect( clients.size ).to be 20
+      end
+
+      it 'should get all clients with filters', :vcr do
+        clients = Client.all( filters: [email: 'john.rambo@qaiware.com', description: 'Boom, boom, shake the room'] )
+
+        expect( clients ).to be_a Array
+        expect( clients ).to respond_to :data_count
+        expect( clients.size ).to be 20
+      end
+
+      it 'should get all clients with order and count' do
+        clients = Client.all( order: [:email, :created_at_desc], count: 30 )
+
+        expect( clients ).to be_a Array
+        expect( clients ).to respond_to :data_count
+        expect( clients.size ).to be 30
+      end
+
+      it 'should get all clients with order, count and offset' do
+        clients = Client.all( order: [:email, :created_at_desc], count: 30, offset: 10 )
+
+        expect( clients ).to be_a Array
+        expect( clients ).to respond_to :data_count
+        expect( clients.size ).to be 30
+      end
+
+    end
   end
 end

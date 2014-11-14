@@ -1,7 +1,7 @@
 module Paymill
-  class SubscriptionCount
+  class PaymentMethod
 
-    attr_accessor :active, :inactive
+    attr_accessor :type, :currency, :acquirer
 
     def initialize( json )
       deserialize( json )

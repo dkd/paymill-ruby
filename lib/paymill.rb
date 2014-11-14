@@ -13,9 +13,14 @@ module Paymill
 
   autoload :Base,                 'paymill/models/base'
   autoload :Client,               'paymill/models/client'
+  autoload :Fee,                  'paymill/models/fee'
+  autoload :Invoice,              'paymill/models/invoice'
+  autoload :Merchant,             'paymill/models/merchant'
   autoload :Offer,                'paymill/models/offer'
   autoload :Payment,              'paymill/models/payment'
+  autoload :PaymentMethod,        'paymill/models/payment_method'
   autoload :Preauthorization,     'paymill/models/preauthorization'
+  autoload :Refund,               'paymill/models/refund.rb'
   autoload :Subscription,         'paymill/models/subscription'
   autoload :SubscriptionCount,    'paymill/models/subscription_count'
   autoload :Transaction,          'paymill/models/transaction'
@@ -42,7 +47,7 @@ module Paymill
       https.request( payload )
     end
 
-    raise PaymillError unless response.class.eql? Net::HTTPOK
+    raise PaymillError, response.body unless response.class.eql? Net::HTTPOK
 
     JSON.parse( response.body )
   end

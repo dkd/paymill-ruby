@@ -43,6 +43,10 @@ module Paymill
         expect{ Webhook.create( email: 'rambo@qaiware.com', event_types: ['transaction.succeeded'], fake: true ) }.to raise_error ArgumentError
       end
 
+      it 'should throw ArgumentError when creating wit email and url', :vcr do
+        expect{ Webhook.create( email: 'rambo@qaiware.com', event_types: ['transaction.succeeded'], url: 'http://example.com' ) }.to raise_error ArgumentError
+      end
+
       it 'should throw ArgumentError when creating without email or url', :vcr do
         expect{ Webhook.create( event_types: ['transaction.succeeded', 'transaction.failed'] ) }.to raise_error ArgumentError
       end

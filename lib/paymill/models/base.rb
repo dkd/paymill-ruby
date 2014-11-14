@@ -1,7 +1,8 @@
 module Paymill
   class Base
-    extend Paymill::Restful::Find
-    extend Paymill::Restful::Create
+    extend Restful::All
+    extend Restful::Find
+    extend Restful::Create
 
     attr_reader :id, :created_at, :updated_at, :app_id
 
@@ -31,8 +32,7 @@ module Paymill
         when 'Hash'
           instance_variable_set( "@#{key}", objectize( key, value ) )
         else
-          value = Integer( value ) rescue value
-          instance_variable_set( "@#{key}", value )
+          instance_variable_set( "@#{key}", (Integer( value ) rescue value) )
         end
       end
     end

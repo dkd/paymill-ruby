@@ -1,17 +1,13 @@
 module Paymill
-  class SubscriptionCount
+  class Fee
 
-    attr_accessor :active, :inactive
+    attr_accessor :type, :application, :payment, :amount, :currency, :billed_at
 
     def initialize( json )
-      deserialize( json )
-    end
-
-    private
-    def deserialize( json )
       json.each_pair do |key, value|
         instance_variable_set( "@#{key}", ( Integer( value ) rescue value ) )
       end
+      @billed_at &&= Time.at( @billed_at )
     end
 
   end
