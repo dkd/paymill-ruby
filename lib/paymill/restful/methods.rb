@@ -30,7 +30,6 @@ module Paymill
     module Find
       def find( model )
         model = model.id if model.is_a? self
-        #TODO[VNi] raise ArgumentError if id is blank
         response = Paymill.request( Http.get( name.demodulize.tableize, model ) )
         new( response['data'] )
       end
@@ -45,10 +44,7 @@ module Paymill
     end
 
     module Update
-      # TODO[VNi]: test to have public update with model, which calls protected update with model and attributes
       def update( model, arguments = {} )
-        #TODO[VNi] raise error when other type object is given
-        #TODO[VNi] raise error object's id is blank
         arguments.merge! model.public_methods( false ).grep( /.*=/ ).map{ |m| m = m.id2name.chop; { m => model.send( m ) } }.reduce( :merge )
         response = Paymill.request( Http.put( name.demodulize.tableize, model.id, Restful.normalize( arguments ) ) )
         new( response['data'] )
@@ -57,7 +53,6 @@ module Paymill
 
     module Delete
       def delete( model, arguments = {} )
-        #TODO[VNi] raise error when other type object is given
         model = model.id if model.is_a? self
         response = Paymill.request( Http.delete( name.demodulize.tableize, model, arguments ) )
         return new( response['data'] ) if self.name.eql? 'Paymill::Subscription'
