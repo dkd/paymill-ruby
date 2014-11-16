@@ -5,6 +5,8 @@ paymill-ruby
 
 Ruby wrapper for PAYMILL API inspired by [dkd's paymill-ruby](https://github.com/dkd/paymill-ruby)
 
+[![Build Status](https://travis-ci.org/paymill/paymill-ruby.svg)](https://travis-ci.org/paymill/paymill-ruby)
+
 Getting started
 ---------------
 
