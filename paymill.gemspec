@@ -9,7 +9,6 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Vassil Nikolov"]
   spec.email         = ["vassil.nikolov@qaiware.com"]
   spec.summary       = %q{Ruby wrapper for PAYMILL's API.}
-  # spec.description   = %q{TODO: Write a longer description. Optional.}
   spec.homepage      = "https://github.com/paymill/paymill-ruby"
   spec.license       = "MIT"
 
