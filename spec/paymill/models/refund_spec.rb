@@ -57,7 +57,7 @@ module Paymill
     end
 
     context '::find' do
-      it 'should find existing refund' do
+      it 'should find existing refund', :vcr do
         refund = Refund.find( refund_id )
 
         expect( refund.id ).to be_a String
@@ -72,7 +72,7 @@ module Paymill
         expect( refund.app_id ).to be_nil
       end
 
-      it 'should raise PaymillError when invalid id given' do
+      it 'should raise PaymillError when invalid id given', :vcr do
         expect{ Refund.find( 'fake_id' ) }.to raise_error PaymillError
       end
     end

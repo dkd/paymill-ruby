@@ -282,8 +282,9 @@ module Paymill
         expect( clients ).to respond_to :data_count
       end
 
-      it 'should get all clients with sorting and filters' do
-        clients = Client.all( order: [:email_asc], filters: [created_at: "#{2.days.ago.to_i}-#{1.day.ago.to_i}"] )
+      it 'should get all clients with sorting and filters', :vcr do
+        # 2014-11-12 23:38:00 to 2014-11-13 23:38:00
+        clients = Client.all( order: [:email_asc], filters: [created_at: "1415828227-1415914686"] )
 
         expect( clients ).to be_a Array
         expect( clients ).to respond_to :data_count
@@ -298,7 +299,7 @@ module Paymill
         expect( clients.size ).to be 20
       end
 
-      it 'should get all clients with order and count' do
+      it 'should get all clients with order and count', :vcr do
         clients = Client.all( order: [:email, :created_at_desc], count: 30 )
 
         expect( clients ).to be_a Array
@@ -306,7 +307,7 @@ module Paymill
         expect( clients.size ).to be 30
       end
 
-      it 'should get all clients with order, count and offset' do
+      it 'should get all clients with order, count and offset', :vcr do
         clients = Client.all( order: [:email, :created_at_desc], count: 30, offset: 10 )
 
         expect( clients ).to be_a Array
