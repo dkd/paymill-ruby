@@ -14,6 +14,7 @@ Getting started
 -	Install the latest release.
 -	Check the API [reference](https://www.paymill.com/en-gb/documentation-3/reference/api-reference/).
 -	Check the specification examples.
+-	Take a loog at the [change log](./CHANGELOG.md) for recent updates and improvements.
 
 Installation
 ============
