@@ -11,12 +11,12 @@ module Paymill
       parse_timestamps
     end
 
+    protected
     def self.create_with?( incoming_arguments )
       return false if mandatory_arguments.select { |a| incoming_arguments.include? a }.size < mandatory_arguments.size
       allowed_arguments.size == ( allowed_arguments | incoming_arguments ).size
     end
 
-    protected
     # Parses UNIX timestamps and creates Time objects.
     def parse_timestamps
       @created_at &&= Time.at( @created_at )

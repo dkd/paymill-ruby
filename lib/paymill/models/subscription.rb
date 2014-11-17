@@ -95,12 +95,12 @@ module Paymill
       # find( subscription )
     end
 
+    protected
     def self.create_with?( incoming_arguments )
       raise ArgumentError unless incoming_arguments.include?( :offer ) || (mutual_excluded_arguments.last - incoming_arguments).empty?
       super( incoming_arguments - mutual_excluded_arguments.flatten )
     end
 
-    protected
     def self.mandatory_arguments
       [:payment]
     end
