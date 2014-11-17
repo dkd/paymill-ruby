@@ -3,7 +3,7 @@
 paymill-ruby
 ============
 
-Ruby wrapper for PAYMILL API inspired by [dkd's paymill-ruby](https://github.com/dkd/paymill-ruby)
+Ruby wrapper for PAYMILL API forked by [dkd's paymill-ruby](https://github.com/dkd/paymill-ruby)
 
 [![Build Status](https://travis-ci.org/paymill/paymill-ruby.svg)](https://travis-ci.org/paymill/paymill-ruby) [![Code Climate](https://codeclimate.com/github/paymill/paymill-ruby/badges/gpa.svg)](https://codeclimate.com/github/paymill/paymill-ruby)
 
@@ -14,7 +14,7 @@ Getting started
 -	Install the latest release.
 -	Check the API [reference](https://www.paymill.com/en-gb/documentation-3/reference/api-reference/).
 -	Check the specification examples.
--	Take a loog at the [change log](./CHANGELOG.md) for recent updates and improvements.
+-	Take a look at the [change log](./CHANGELOG.md) for recent updates and improvements.
 
 Installation
 ============
@@ -31,13 +31,7 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
-
-```
-$ gem install paymill
-```
-
-The paymill gem is tested on Ruby 1.9.3, 2.0.0, 2.1.0, 2.1.3 and 2.1.5. It requires ruby 1.9.3+
+The paymill gem is tested on Ruby 1.9.3, 2.0.0, 2.1.0, 2.1.3 and 2.1.5. It requires ruby version 1.9.3+
 
 Usage
 =====
