@@ -1,4 +1,4 @@
-require 'paymill'
+require 'paymill_ruby'
 require 'vcr'
 require 'pry'
 

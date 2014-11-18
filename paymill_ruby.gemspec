@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'paymill/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "paymill"
+  spec.name          = "paymill_ruby"
   spec.version       = Paymill::VERSION
   spec.authors       = ["Vassil Nikolov"]
   spec.email         = ["vassil.nikolov@qaiware.com"]

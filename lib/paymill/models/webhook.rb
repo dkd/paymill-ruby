@@ -30,10 +30,8 @@ module Paymill
       [:event_types, :active]
     end
 
-    private
     def self.mutual_excluded_arguments
       [:email, :url]
     end
-
   end
 end

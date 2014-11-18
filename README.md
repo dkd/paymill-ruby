@@ -22,7 +22,13 @@ Installation
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'paymill', git: 'git://github.com/paymill/paymill-ruby.git'
+gem 'paymill_ruby', git: 'git://github.com/paymill/paymill-ruby.git'
+```
+
+Or install it yourself as:
+
+```
+$ gem install paymill_ruby
 ```
 
 And then execute:
@@ -55,13 +61,13 @@ Clients
 
 Creating via factory method **create**, which expects an optional hash as arguments. If some of the required attributes are missing the method will throw **ArgumentError**.
 
--	with a hash of optional arguments:
+With a hash of optional arguments:
 
 ```ruby
 client = Paymill::Client.create( email: 'john.rambo@qaiware.com', description: 'Main caracter in First Blood' )
 ```
 
--	without arguments:
+Without mandatory arguments:
 
 ```ruby
 client = Paymill::Client.create
@@ -96,7 +102,7 @@ client = Paymill::Client.update( client )
 
 #### Deleting client
 
-You may delete objects by calling the class **delete** method with an object instance or object id.
+You may delete objects by calling the class **delete** method with an object instance or object id. The delete method will return <code>nil</code> when the given object is removed successfully.
 
 ```ruby
 Paymill::Client.delete( client )

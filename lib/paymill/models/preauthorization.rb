@@ -18,10 +18,8 @@ module Paymill
       [:amount, :currency, :description]
     end
 
-    private
     def self.mutual_excluded_arguments
       [:token, :payment]
     end
-
   end
 end

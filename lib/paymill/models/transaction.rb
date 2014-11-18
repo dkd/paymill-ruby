@@ -20,10 +20,8 @@ module Paymill
       [:amount, :client, :currency, :description, :preauthorization, :fee_amount, :fee_payment, :fee_currency]
     end
 
-    private
     def self.mutual_excluded_arguments
       [:token, :payment, :preauthorization]
     end
-
   end
 end

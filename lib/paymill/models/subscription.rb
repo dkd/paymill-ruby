@@ -119,11 +119,11 @@ module Paymill
       super
     end
 
-    private
     def self.mutual_excluded_arguments
       [[:offer], [:amount, :currency, :interval]]
     end
 
+    private
     def self.update_amount( subscription, amount, flag)
       raise ArgumentError( 'amount_change_type should be 0 or 1' ) unless [0, 1].include?( flag )
       subscription.offer = nil
