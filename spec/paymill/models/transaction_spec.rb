@@ -178,7 +178,7 @@ module Paymill
         transaction =  Transaction.find( transaction_id )
 
         transaction.description = 'The Italian Stallion'
-        transaction = Transaction.update( transaction )
+        transaction.update
 
         expect( transaction ).to be_a Transaction
 
@@ -201,7 +201,7 @@ module Paymill
         expect( transaction.client ).to be_a Client
         expect( transaction.preauthorization ).to be_nil
         expect( transaction.app_id ).to be_nil
-
+        expect( transaction.created_at ).to be < transaction.updated_at
       end
 
       it "should throw NoMethodError when by updating transaction's amount", :vcr do

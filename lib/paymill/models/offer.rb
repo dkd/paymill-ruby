@@ -1,7 +1,7 @@
 module Paymill
   class Offer < Base
-    extend Restful::Update
-    extend Restful::Delete
+    include Restful::Update
+    include Restful::Delete
 
     attr_reader :subscription_count
     attr_accessor :name, :amount, :currency, :interval, :trial_period_days

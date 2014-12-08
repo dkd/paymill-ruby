@@ -153,11 +153,7 @@ module Paymill
 
     context '::delete' do
       it 'showd delete existing payment', :vcr do
-        expect( Payment.delete( payment_id ) ).to be_nil
-      end
-
-      it 'showd throw error when payment not found', :vcr do
-        expect{ Payment.delete( payment_id ) }.to raise_error PaymillError
+        expect( Payment.find( payment_id ).delete ).to be_nil
       end
     end
   end

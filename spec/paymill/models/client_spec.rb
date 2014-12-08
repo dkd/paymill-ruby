@@ -201,17 +201,15 @@ module Paymill
         client.email = 'john.ruby.rambo@qaiware.com'
         client.description = 'Main Ruby caracter in First Blood'
 
-        client = Client.update( client )
+        client.update
 
         expect( client ).to be_a Client
-
         expect( client.email ).to eq 'john.ruby.rambo@qaiware.com'
         expect( client.description ).to eq 'Main Ruby caracter in First Blood'
-
         expect( client.id ).to be_a String
         expect( client.created_at ).to eq created_at
+        expect( client.created_at ).to be < client.updated_at
         expect( client.app_id ).to be_nil
-
         expect( client.payments.size ).to be 0
         expect( client.subscriptions ).to be_nil
       end
@@ -222,17 +220,15 @@ module Paymill
 
         client.email = 'john.rambo@qaiware.com'
 
-        client = Client.update( client )
+        client.update
 
         expect( client ).to be_a Client
-
         expect( client.email ).to eq 'john.rambo@qaiware.com'
         expect( client.description ).to eq 'Main Ruby caracter in First Blood'
-
         expect( client.id ).to be_a String
         expect( client.created_at ).to eq created_at
+        expect( client.created_at ).to be < client.updated_at
         expect( client.app_id ).to be_nil
-
         expect( client.payments.size ).to be 0
         expect( client.subscriptions ).to be_nil
       end
@@ -243,17 +239,15 @@ module Paymill
 
         client.description = 'Main caracter in First Blood'
 
-        client = Client.update( client )
+        client.update
 
         expect( client ).to be_a Client
-
         expect( client.email ).to eq 'john.rambo@qaiware.com'
         expect( client.description ).to eq 'Main caracter in First Blood'
-
         expect( client.id ).to be_a String
         expect( client.created_at ).to eq created_at
+        expect( client.created_at ).to be < client.updated_at
         expect( client.app_id ).to be_nil
-
         expect( client.payments.size ).to be 0
         expect( client.subscriptions ).to be_nil
       end
@@ -265,12 +259,9 @@ module Paymill
     end
 
     context '::delete' do
-      it 'should delete existing webhook', :vcr do
-        expect( Client.delete( client_id ) ).to be_nil
-      end
-
-      it 'should throw error when client not found', :vcr do
-        expect{ Client.delete( client_id ) }.to raise_error PaymillError
+      it 'should delete existing client', :vcr do
+        client = Client.find( client_id )
+        expect( client.delete() ).to be_nil
       end
     end
 

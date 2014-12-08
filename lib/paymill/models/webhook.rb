@@ -1,7 +1,7 @@
 module Paymill
   class Webhook < Base
-    extend Restful::Update
-    extend Restful::Delete
+    include Restful::Update
+    include Restful::Delete
 
     attr_reader :url, :email, :livemode
     attr_accessor :event_types, :active

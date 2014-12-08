@@ -1,6 +1,6 @@
 module Paymill
   class Preauthorization < Base
-    extend Restful::Delete
+    include Restful::Delete
 
     attr_reader :amount, :client, :currency, :description, :livemode, :payment, :status, :transaction
 

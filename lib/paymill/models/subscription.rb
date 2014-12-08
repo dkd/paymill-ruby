@@ -1,7 +1,7 @@
 module Paymill
   class Subscription < Base
-    extend Restful::Update
-    extend Restful::Delete
+    include Restful::Update
+    include Restful::Delete
 
     attr_reader :livemode, :temp_amount, :trial_start, :end_of_period, :next_capture_at, :canceled_at, :currency,
                 :is_canceled, :is_deleted, :status, :client, :interval, :payment, :name
@@ -31,68 +31,65 @@ module Paymill
       @payment = payment
     end
 
-    def self.update_amount_once( subscription, amount )
-      update_amount( subscription, amount, 0 )
+    def update_amount_once( amount )
+      update_amount( amount, 0 )
     end
 
-    def self.update_amount_permanently( subscription, amount )
-      update_amount( subscription, amount, 1 )
+    def update_amount_permanently( amount )
+      update_amount( amount, 1 )
     end
 
-    def self.update_offer_without_changes( subscription, offer )
-      update_offer( subscription, offer, 0 )
+    def update_offer_without_changes( offer )
+      update_offer( offer, 0 )
     end
 
-    def self.update_offer_with_refund( subscription, offer )
-      update_offer( subscription, offer, 1 )
+    def update_offer_with_refund( offer )
+      update_offer( offer, 1 )
     end
 
-    def self.update_offer_with_refund_and_capture_date( subscription, offer )
-      update_offer( subscription, offer, 1 )
+    def update_offer_with_refund_and_capture_date( offer )
+      update_offer( offer, 1 )
     end
 
-    def self.stop_trial_period(  subscription  )
-      subscription.offer = nil
-      subscription.amount = nil
-      subscription.trial_end = nil
-      update( subscription, trial_end: false )
+    def stop_trial_period()
+      @offer = nil
+      @amount = nil
+      @trial_end = nil
+      update( trial_end: false )
     end
 
-    def self.unlimit( subscription )
-      subscription.offer = nil
-      subscription.amount = nil
-      subscription.period_of_validity = 'remove'
-      update( subscription )
+    def unlimit()
+      @offer = nil
+      @amount = nil
+      @period_of_validity = 'remove'
+      update()
     end
 
-    def self.limit( subscription, limit )
-      subscription.offer = nil
-      subscription.amount = nil
-      subscription.period_of_validity = limit
-      update( subscription )
+    def limit( limit )
+      @offer = nil
+      @amount = nil
+      @period_of_validity = limit
+      update()
     end
 
-    def self.pause( subscription )
-      subscription.offer = nil
-      subscription.amount = nil
-      update( subscription, pause: true )
+    def pause()
+      @offer = nil
+      @amount = nil
+      update( pause: true )
     end
 
-    def self.play( subscription )
-      subscription.offer = nil
-      subscription.amount = nil
-      update( subscription, pause: false )
+    def play()
+      @offer = nil
+      @amount = nil
+      update( pause: false )
     end
 
-    def self.cancel( subscription )
-      delete( subscription, remove: false )
-      # find( subscription )
-      # binding.pry
+    def cancel()
+      delete( remove: false )
     end
 
-    def self.remove( subscription )
-      delete( subscription, remove: true )
-      # find( subscription )
+    def remove()
+      delete( remove: true )
     end
 
     protected
@@ -124,22 +121,22 @@ module Paymill
     end
 
     private
-    def self.update_amount( subscription, amount, flag)
+    def update_amount( amount, flag)
       raise ArgumentError( 'amount_change_type should be 0 or 1' ) unless [0, 1].include?( flag )
-      subscription.offer = nil
-      subscription.amount = amount
-      update( subscription, amount_change_type: flag )
+      @offer = nil
+      @amount = amount
+      update( amount_change_type: flag )
     end
 
-    def self.update_offer( subscription, offer, flag )
+    def update_offer( offer, flag )
       raise ArgumentError( 'offer_change_type should be between 0 and 2' ) unless (0..2).include?( flag )
-      subscription.currency = nil
-      subscription.name = nil
-      subscription.interval = nil
-      subscription.amount = nil
-      subscription.payment = nil
-      subscription.offer = offer
-      update( subscription, offer_change_type: 1 )
+      @currency = nil
+      @name = nil
+      @interval = nil
+      @amount = nil
+      @payment = nil
+      @offer = offer
+      update( offer_change_type: 1 )
     end
 
   end

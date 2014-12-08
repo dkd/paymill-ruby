@@ -1,4 +1,4 @@
-require 'paymill_ruby'
+require 'paymill'
 require 'vcr'
 require 'pry'
 
@@ -10,6 +10,7 @@ VCR.configure do |config|
   config.allow_http_connections_when_no_cassette = true
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
+  config.default_cassette_options = { record: :new_episodes, re_record_interval: 1.week.to_i }
   config.configure_rspec_metadata!
   config.filter_sensitive_data( '<PAYMILL_API_TEST_KEY>' ) { ENV['PAYMILL_API_TEST_KEY'] }
 end

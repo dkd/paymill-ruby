@@ -164,11 +164,7 @@ module Paymill
 
     context '::deltele' do
       it 'should delete existing preauthorization', :vcr do
-        expect( Preauthorization.delete( preauthorization_id ) ).to be_nil
-      end
-
-      it 'shoold throw error when preauthorization not found', :vcr do
-        expect{ Preauthorization.delete( 'fake_id' ) }.to raise_error PaymillError
+        expect( Preauthorization.find( preauthorization_id ).delete ).to be_nil
       end
     end
   end

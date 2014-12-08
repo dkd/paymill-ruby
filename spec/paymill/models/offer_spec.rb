@@ -81,7 +81,7 @@ module Paymill
         updated_at = offer.updated_at
 
         offer.name = 'Superabo'
-        offer = Offer.update( offer )
+        offer.update
 
         expect( offer.id ).to eq offer_id
         expect( offer.name ).to eq 'Superabo'
@@ -90,6 +90,7 @@ module Paymill
         expect( offer.interval ).to eq '1 MONTH'
         expect( offer.trial_period_days ).to be 30
         expect( offer.created_at ).to eq created_at
+        expect( offer.created_at ).to be < offer.updated_at
       end
 
       it "should update offer's amount and currency", :vcr do
@@ -99,7 +100,7 @@ module Paymill
 
         offer.currency = 'USD'
         offer.amount = '900'
-        offer = Offer.update( offer )
+        offer.update
 
         expect( offer.id ).to eq offer_id
         expect( offer.name ).to eq 'Superabo'
@@ -108,6 +109,7 @@ module Paymill
         expect( offer.interval ).to eq '1 MONTH'
         expect( offer.trial_period_days ).to be 30
         expect( offer.created_at ).to eq created_at
+        expect( offer.created_at ).to be < offer.updated_at
       end
 
       it 'should update offer and its subscriptions', :vcr do
@@ -116,7 +118,7 @@ module Paymill
         updated_at = offer.updated_at
 
         offer.amount = '1000'
-        offer = Offer.update( offer, update_subscriptions: true )
+        offer.update( update_subscriptions: true )
 
         expect( offer.id ).to eq offer_id
         expect( offer.name ).to eq 'Superabo'
@@ -125,29 +127,24 @@ module Paymill
         expect( offer.interval ).to eq '1 MONTH'
         expect( offer.trial_period_days ).to be 30
         expect( offer.created_at ).to eq created_at
+        expect( offer.created_at ).to be < offer.updated_at
       end
 
       it "should throw NoMethodError when updating unupdateable field", :vcr do
         offer = Offer.find( offer_id )
         expect{ offer.app_id = 'fake_app_id' }.to raise_error NoMethodError
       end
-
     end
 
     context '::delete' do
       it 'should delete existing offer', :vcr do
         offer = Offer.find( offer_id )
-        expect( Offer.delete( offer, remove_with_subscriptions: false ) ).to be_nil
-      end
-
-      it 'should throw error when offer not found', :vcr do
-        expect{ Offer.delete( offer_id, remove_with_subscriptions: false ) }.to raise_error PaymillError
+        expect( offer.delete( remove_with_subscriptions: false ) ).to be_nil
       end
 
       it 'should delete existing offer with its correlated subscriptions', :vcr do
         offer = Offer.create( amount: 4200, currency: 'EUR', interval: '1 MONTH', name: 'Superabo' )
-        # TODO[VNi] create and add subscription
-        expect( Offer.delete( offer, remove_with_subscriptions: true ) ).to be_nil
+        expect( offer.delete( remove_with_subscriptions: true ) ).to be_nil
       end
     end
   end

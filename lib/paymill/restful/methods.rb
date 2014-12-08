@@ -44,18 +44,18 @@ module Paymill
     end
 
     module Update
-      def update( model, arguments = {} )
-        arguments.merge! model.public_methods( false ).grep( /.*=/ ).map{ |m| m = m.id2name.chop; { m => model.send( m ) } }.reduce( :merge )
-        response = Paymill.request( Http.put( name.demodulize.tableize, model.id, Restful.normalize( arguments ) ) )
-        new( response['data'] )
+      def update( arguments = {} )
+        arguments.merge! public_methods( false ).grep( /.*=/ ).map{ |m| m = m.id2name.chop; { m => send( m ) } }.reduce( :merge )
+        response = Paymill.request( Http.put( self.class.name.demodulize.tableize, self.id, Restful.normalize( arguments ) ) )
+        source = self.class.new( response['data'] )
+        self.instance_variables.each { |key| self.instance_variable_set( key, source.instance_variable_get( key ) ) }
       end
     end
 
     module Delete
-      def delete( model, arguments = {} )
-        model = model.id if model.is_a? self
-        response = Paymill.request( Http.delete( name.demodulize.tableize, model, arguments ) )
-        return new( response['data'] ) if self.name.eql? 'Paymill::Subscription'
+      def delete( arguments = {} )
+        response = Paymill.request( Http.delete( self.class.name.demodulize.tableize, self.id, arguments ) )
+        return self.class.new( response['data'] ) if self.class.name.eql? 'Paymill::Subscription'
         nil
       end
     end

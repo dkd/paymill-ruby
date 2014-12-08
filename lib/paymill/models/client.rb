@@ -1,7 +1,7 @@
 module Paymill
   class Client < Base
-    extend Restful::Update
-    extend Restful::Delete
+    include Restful::Update
+    include Restful::Delete
 
     attr_accessor :email, :description
     attr_reader :payments, :subscriptions

@@ -236,7 +236,7 @@ module Paymill
         subscription.name = 'Changed Subscription'
         subscription.period_of_validity = '14 MONTH'
 
-        subscription = Subscription.update( subscription )
+        subscription.update
 
         expect( subscription ).to be_a Subscription
 
@@ -266,12 +266,13 @@ module Paymill
         expect( subscription.status ).to eq 'active'
         expect( subscription.client.id ).to eq client.id
         expect( subscription.client.email ).to eq client.email
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it 'should change the amount of a subscription once', :vcr do
         subscription = Subscription.create( payment: payment, offer: offer )
 
-        subscription = Subscription.update_amount_once( subscription, 1717 )
+        subscription.update_amount_once( 1717 )
 
         expect( subscription.id ).to be_a String
         expect( subscription.offer.amount ).to be amount
@@ -297,12 +298,13 @@ module Paymill
         expect( subscription.is_deleted ).to be false
         expect( subscription.status ).to eq 'active'
         expect( subscription.client.email ).to eq client.email
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it 'should change the amount of a subscription permanently', :vcr do
         subscription = Subscription.find( subscription_id )
 
-        subscription = Subscription.update_amount_permanently( subscription, 1717 )
+        subscription.update_amount_permanently( 1717 )
 
         expect( subscription.id ).to be_a String
         expect( subscription.offer.amount ).to be amount
@@ -328,13 +330,14 @@ module Paymill
         expect( subscription.is_deleted ).to be false
         expect( subscription.status ).to eq 'active'
         expect( subscription.client.email ).to eq client.email
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it 'should change the offer of a subscription with no refund and unchanged capture date', :vcr do
         subscription = Subscription.create( payment: payment, offer: offer )
         new_offer = Offer.create( name: 'Foo', amount: 4990, currency: 'EUR', interval: '2 WEEK')
 
-        subscription = Subscription.update_offer_without_changes( subscription, new_offer )
+        subscription.update_offer_without_changes( new_offer )
 
         expect( subscription.id ).to be_a String
         expect( subscription.offer.amount ).to be new_offer.amount
@@ -360,13 +363,14 @@ module Paymill
         expect( subscription.is_deleted ).to be false
         expect( subscription.status ).to eq 'active'
         expect( subscription.client.email ).to eq client.email
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it 'should change the offer of a subscription with refund and unchanged capture date', :vcr do
         subscription = Subscription.create( payment: payment, offer: offer )
         new_offer = Offer.create( name: 'Foo', amount: 1990, currency: 'EUR', interval: '2 WEEK')
 
-        subscription = Subscription.update_offer_with_refund( subscription, new_offer )
+        subscription.update_offer_with_refund( new_offer )
 
         expect( subscription.id ).to be_a String
         expect( subscription.offer.amount ).to be new_offer.amount
@@ -392,13 +396,14 @@ module Paymill
         expect( subscription.is_deleted ).to be false
         expect( subscription.status ).to eq 'active'
         expect( subscription.client.email ).to eq client.email
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it 'should change the offer of a subscription with refund and capture date', :vcr do
         subscription = Subscription.create( payment: payment, offer: offer )
         new_offer = Offer.create( name: 'Foo', amount: 1990, currency: 'EUR', interval: '2 WEEK')
 
-        subscription = Subscription.update_offer_with_refund_and_capture_date( subscription, new_offer )
+        subscription.update_offer_with_refund_and_capture_date( new_offer )
 
         expect( subscription.id ).to be_a String
         expect( subscription.offer.amount ).to be new_offer.amount
@@ -424,6 +429,7 @@ module Paymill
         expect( subscription.is_deleted ).to be false
         expect( subscription.status ).to eq 'active'
         expect( subscription.client.email ).to eq client.email
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it 'should stops the trial period', :vcr do
@@ -431,10 +437,11 @@ module Paymill
         next_capture_at = subscription.next_capture_at
         expect( subscription.trial_end.beginning_of_day ).to eq Time.new( 2016, 11, 17, 15, 0, 0 ).beginning_of_day
 
-        subscription = Subscription.stop_trial_period( subscription )
+        subscription.stop_trial_period()
 
         expect( subscription.trial_end ).to be_nil
         expect( subscription.next_capture_at ).to be < next_capture_at
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it 'should unlimit-limit the validity of a subscription', :vcr do
@@ -442,13 +449,14 @@ module Paymill
         expect( subscription.period_of_validity ).to eq '2 MONTH'
         expect( subscription.end_of_period ).not_to be_nil
 
-        subscription = Subscription.unlimit( subscription )
+        subscription.unlimit
         expect( subscription.end_of_period ).to be_nil
         expect( subscription.period_of_validity ).to be_nil
 
-        subscription = Subscription.limit( subscription, '3 MONTH' )
+        subscription.limit( '3 MONTH' )
         expect( subscription.end_of_period ).to be_a Time
         expect( subscription.period_of_validity ).to eq '3 MONTH'
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it 'should pause-play a subscription', :vcr do
@@ -456,50 +464,55 @@ module Paymill
         expect( subscription.period_of_validity ).to be_nil
         expect( subscription.end_of_period ).to be_nil
 
-        subscription = Subscription.pause( subscription )
+        subscription.pause
         expect( subscription.status ).to eq 'inactive'
 
-        subscription = Subscription.play( subscription )
+        subscription.play
         expect( subscription.status ).to eq 'active'
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it "should update subscription's currency", :vcr do
         subscription = Subscription.find( subscription_id )
         subscription.currency = 'BGN'
-        subscription = Subscription.update( subscription )
+        subscription.update
 
         expect( subscription.currency ).to eq 'BGN'
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it "should update subscription's name", :vcr do
         subscription = Subscription.find( subscription_id )
         subscription.name = 'goo'
-        subscription = Subscription.update( subscription )
+        subscription.update
 
         expect( subscription.name ).to eq 'goo'
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it "should update subscription's interval", :vcr do
         subscription = Subscription.find( subscription_id )
         subscription.interval = '5 WEEK'
-        subscription = Subscription.update( subscription )
+        subscription.update
 
         expect( subscription.interval ).to eq '5 WEEK'
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
 
       it "should update subscription's payment", :vcr do
         new_payment = Payment.create( token: token, client: client )
         subscription = Subscription.find( subscription_id )
         subscription.payment = new_payment
-        subscription = Subscription.update( subscription )
+        subscription.update
 
         expect( subscription.payment.id ).to eq new_payment.id
+        expect( subscription.created_at ).to be < subscription.updated_at
       end
     end
 
     context '::delete' do
       it 'should cancel the given subscription', :vcr do
-          subscription = Subscription.cancel( Subscription.create( payment: payment, offer: offer, name: 'To Delete' ) )
+          subscription = Subscription.create( payment: payment, offer: offer, name: 'To Delete' ).cancel
 
           expect( subscription.id ).to be_a String
           expect( subscription.offer.amount ).to be offer.amount
@@ -527,7 +540,7 @@ module Paymill
           expect( subscription.client.email ).to eq client.email
       end
       it 'should remove the given subscription', :vcr do
-        subscription = Subscription.remove( Subscription.create( payment: payment, offer: offer, name: 'To Delete' ) )
+        subscription = Subscription.create( payment: payment, offer: offer, name: 'To Delete' ).remove
 
         expect( subscription.id ).to be_a String
         expect( subscription.offer.amount ).to be offer.amount
@@ -550,11 +563,10 @@ module Paymill
         expect( subscription.canceled_at ).to be_a Time
         expect( subscription.app_id ).to be_nil
         expect( subscription.is_canceled ).to be true
-        expect( subscription.is_deleted ).to be true
+        expect( subscription.is_deleted ).to be false
         expect( subscription.status ).to eq 'inactive'
         expect( subscription.client.email ).to eq client.email
       end
     end
-
   end
 end

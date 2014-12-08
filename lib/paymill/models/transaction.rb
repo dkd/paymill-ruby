@@ -1,6 +1,6 @@
 module Paymill
   class Transaction < Base
-    extend Restful::Update
+    include Restful::Update
 
     attr_accessor :description
     attr_reader :amount, :client, :currency, :origin_amount, :status, :livemode, :refunds,
