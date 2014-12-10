@@ -4,6 +4,6 @@ module Paymill
 
     attr_accessor :id, :amount, :status, :description, :livemode,
                   :payment, :currency, :client, :response_code,
-                  :origin_amount, :refunds, :source
+                  :origin_amount, :refunds, :source, :short_id
   end
 end
