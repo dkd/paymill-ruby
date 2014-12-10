@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    paymill (0.5.0)
+    paymill (0.5.1)
       json
 
 GEM
