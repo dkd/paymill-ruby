@@ -139,12 +139,12 @@ module Paymill
     context '::delete' do
       it 'should delete existing offer', :vcr do
         offer = Offer.find( offer_id )
-        expect( offer.delete( remove_with_subscriptions: false ) ).to be_nil
+        expect( offer.delete_without_subscriptions() ).to be_nil
       end
 
       it 'should delete existing offer with its correlated subscriptions', :vcr do
         offer = Offer.create( amount: 4200, currency: 'EUR', interval: '1 MONTH', name: 'Superabo' )
-        expect( offer.delete( remove_with_subscriptions: true ) ).to be_nil
+        expect( offer.delete_with_subscriptions ).to be_nil
       end
     end
   end

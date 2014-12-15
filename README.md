@@ -139,7 +139,21 @@ offer.update( update_subscriptions: true )
 
 #### Deleting offer
 
-To delete an offer and all corresponding subscriptions call the instance method **delete** with an argument <code>remove_with_subscriptions</code> set to <code>true</code>
+To delete an offer and its corresponding subscriptions call
+
+```ruby
+offer = Offer.find( 'offer_b54ff8b3811e06c02e14' )
+offer.delete_with_subscriptions()
+```
+
+To delete an offer but leave its corresponding subscriptions call
+
+```ruby
+offer = Offer.find( 'offer_b54ff8b3811e06c02e14' )
+offer.delete_without_subscriptions
+```
+
+To delete an offer and its corresponding subscriptions you can call the instance method **delete** with an argument <code>remove_with_subscriptions</code> set to <code>true</code>
 
 ```ruby
 offer = Offer.find( 'offer_b54ff8b3811e06c02e14' )

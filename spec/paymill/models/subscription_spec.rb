@@ -563,7 +563,7 @@ module Paymill
         expect( subscription.canceled_at ).to be_a Time
         expect( subscription.app_id ).to be_nil
         expect( subscription.is_canceled ).to be true
-        expect( subscription.is_deleted ).to be false
+        expect( subscription.is_deleted ).to be true
         expect( subscription.status ).to eq 'inactive'
         expect( subscription.client.email ).to eq client.email
       end

@@ -106,9 +106,11 @@ module Paymill
     end
 
     def self.delete( endpoint, id, arguments )
-      request = Net::HTTP::Delete.new( "/#{Paymill.api_version}/#{endpoint}/#{id}" )
+      arguments = arguments.map { |key, value| "#{key.id2name}=#{value}" }.join( '&' )
+      arguments = "?#{arguments}" unless arguments.empty?
+      request = Net::HTTP::Delete.new( "/#{Paymill.api_version}/#{endpoint}/#{id}#{arguments}" )
       request.basic_auth( Paymill.api_key, '' )
-      request.set_form_data( arguments ) unless arguments.empty?
+      # request.set_form_data( arguments ) unless arguments.empty?
       request
     end
   end
