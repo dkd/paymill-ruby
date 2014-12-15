@@ -25,12 +25,6 @@ Add this line to your application's Gemfile:
 gem 'paymill', git: 'git://github.com/paymill/paymill-ruby.git'
 ```
 
-Or install it yourself as:
-
-```
-$ gem install paymill_ruby
-```
-
 And then execute:
 
 ```
