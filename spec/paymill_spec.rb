@@ -53,11 +53,6 @@ describe Paymill do
       expect(Paymill.api_port).to eq 3000
     end
 
-    it 'allows to turn on development mode' do
-      Paymill.development = true
-      expect(Paymill.development?).to eql(true)
-    end
-
     it 'allows to choose a logger' do
       logger = double(:logger)
       Paymill.logger = logger
