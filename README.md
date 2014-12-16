@@ -30,7 +30,7 @@ Then you have to set your API key:
 
 You can also set the API version, base endpoint and port:
 
-    Paymill.api_version = "v1"
+    Paymill.api_version = "v2"
     Paymill.api_base    = "0.0.0.0"
     Paymill.api_port    = 3000
 
