@@ -10,6 +10,7 @@ describe Paymill::Transaction do
       description: "Test transaction.",
       livemode: false,
       response_code: 20000,
+      short_id: "1234.1000.1230",
       payment: {
         card_type: "visa",
         country: "germany"
@@ -17,7 +18,8 @@ describe Paymill::Transaction do
       client: "client_a013c",
       refunds: [
         {:id => "refund_abc"}
-      ]
+      ],
+      source: 'paymill-ruby'
     }
   end
 
@@ -41,6 +43,8 @@ describe Paymill::Transaction do
       transaction.refunds.should_not be_empty
       transaction.refunds.first.should_not be_nil
       transaction.refunds.first[:id].should eql("refund_abc")
+      transaction.source.should eql("paymill-ruby")
+      transaction.short_id.should eql("1234.1000.1230")
     end
   end
 

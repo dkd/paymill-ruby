@@ -2,10 +2,11 @@ require "spec_helper"
 
 describe Paymill::Preauthorization do
   let(:valid_attributes) do
-    { 
-      payment: "pay_d43cf0ee969d9847512b", 
+    {
+      payment: "pay_d43cf0ee969d9847512b",
       amount: 4200,
-      currency: "EUR" 
+      currency: "EUR",
+      source: "paymill-ruby"
     }
   end
 
@@ -18,6 +19,7 @@ describe Paymill::Preauthorization do
       preauthorization.payment.should eql("pay_d43cf0ee969d9847512b")
       preauthorization.amount.should eql(4200)
       preauthorization.currency.should eql("EUR")
+      preauthorization.source.should eql("paymill-ruby")
     end
   end
 
