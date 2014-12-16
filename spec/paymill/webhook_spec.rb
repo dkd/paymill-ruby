@@ -26,7 +26,7 @@ describe Paymill::Webhook do
       webhook.event_types.should eql(["transaction.succeeded","transaction.failed"])   
       webhook.created_at.to_i.should eql(1360368749)
       webhook.updated_at.to_i.should eql(1360368749)
-      webhook.active.should be_true
+      webhook.active.should be_truthy
       webhook.app_id.should be_nil
     end
   end
