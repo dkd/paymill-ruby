@@ -13,7 +13,6 @@ module Paymill
   @@api_base    = API_BASE
   @@api_version = API_VERSION
   @@api_port    = Net::HTTP.https_default_port
-  @@development = false
   @@logger      = Logger.new(STDOUT)
 
   autoload :Base,             "paymill/base"
@@ -100,20 +99,6 @@ module Paymill
   # @param [String] api_port The api port
   def self.api_port=(api_port)
     @@api_port = api_port
-  end
-
-  # Returns true if the development mode is on
-  #
-  # @return [Boolean] Development mode on or not
-  def self.development?
-    @@development
-  end
-
-  # Sets the development mode
-  #
-  # @param [Boolean] development Development mode on or not
-  def self.development=(development)
-    @@development = development
   end
 
   # Returns the current logger
