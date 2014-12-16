@@ -3,11 +3,14 @@ require "spec_helper"
 describe Paymill::Webhook do
   let(:valid_attributes) do
     {
+      id: "hook_40237e20a7d5a231d99b",
       url: "<your-webhook-url>",
-      livemode:false,
-      event_types:["transaction.succeeded","transaction.failed"],
-      created_at:1360368749,
-      updated_at:1360368749
+      livemode: false,
+      event_types: ["transaction.succeeded","transaction.failed"],
+      created_at: 1360368749,
+      updated_at: 1360368749,
+      active: true,
+      app_id: nil
     }
   end
 
@@ -17,11 +20,14 @@ describe Paymill::Webhook do
 
   describe "#initialize" do
     it "initializes all attributes correctly" do
+      webhook.id.should eql("hook_40237e20a7d5a231d99b")
       webhook.url.should eql("<your-webhook-url>")
       webhook.livemode.should eql(false)
       webhook.event_types.should eql(["transaction.succeeded","transaction.failed"])   
       webhook.created_at.to_i.should eql(1360368749)
       webhook.updated_at.to_i.should eql(1360368749)
+      webhook.active.should be_truthy
+      webhook.app_id.should be_nil
     end
   end
 

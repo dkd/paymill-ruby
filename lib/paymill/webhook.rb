@@ -3,6 +3,6 @@ module Paymill
     include Paymill::Operations::Delete
     include Paymill::Operations::Update
 
-    attr_accessor :id, :url, :livemode, :event_types
+    attr_accessor :id, :url, :livemode, :event_types, :active, :app_id
   end
 end
