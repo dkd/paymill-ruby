@@ -21,6 +21,11 @@ module Paymill
       attributes.each_pair do |key, value|
         instance_variable_set("@#{key}", value)
       end
+      singleton_class.class_eval do
+        attributes.each_key do |key|
+          attr_accessor key
+        end
+      end
     end
 
     # Parses UNIX timestamps and creates Time objects.
